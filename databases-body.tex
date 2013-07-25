@@ -1,0 +1,912 @@
+%%%+++++++++++++++++++++++++++++++
+
+%INDEX ENTRIES:
+%STYLISTIC STUFF--
+\newbox\outsideback
+\newbox\sidebox
+\newbox\innerbox
+\newbox\Metricruler
+\newbox\rulerbox
+\newbox\RPPbox
+\newbox\RPPboxtwo
+\newbox\RPPboxthree
+\hyphenation{Secre-tar-iat}
+\sectionnum=0
+\tenpoint
+\parindent=0pt
+\parindent=20pt
+\ifnum\WhichSection=7
+\magnification=\magstep1
+\fi
+\Contents
+
+\BleederPointer=9
+
+\IndexEntry{databasespage}%
+	\IndexEntry{databasesaccessing}%
+	\IndexEntry{databasesWWW}%
+\beginDBonly
+\advance\pageno by 4
+\nochapternumberrunninghead{{\bf NOTES}}
+\headline={\ifodd\pageno\hfill\copy\RUNHEADhbox\hfill\elevenssbf\Folio%
+                \else\elevenssbf\Folio\hfill\copy\RUNHEADhbox\hfill\fi}
+%HERE WE INPUT THE RULER PROGRAM
+\input rulerdb.body
+%HERE WE PRINT THE RULERS
+\dp\Metricruler=0pt
+\ht\Metricruler=0pt
+\wd\Metricruler=0pt
+\setbox\rulerbox=\vbox{\hsize=4.9in % moves ruler left and right
+\centerline{\hfill\rotr\Metricruler}
+}
+\dp\rulerbox=0pt
+\ht\rulerbox=0pt
+\wd\rulerbox=0pt
+\vglue -1.5in % moves ruler up and down
+\vbox to 0pt{\copy\rulerbox\vss}
+%HERE WE PRINT THE RULERS
+%\vglue 1in
+\headline={\ifodd\pageno\hfil\copy\RUNHEADhbox\quad\elevenssbf\Folio%
+                \else\elevenssbf\Folio\quad\copy\RUNHEADhbox\hfill\fi}
+\nochapternumberrunninghead{Online particle physics information}
+\nochapterdbheading{ONLINE HEP INFORMATION}
+\endDBonly
+
+\beginRPPonly
+\def\labelsection#1{\tag{Sec.#1}{\the\sectionnum}}
+\def\thesection{\arabic{section}} 
+%% \nochapternumberheading{ONLINE PARTICLE PHYSICS INFORMATION}
+%% \def\nochapterheading#1{%
+%%            \centerline{\boldhead\hfill #1\hfill}\vskip .1in}%
+\def\no
+chapterheading#1{\chapter{#1}\label{Chap.\jobname}%
+\setbox\HEADFIRST=\hbox{\boldhead #1}
+\printtheheading}
+
+\overfullrule 0pt
+%% \nochapterheading{ONLINE PARTICLE PHYSICS INFORMATION}
+\nochapternumberheading{ONLINE PARTICLE PHYSICS INFORMATION}
+\nochapternumberrunninghead{Online particle physics information}
+%% \heading{ONLINE PARTICLE PHYSICS INFORMATION}
+%\WhoDidIt{Written January 2012 by A. Holtkamp and T. Basaglia (CERN)$^\dagger$}
+\footnote{ }{$\!\!\!\!\!\!\!\!\!^\dagger$ Please send comments and corrections to 
+{\tt Annette.Holtkamp@cern.ch} or {\tt tullio.basaglia@cern.ch}.
+
+}
+
+%
+\itemindent=10pt
+
+\advance\baselineskip by -.4pt
+
+
+
+
+\parindent=0pt
+\medskip
+
+\section{Introduction}\IndexEntry{dbppd}%
+
+The collection of online information resources in particle physics and related areas presented in this chapter is of necessity incomplete. An expanded and regularly updated online version can be found at 
+	\item{}\qquad{{\tt http://library.web.cern.ch/library/rpp}. }\rm
+
+Suggestions for additions and updates are very welcome. 
+
+
+\section{Particle Data Group (PDG) resources}\IndexEntry{dbpart}%
+
+\item{$\bullet$}REVIEW OF PARTICLE PHYSICS (RPP):
+A comprehensive report on the fields of particle physics and cosmology, including both review articles and a compilation/evaluation of data on particle properties.�The review section includes articles, tables and plots on a wide variety of theoretical and experimental topics of interest to particle physicists and astrophysicists. The particle properties section provides tables of published measurements as well as the Particle Data Group's best values and limits for particle properties such as masses, widths, lifetimes, and branching fractions, and an extensive summary of searches for hypothetical particles. RPP is published as a 1400-page book every two years, with partial updates made available once each year on the web. All the contents of the 1400-page book version of RPP are available online at:
+
+         \item{}\qquad{\tt http://pdg.lbl.gov}\rm
+ 
+\medskip
+
+\item{$\bullet$}
+PARTICLE PHYSICS BOOKLET:  
+An abridged version of the Review of Particle Physics available as a pocket-sized 300-page booklet. Although produced in print and available online only as a PDF file, the booklet is included in this guide because it is one of the most useful summaries of physics data. The booklet contains an abbreviated set of reviews and the summary tables from the most recent edition of the Review of Particle Physics. 
+
+\item{} The PDF file of the booklet can be downloaded: 
+
+         \item{}\quad{\tt http://pdg.lbl.gov/current/booklet.pdf}.\rm
+
+\item{} The printed booklet can be ordered: 
+
+         \item{}\quad{\tt http://pdg.lbl.gov/current/html/%\hfil\break
+ receive\_our\_products.html}.\rm
+
+
+\medskip
+
+\item{$\bullet$}
+PDGLive: 
+A web application for browsing the contents of the PDG database that contains the information published in the Review of Particle Physics. It allows one to navigate to a particle of interest, see a summary of the information available, and then proceed to the detailed information published in the Review of Particle Physics. Data entries are directly linked to the corresponding bibliographic information in INSPIRE. pdgLive can be accessed at:
+
+    \item{}\qquad{\tt http://pdglive.lbl.gov}\rm
+
+
+\medskip
+
+
+
+\item{$\bullet$}
+COMPUTER-READABLE FILES:
+Data files that can be downloaded from PDG include tables of particle masses and widths, PDG Monte Carlo particle numbers, and cross-section data. The files are updated with each new edition of the Review of Particle Physics and are available at: 
+
+           \leftline{\quad\tt http://pdg.lbl.gov/current/html/computer\_read.html}\rm
+\medskip
+
+Of historical interest is the complete RPP collection which, apart from the very first version from the year 1957, can be found online at
+
+    \item{}\qquad{\tt http://tiny.cc/RPP\_historical}\rm
+
+
+\section{Particle Physics Information Platforms}\IndexEntry{dbdirorg}%
+
+\item{$\bullet$}
+SPIRES: This indispensable information tool for high energy physicists worldwide was replaced by INSPIRE in November 2011. SPIRES started as a bibliographic database SPIRES-HEP in 1974 hosted at SLAC in collaboration with DESY and became remotely accessible in the mid 80's. Several databases - CONF, EXP, INST, HEPNames and JOBS - followed and FermiLab joined the team. In December 1991 SPIRES became the first web server outside Europe, from the start closely related to the arXiv repository. For High Energy Physics SPIRES-HEP was the reference for publications, covering not only journal articles and preprints but also conference proceedings, technical reports, theses and other 'gray' literature, the value of the information enhanced by thorough proof-reading, keywords and links to the sister SPIRES databases and other information services. Content and service are now taken over by INSPIRE. 
+\medskip
+
+
+\item{$\bullet$}
+INSPIRE: The time-honored SPIRES database suite has now been replaced by INSPIRE which combines the most successful aspects of SPIRES like comprehensive content and high-quality metadata - with the modern technology of Invenio, the CERN open-source digital-library software, offering major improvements like increased speed and Google-like free-text search syntax. INSPIRE serves as one-stop information platform for the particle physics community, comprising 6 interlinked databases on literature, conferences, institutions, researchers, experiments, jobs.
+INSPIRE is jointly developed and maintained by the three laboratories that have been running SPIRES (DESY, Fermilab and SLAC) and CERN. Close interaction with the user community and with arXiv, ADS, HepData, PDG and publishers is the backbone of INSPIRE's evolution.
+	\item{}\qquad{\tt http://inspirehep.net/}\rm
+
+\item{}More information on this project at 
+	\item{}\qquad{\tt http://www.projecthepinspire.net/}\rm
+
+
+
+\medskip
+
+\section{Literature Databases}\IndexEntry{dbeduc}%
+
+\item{$\bullet$} 
+ADS: The SAO/NASA Astrophysics Data System is a Digital Library portal for 
+researchers in Astronomy and Physics, operated by the Smithsonian 
+Astrophysical Observatory (SAO) under a NASA grant. The ADS maintains 
+three bibliographic databases containing more than 9.3 million records: 
+Astronomy and Astrophysics, Physics, and arXiv e-prints. 
+The main body of data in the ADS consists of bibliographic records, 
+which are searchable through highly customizable query forms,
+ and full-text scans of much of the astronomical literature 
+which can be browsed or searched via a full-text search interface. 
+Integrated in its databases, the ADS provides access and pointers 
+to a wealth of external resources, including electronic articles, 
+data catalogues and archives. In addition, ADS provides the myADS Update Service, a free custom 
+\vfil\eject
+notification service promoting current awareness of the recent literature in astronomy and physics based on each individual subscriber's queries.
+
+       \item{}\qquad{\tt http://adswww.harvard.edu/}\rm
+
+\medskip
+
+\item{$\bullet$}
+arXiv.org: A repository of full text papers in physics, mathematics, computer science, statistics, nonlinear sciences, quantitative finance and quantitative biology interlinked with ADS and INSPIRE. Papers are usually sent by their authors to arXiv in advance of submission to a journal for publication. Primarily covers 1991 to the present but authors are encouraged to post older papers retroactively. Permits searching by author, title, and words in abstract and experimentally also in the fulltext. Allows limiting by subfield archive or by date.
+
+	\item{}\quad{\tt http://arXiv.org}\rm
+\medskip
+
+\item{$\bullet$}
+CDS: The CERN Document Server contains records of more than 1,000,000 CERN and non-CERN articles, preprints, theses. It includes records for internal and technical notes, official CERN committee documents, and multimedia objects. CDS is going to focus on its role as institutional repository  covering all CERN material from the early 50s and reflecting the holdings of the CERN library. Non-CERN particle and accelerator physics content is in the process of being exported to INSPIRE.
+
+      \item{}\qquad{\tt http://cdsweb.cern.ch}\rm
+\medskip
+
+
+
+\item{$\bullet$}
+INSPIRE HEP: The HEP database serves almost 1 Mio bibliographic records 
+covering particle physics and related topics with a growing number of fulltexts attached and metadata including author affiliations, abstracts, references, keywords as well as links to arXiv, PDG, HepData and publisher platforms. It provides fast metadata and fulltext searches, plots extracted from fulltext, author disambiguation, author profile pages and citation analysis and is expanding its content to e.g. experimental notes.
+
+   \item{}\qquad{\tt http://inspirehep.net}\rm
+\medskip
+
+
+\item{$\bullet$}
+JACoW: The Joint Accelerator Conference Website publishes the proceedings of  APAC, EPAC, PAC , ABDW, BIW, COOL, CYCLOTRONS, DIPAC, ECR, FEL, ICALEPCS, ICAP, LINAC, North American PAC, PCaPAC, RuPAC, SRF. A custom interface allows searching on keywords, titles, authors, and in the fulltext.
+
+   \item{}\qquad{\tt http://www.JACoW.org/}\rm
+
+\item{$\bullet$}
+KISS (KEK INFORMATION SERVICE SYSTEM) FOR PREPRINTS:  The KEK Library preprint
+and technical report database contains bibliographic records of
+preprints and technical reports held in the KEK library with links
+to the full text images of more than 100,000 papers scanned from their
+worldwide collection of preprints.  Particularly useful for older scanned preprints:
+
+   \item{}\qquad{\tt http://www-lib.kek.jp/KISS/kiss\_prepri.html}\rm
+\medskip
+
+\item{$\bullet$}
+OSTI: The Office of Scientific and Technical Information databases search collections of research results, including those produced throughout the DOE National Laboratory complex and by Departmental grantees. You can find current and legacy research results, search ongoing research and development project descriptions, browse scientific subject portals of interest, access and search scientific e-prints, sign up for alerts, search science conference papers and proceedings. Among the key resources are the Energy Citations Database, providing free access to over 2,450,000 science research citations and 292,000 electronic documents, primarily from 1943 forward, and Information Bridge, covering DOE R\&D reports with searchable full-text and bibliographic citations.
+
+   \item{}\qquad{\tt http://www.osti.gov/}\rm
+
+
+\section{Particle Physics Journals and Conference Proceedings Series}\IndexEntry{dbjrev}%
+
+
+A list of  journals and conference series publishing particle physics content can be found at: 
+   \item{}\qquad{\tt http://library.web.cern.ch/library/journals.html} \rm
+
+For each journal or conference series, information is given on Open Access and copyright policies and terms of use. 
+
+\medskip
+
+
+\section{Conference Databases}\IndexEntry{dbjrev}%
+
+\item{$\bullet$}
+INSPIRE CONFERENCES: The database of more than 18,400 past, present and future conferences, schools, and meetings of interest to high-energy physics and related fields is  searchable by title, acronym, series, date, location. Included are information about published proceedings, links to conference contributions in the INSPIRE HEP database, and links to the conference Web site when available. New conferences can be submitted from the entry page.
+	\item{}\qquad{\tt http://inspirehep.net/Conferences}\rm
+
+\medskip
+
+
+\section{Research Institutions}\IndexEntry{dbsoft}%
+
+\item{$\bullet$}
+INSPIRE INSTITUTIONS: The database of over 9,800 institutes, laboratories, and university departments in which research on particle physics and astrophysics is performed covers six continents and over a hundred countries. Included are address, e-mail address, and Web links where available as well as links to the papers from each institution in the HEP database. Searches can be performed by name, acronym, location, etc. The site offers an alphabetical list by country as well as a list of the top 500 HEP and astrophysics institutions sorted by country.
+	\item{}\qquad{\tt http://inspirehep.net/Institutions}\rm
+
+
+\medskip
+
+
+
+
+\section{People} \IndexEntry{dbSpecEnt}%
+
+
+\item{$\bullet$}
+INSPIRE HEPNames: Searchable worldwide database of over 97,000 people associated with particle physics and related fields. The affiliation history of these researchers, their e-mail addresses, web pages, experiments they participated in, PhD advisor, information on their graduate students  and links to their papers in the INSPIRE HEP, arXiv and ADS databases are provided as well as a user interface to update these information.
+	\item{}\qquad{\tt http://inspirehep.net/HepNames}\rm
+
+\medskip
+
+
+\section{Experiments}  \IndexEntry{dbcollexp}%
+
+\item{$\bullet$}
+SPIRES/INSPIRE EXPERIMENTS: Contains more than 2,400 past, present, and future experiments in particle physics. Lists both accelerator and non-accelerator experiments. Includes official experiment name and number, location, and collaboration lists. Simple searches by participant, title, experiment number, institution, date approved, accelerator, or detector, return a description of the experiment, including a complete list of authors, title, overview of the experiment's goals and methods, and a link to the experiment's Web page if available. Publication lists distinguish articles in refereed journals, theses, technical or instrumentation papers and those which rank among Topcite at 50 or more citations.
+	\item{}\qquad{\tt http://www.slac.stanford.edu/spires/experiments/}\rm
+ 
+\item{} soon to be replaced by
+	\item{}\qquad{\tt http://inspirehep.net/Experiments}\rm
+
+\medskip
+
+\item{$\bullet$}
+COSMIC RAY/GAMMA RAY/NEUTRINO AND SIMILAR EXPERIMENTS: This extensive collection of experimental Web sites is organized by focus of study and also by location. Additional sections link to educational materials, organizations, related Web sites, etc. The site is maintained at the Max Planck Institute for Nuclear Physics, Heidelberg:
+	\item{}\qquad{\tt http://www.mpi-hd.mpg.de/hfm/CosmicRay/CosmicRaySites.html}\rm
+
+\medskip
+
+
+
+
+\section{Jobs} \IndexEntry{dbjobs}%
+
+\item{$\bullet$}
+APS Careers:  gateway for physicists, students, and physics enthusiasts to information about physics jobs and careers. Physics job listings, career advice, upcoming workshops and meetings, and career and job related resources provided by the American Physical Society: 
+	\item{}\qquad{\tt http://www.aps.org/jobs/} \rm
+
+\medskip
+
+\item{$\bullet$}
+BRIGHTRECRUITS.COM: A recruitment service run by IOP Publishing that connects employers from different industry sectors with jobseekers who have a background in physics and engineering
+	\item{}\qquad{\tt http://brightrecruits.com/}\rm
+
+\medskip
+
+\item{$\bullet$}
+IOP CAREERS: careers information and resources primarily aimed at university students provided by the UK Institute of Physics: 
+	\item{}\qquad{\tt http://www.iop.org/careers/}\rm
+
+\medskip
+
+\item{$\bullet$}
+INSPIRE HEPJobs: lists academic and research jobs in high energy physics, nuclear physics, accelerator physics and astrophysics with the option to post a job or to receive email notices of new job listings. About 1300 jobs are currently listed.
+	\item{}\qquad{\tt http://inspirehep.net/Jobs}\rm
+
+\medskip
+
+\item{$\bullet$}
+PHYSICSTODAY JOBS: online recruitment advertising website for Physics Today magazine, published by the American Institute of Physics. Physics Today Jobs is the managing partner of the 	AIP Career Network, an  online job board network for the physical science, engineering, and computing disciplines. Over 8,500 resumes are currently available, and almost 3,000 jobs were posted in 2011.
+	\item{}\qquad{\tt http://www.physicstoday.org/jobs}\rm
+
+\medskip
+
+
+\section{Software Repositories}  \IndexEntry{dbrep}%
+
+\medskip
+
+\leftline{\bf Particle Physics}
+
+\item{$\bullet$}
+BSM Generators: a repository of codes relevant to Beyond-the-Standard-Model (BSM) physics
+	\item{}\qquad{\tt http://www.ippp.dur.ac.uk/montecarlo/BSM}\rm
+
+\medskip
+
+\item{$\bullet$}
+CERNLIB: The CERN PROGRAM LIBRARY contains a large collection of general purpose libraries and modules offered in both source code and object code forms. It provides programs applicable to a wide range of physics research problems such as general mathematics, data analysis, detectors simulation, data-handling, etc. It also includes links to commercial, free, and other software. Development of this site has been discontinued.
+	\item{}\qquad{\tt http://wwwasd.web.cern.ch/wwwasd/index.html}\rm
+
+\medskip
+
+
+\item{$\bullet$}
+FERMITOOLS: Fermilab's software tools program provides a repository of Fermilab-developed software packages of value to the HEP community. Permits searching for packages by title or subject category:
+	\item{}\qquad{\tt http://www.fnal.gov/fermitools/}\rm
+
+\medskip
+
+\item{$\bullet$}
+FREEHEP: A collection of software and information about software useful in high-energy physics and adjacent disciplines, focusing on open-source software for data analysis and visualization. Searching can be done by title, subject, date acquired, date updated, or by browsing an alphabetical list of all packages. The site does not seem to be updated any longer but still provides useful information.
+	\item{}\qquad{\tt http://www.freehep.org/}\rm
+
+\medskip
+
+\item{$\bullet$}
+GEANT4: Toolkit for the simulation of the passage of particles through matter, maintained by a world-wide collaboration of scientists and software engineers. Its areas of application include high energy, nuclear and accelerator physics, as well as studies in medical and space science.
+	\item{}\qquad{\tt http://geant4.cern.ch/}\rm
+
+\medskip
+
+\item{$\bullet$}
+GENSER: The Generator Services project collaborates with Monte Carlo (MC) generators authors and with LHC experiments in order to prepare validated LCG compliant code for both the theoretical and experimental communities at the LHC, sharing the user support duties, providing assistance for the development of the new object-oriented generators and guaranteeing the maintenance of the older packages on the LCG supported platforms. The project consists of the generators repository, validation, HepMC record and MCDB event databases.
+	\item{}\qquad{\tt http://sftweb.cern.ch/generators/}\rm
+
+\medskip
+
+\item{$\bullet$}
+HEPFORGE: A development environment for high-energy physics software development projects, in particular housing many event-generator related projects, that offers a ready-made, easy-to-use set of Web based tools, including shell account with up to date development tools, web page hosting, subversion and CVS code management systems, mailing lists, bug tracker and wiki system.
+	\item{}\qquad{\tt http://www.hepforge.org/}\rm
+
+\medskip
+
+\item{$\bullet$}
+PYTHIA: A program for the generation of high-energy physics events, i.e. for the description of collisions at high energies between elementary particles such as e+, e-, p and p-bar in various combinations. It contains theory and models for a number of physics aspects, including hard and soft interactions, parton distributions, initial- and final-state parton showers, multiple interactions, fragmentation and decay.
+	\item{}\qquad{\tt http://home.thep.lu.se/~torbjorn/Pythia.html}\rm
+
+\medskip
+
+\item{$\bullet$}
+QUDA: library for performing calculations in lattice QCD on GPUs using 
+NVIDIA's "C for CUDA" API. The current release includes optimized solvers for Wilson, Clover-improved Wilson. Twisted mass, Improved staggered (asqtad or HISQ) and Domain wall fermion actions
+	\item{}\qquad{\tt http://lattice.github.com/quda/}\rm
+
+\medskip
+
+\item{$\bullet$}
+ROOT: This framework for data processing in high-energy physics, born at CERN, offers applications to store, access, process, analyze and represent data or perform simulations.
+	\item{}\qquad{\tt http://root.cern.ch/drupal}\rm
+
+\medskip
+
+\item{$\bullet$}
+tmLQCD: This freely available software suite provides a set of tools to be used in lattice QCD simulations, mainly a (P)HMC implementation for Wilson and Wilson twisted mass fermions and inverter for different versions of the Dirac operator.
+	\item{}\qquad{\tt https://github.com/etmc/tmLQCD}\rm
+
+\medskip
+
+\item{$\bullet$}
+USQCD:  The software suite enables lattice QCD computations to be performed with high performance across a variety of architectures. The page contains links to the project web pages of the individual software modules, as well as to complete lattice QCD application packages which use them.
+	\item{}\qquad{\tt http://usqcd.jlab.org/usqcd-software/}\rm
+
+\medskip
+
+
+A list of Monte Carlo generators may be found at
+	\item{}\qquad{\tt http://cmsdoc.cern.ch/cms/PRS/gentools/www/geners/collection/\hfil\break
+\hfil collection.html\rm
+
+The homepage of the SUSY Les Houches Accord contains links to codes relevant for supersymmetry calculations and phenomenology
+	\item{}\qquad{\tt http://home.fnal.gov/~skands/slha/} \rm
+ 
+A variety of codes and algorithmic tools for analysing supersymmetric phenomenology is  described in {\tt arXiv:0805.2088}\rm
+	\item{}\qquad{\tt http://arxiv.org/abs/0805.2088}\rm
+
+
+\medskip
+\overfullrule 0pt
+%\vfil\supereject
+
+\leftline{\bf Astrophysics}\IndexEntry{dbarep}%
+
+
+\item{$\bullet$}
+IRAF: The Image Reduction and Analysis Facility is a general purpose software system for the reduction and analysis of astronomical data. IRAF is written and supported by the IRAF programming group at the National Optical Astronomy Observatories (NOAO) in Tucson, Arizona.
+	\item{}\qquad{\tt http://iraf.noao.edu/}\rm
+
+\medskip
+
+\item{$\bullet$}
+STARLINK: Starlink was a UK Project supporting astronomical data processing. It was shut down in 2005 but its open-source software continues to be developed at the Joint Astronomy Centre. The software products are a collection of applications and libraries, usually focused on a specific aspect of data reduction or analysis.
+	\item{}\qquad{\tt http://starlink.jach.hawaii.edu/starlink}\rm
+
+\medskip
+
+Links to a large number of astronomy software archives are listed at
+	\item{}\qquad{\tt http://heasarc.nasa.gov/docs/heasarc/astro-update/} \rm
+
+\medskip
+
+
+\section{Data repositories}  \IndexEntry{dbdrep}%
+
+\medskip
+
+\leftline{\bf Particle Physics}
+
+\medskip
+
+
+\item{$\bullet$}
+HEPDATA: The HepData Project, funded by the STFC(UK) and based at the
+IPPP at Durham University, has  for more than 30 years compiled a
+Reaction Data database, comprising total and differential cross
+sections, structure functions, fragmentation functions, distributions of
+jet measures, polarisations, etc from a wide range of particle physics
+scattering experiments worldwide.  It is regularly updated to cover
+the latest data including those from the LHC.  In addition, it provides a
+series of on-line data reviews on a wide variety of topics with links to
+the data in the Reaction Database.  It also hosts a Parton Distribution
+Function server with an on-line PDF calculator and plotter.
+	\item{}\qquad{\tt http://durpdg.dur.ac.uk/}\rm
+
+\medskip
+
+\item{$\bullet$}
+ILDG: The International Lattice Data Grid is an international organization which provides standards, services, methods and tools that facilitates the sharing and interchange of lattice QCD gauge configurations among scientific collaborations, by uniting their regional data grids. It offers semantic access with local tools to worldwide distributed data. See e.g.
+	\item{}\qquad{\tt http://www.usqcd.org/ildg/}\rm
+
+\medskip
+
+\item{$\bullet$}
+MCPLOTS: mcplots is a repository of Monte Carlo plots comparing High Energy Physics event generators to a wide variety of available experimental data. The site is supported by the LHC Physics Centre at CERN.
+	\item{}\qquad{\tt http://mcplots.cern.ch/}\rm
+
+\medskip
+
+\leftline{\bf Astrophysics}
+
+\medskip
+
+\item{$\bullet$}
+SIMBAD: archives data in the form of object catalogues from many 
+heterogeneous sources
+	\item{}\qquad{\tt http://simbad.u-strasbg.fr/simbad/} \rm
+
+\medskip
+
+\item{$\bullet$}
+NED: NASA/IPAC extragalactic database, operated by the Jet Propulsion Laboratory, California Institute of Technology
+	\item{}\qquad{\tt http://ned.ipac.caltech.edu/ }\rm
+
+\medskip
+
+\item{$\bullet$}
+The NASA archives provide access to raw and processed datasets from numerous NASA missions. 
+\item{}
+Hubble telescope, other missions (UV, optical):	\item{}\qquad{{\tt http://archive.stsci.edu/} \rm
+\item{}
+Spitzer telescope, other missions (Infrared): \item{}\qquad{\tt http://irsa.ipac.caltech.edu/}\rm
+\item{}
+Chandra, Fermi telescopes, other missions: \item{}\qquad{\tt http://heasarc.gsfc.nasa.gov/}\rm
+
+\medskip
+
+\item{$\bullet$}
+The Virtual Observatory provides a suite of resources to query for original data from a large number of archives. Two main tools are provided. One runs queries across multiple databases (such as the SDSS database) and combines the results. The other queries hundreds of archives for all datasets that fall on a particular piece of sky.
+	\item{}\qquad{\tt http://www.us-vo.org/}\rm
+
+\medskip
+
+\leftline{\bf General Physics}
+
+\medskip
+
+\item{$\bullet$}
+NIST PHYSICAL MEASUREMENT LABORATORY: The National Institute of Standards and Technology provides access to physical reference data (physical constants, atomic spectroscopy data, x-ray and gamma-ray data, radiation dosimetry data, nuclear physics data and more) and measurements and calibrations data (dimensional measurements, electromagnetic measurements). The site points to a general interest page, linking to exhibits of the Physical Measurement Laboratory in the NIST Virtual Museum.
+	\item{}\qquad{\tt http://physics.nist.gov/}\rm
+
+\medskip
+
+\item{$\bullet$}
+SPRINGER MATERIALS  - THE LANDOLT-B\"ORNSTEIN DATABASE: Landolt-B\"ornstein is a high-quality data collection in all areas of physical sciences and engineering, among others particle physics, electronic structure and transport, magnetism, superconductivity. International experts scan the primary literature in more than 8,000 peer-reviewed journals and evaluate and select the most valid information to be included in the database. It includes more than 100,000 online documents, 1,2 million references, and covers 250,000 chemical substances.
+The search functionality is freely accessible and the search results are displayed in their context, whereas the full text is secured to subscribers:
+	\item{}\qquad{\tt http://www.springermaterials.com/}\rm
+
+\medskip
+
+
+\section{Data preservation}  \IndexEntry{dbdpres}%
+
+\medskip
+
+\leftline{\bf Particle Physics}
+
+\medskip
+
+\item{$\bullet$}
+DPHEP: The efforts to define and coordinate Data Preservation and Long Term Analysis in HEP are coordinated by a study group formed to investigate the issues associated with these activities. The group, DPHEP, was initiated during 2008-2009 and includes all HEP major experiments and laboratories. It is endorsed by the International Committee for Future Accelerators (ICFA). Details of the organizational structure, the objectives, workshops and publications can be found at 
+	\item{}\qquad{\tt http://dphep.org}\rm
+
+The experiments at colliders: BaBar, Belle, BES-III, Cleo, CDF, D0, H1 and ZEUS and the associated computing centres at SLAC (USA), KEK (Japan), IHEP (China), Jlab (USA), BNL (USA), Fermilab (USA), DESY (Germany), and CERN are all represented in the group. The LHC collaborations have also joined the initiative in 2011. The participating experiments are in various stages of studying, preparing, or operating long-term data preservation and analysis systems. Technological methods, such as virtualization, and information management tools such as INSPIRE are also helpful in this area of research. Data access policies and outreach in HEP using real data are among the investigative areas of the DPHEP Study Group. 
+
+\medskip
+
+\leftline{\bf Astrophysics}
+
+\medskip
+
+More formal and advanced data preservation activity is ongoing in the field of Experimental Astrophysics, including 
+\item{$\bullet$}
+SDSS \item{}\qquad{\tt http://sdss.org}\rm
+\item{$\bullet$}
+Fermi \item{}\qquad{\tt http://fermi.gsfc.nasa.gov/ssc/data} \rm
+\item{$\bullet$}
+IVOA \item{}\qquad{\tt http://www.ivoa.net/}\rm
+
+\medskip
+
+
+\section{Particle Physics Education and Outreach Sites}  \IndexEntry{dbedsite}%
+
+\medskip
+
+
+\leftline{\bf Science Educators' Networks:}
+
+\medskip
+
+
+\item{$\bullet$}
+IPPOG: The International Particle Physics Outreach Group is a network of particle physicists, researchers, informal science educators and science explainers aiming to raise awareness, understanding and standards of global outreach efforts in particle physics and general science by providing discussion forums and regular information exchange for science institutions, proposing and implementing strategies to share lessons learned and best practices and promoting current outreach efforts of network members:
+	\item{}\qquad{\tt http://ippog.web.cern.ch/ippog/}\rm
+
+\item{$\bullet$}
+Interactions.org: designed to serve as a central resource for communicators of particle physics. The daily updated site  provides links to current particle physics news from the world's press, high-resolution photos and graphics from the particle physics laboratories of the world; links to education and outreach programs; information about science policy and funding; links to universities; a glossary; a conference calendar; and links to many educational sites
+	\item{}\qquad{\tt http://www.interactions.org}\rm
+
+
+\medskip
+
+\leftline{\bf Physics Courses}
+
+\medskip
+
+
+\item{$\bullet$}
+MIT OPENCOURSEWARE - PHYSICS:  These MIT course materials reflect almost all the undergraduate and graduate subjects taught at MIT. In addition to physics courses, supplementary educational resources are also available.
+	\item{}\qquad{\tt http://ocw.mit.edu/courses/physics/}\rm
+
+
+\medskip
+
+\leftline{\bf Master Classes}
+
+\medskip
+
+\item{$\bullet$}
+INTERNATIONAL MASTERCLASSES: Each year about 6000 high school students in 28 countries come to one of about 130 nearby universities or research centres for one day in order to unravel the mysteries of particle physics. Lectures from active scientists give insight in topics and methods of basic research at the fundaments of matter and forces, enabling the students to perform measurements on real data from particle physics experiments themselves. At the end of each day, like in an international research collaboration, the participants join in a video conference for discussion and combination of their results.
+	\item{}\qquad{\tt http://physicsmasterclasses.org/}\rm
+
+
+\medskip
+
+\leftline{\bf General Sites}
+
+\item{$\bullet$}
+CONTEMPORARY PHYSICS EDUCATION PROJECT (CPEP): Provides charts, brochures, Web links, and classroom activities. Online interactive courses include: Fundamental Particles and Interactions; Plasma Physics and Fusion; History and Fate of the Universe; and Nuclear Science.
+	\item{}\qquad{\tt http://www.cpepweb.org/}\rm
+
+\medskip
+
+\item{$\bullet$}
+PHYSICSCENTRAL: This site maintained by the American Physical Society provides information about current research and people in physics, experiments that can be performed at home or at school and the possibility to get physics questions answered by physicists.
+	\item{}\qquad{\tt http://www.physicscentral.com}\rm
+
+\medskip
+
+
+\leftline{\bf General Physics Lessons \& Activities}
+
+
+
+\item{$\bullet$}
+HYPERPHYSICS: An exploration environment for concepts in physics employing concept maps and other linking strategies and providing opportunities for numerical exploration.
+	\item{}\qquad{\tt http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html}\rm
+
+\medskip
+
+\item{$\bullet$}
+PHYSICS2000: An interactive journey through modern physics. Have fun learning visually and conceptually about 20th century science and high-tech devices. Supported by the Colorado Commission on Higher Education and the National Science Foundation
+	\item{}\qquad{\tt http://www.colorado.edu/physics/2000}\rm
+
+
+
+\medskip
+
+
+
+\leftline{\bf Particle Physics Lessons \& Activities}
+
+\medskip
+
+\item{$\bullet$}
+Angels and Demons: With the aim of looking at the myth versus the reality of science at CERN this site offers teacher resources, slide shows and videos of talks given to teachers visiting CERN
+	\item{}\qquad{\tt http://angelsanddemons.web.cern.ch/}\rm
+
+\medskip
+
+\item{$\bullet$}
+ANTIMATTER: MIRROR OF THE UNIVERSE: Find out what antimatter is, where it is made, the history behind its discovery, and how it is a part of our lives. Features colorful photos, illustrations, webcasts, a Kids Corner, and CERN physicists answering your questions on antimatter:
+	\item{}\qquad{\tt http://livefromcern.web.cern.ch/livefromcern/antimatter/}\rm
+
+\medskip
+
+\item{$\bullet$}
+BIG BANG: An exhibition of the UK Science Museum with an interactive game about the hunt for the Higgs
+	\item{}\qquad{\tt http://www.sciencemuseum.org.uk/antenna/bigbang/}\rm
+
+\medskip
+
+\item{$\bullet$}
+BIG BANG SCIENCE: EXPLORING THE ORIGINS OF MATTER: This Web site, produced by the Particle Physics and Astronomy Research Council of the UK (PPARC), explains what physicists are looking for with their giant instruments. Big Bang Science focuses on CERN particle detectors and on United Kingdom scientists' contribution to the search for the fundamental building blocks of matter.
+	\item{}\qquad{\tt http://hepwww.rl.ac.uk/pub/bigbang/part1.html}\rm
+
+\medskip
+
+\item{$\bullet$}
+CERNland: With a range of games, multimedia applications and films CERNland is the virtual theme park developed to bring the excitement of CERN's research to a young audience aged between 7 and 12. CERNland is designed to show children what is being done at CERN and inspire them with some physics at the same time.
+	\item{}\qquad{\tt http://www.cernland.net/}\rm
+
+\medskip
+
+\item{$\bullet$}
+Collidingparticles: a series of films following a team of physicists involved in research at the LHC 
+	\item{}\qquad{\tt http://www.collidingparticles.com/}\rm
+\medskip
+
+\item{$\bullet$}
+Lancaster Particle Physics: This site, suitable for 16+ students,  offers a number of simulations and explanations of particle physics, including a section on the LHC. 
+	\item{}\qquad{\tt http://www.lppp.lancs.ac.uk/}\rm
+
+\medskip
+
+\item{$\bullet$}
+PARTICLE ADVENTURE: One of the most popular Web sites for learning the fundamentals of matter and force. An award-winning interactive tour of quarks, neutrinos, antimatter, extra dimensions, dark matter, accelerators and particle detectors from the Particle Data Group of Lawrence Berkeley National Laboratory. Simple elegant graphics and translations into 15 languages:
+	\item{}\qquad{\tt http://ParticleAdventure.org}\rm
+
+\medskip
+
+\item{$\bullet$}
+PARTICLE DETECTIVES: This website, maintained by the Science and Technology Facilities Council (STFC), is for inquisitive 14-19 year olds, their teachers and for researchers who want to find out and talk about the world's biggest scientific adventure, the Large Hadron Collider, featuring e.g. An LHC experiment simulator.
+	\item{}\qquad{\tt http://www.lhc.ac.uk/The+Particle+Detectives/15273.aspx}\rm
+
+\medskip
+
+\item{$\bullet$}
+Quarked! - Adventures in the Subatomic Universe: This project, targeted to kids aged 7-12 (and their families), brings subatomic physics to life through a multimedia project including an interactive website, a facilitated program for museums and schools, and an educational outreach program
+	\item{}\qquad{\tt http://www.quarked.org/}\rm
+
+\medskip
+
+\item{$\bullet$}
+QUARKNET: QuarkNet brings the excitement of particle physics research to high school teachers and their students. Teachers join research groups at about 50 universities and labs across the country. These research groups are part of particle physics experiments at CERN or Fermilab. About 100,000 students from 500+ US high schools learn fundamental physics as they participate in inquiry-oriented investigations and analyze real data online. QuarkNet is supported in part by the National Science Foundation and the U.S. Department of Energy:
+	\item{}\qquad{\tt http://QuarkNet.fnal.gov}\rm
+
+\medskip
+
+\item{$\bullet$}
+Rewarding Learning videos about CERN: The three videos based on interviews with scientists and engineers at CERN introduce pupils to CERN and the type of research and work undertaken there and are accompanied by teachers' notes.
+	\item{}\qquad{\tt http://www.rewardinglearning.org.uk/STEM/cern/}\rm
+
+
+\medskip
+
+
+\leftline{\bf Lab Education Offices}
+
+\medskip
+
+\item{$\bullet$}
+Brookhaven National Laboratory (BNL) Educational Programs: The Office of Educational Programs mission is to design, develop, implement, and facilitate workforce development and education initiatives that support the scientific mission at Brookhaven National Laboratory and the Department of Energy.
+	\item{}\qquad{\tt http://www.bnl.gov/education/}\rm
+
+\medskip
+
+\item{$\bullet$}
+CERN: The CERN education website offers information about teacher programmes and educational resources for schools
+	\item{}\qquad{\tt http://education.web.cern.ch/education/}\rm
+
+\medskip
+
+\item{$\bullet$}
+DESY: offers courses for pupils and teachers as well as information for the general public, mostly in German.
+	\item{}\qquad{\tt http://www.desy.de/information\_\_services/education/}\rm
+
+\medskip
+
+\item{$\bullet$}
+FERMILAB EDUCATION OFFICE: provides  education resources and information about activities for educators, physicists, students and visitors to the Lab. In addition to information on 25 programs, the site  provides online data-based investigations for high school students, online versions of exhibits in the Lederman Science Center, links to particle physics discovery resources, web-based instructional resources, what works for education and outreach, and links to the Lederman Science Center and the Teacher Resource Center.
+	\item{}\qquad{\tt http://ed.fnal.gov/}\rm
+
+\medskip
+
+\item{$\bullet$}
+LBL: Berkeley Lab's Center for Science \& Engineering Education (CSEE) carries out the Department of Energy's education mission to train the next generation of scientists, as well as helping them to gain an understanding of the relationships among frontier science, technology, and society.
+	\item{}\qquad{\tt http://www.lbl.gov/Education/}\rm
+
+\medskip
+
+\item{$\bullet$}
+EXPLORING SLAC SCIENCE: This Stanford Linear Accelerator Center Web site explains physics concepts related to experiments conducted at SLAC.
+	\item{}\qquad{\tt http://www6.slac.stanford.edu/ExploringSLACScience.aspx}\rm
+
+\medskip
+
+\item{$\bullet$}
+Symmetry: This magazine about particle physics and its connections to other aspects of life and science, from interdisciplinary collaborations to policy to culture is published 6 times per year by Fermilab  and SLAC.
+	\item{}\qquad{\tt http://www.symmetrymagazine.org}\rm
+
+
+\medskip
+
+\leftline{\bf Educational Programs of Experiments}
+
+
+\medskip
+
+\item{$\bullet$}
+ATLAS DISCOVERY QUEST: One of several access points to ATLAS education and outreach pages. This page gives access to explanations of physical concepts, blogs, ATLAS facts, news, and information for students and teachers.
+   \item{}\qquad{\tt http://www.atlas.ch/physics.html}    \rm 
+
+
+\item{$\bullet$}
+ATLAS eTours: give a description of the Large Hadron Collider, explain how the ATLAS detector at the LHC works and give an overview over the experiments and their physics goals. 
+	\item{}\qquad{\tt http://www.atlas.ch/etours.html}\rm
+
+\medskip
+
+\item{$\bullet$}
+CMS EDUCATION: Provides access to educational resources (Story of the 
+Universe, The Size of Things, What is a Particle), and to multimedia 
+material, such as interviews, movies and photos.
+	\item{}\qquad{\tt http://cms.web.cern.ch/content/cms-education}\rm
+
+\medskip
+
+\item{$\bullet$}
+EDUCATION AND OUTREACH @ ICECUBE: Educational pages of the IceCube (South 
+Pole Neutrino Detector)
+    \item{}\qquad{\tt http://icecube.wisc.edu/outreach}\rm
+
+
+\medskip
+
+\item{$\bullet$}
+LIGO SCIENCE EDUCATION CENTER: The LIGO (Laser Interferometer 
+Gravitational-wave Observatory) Science Education Center has over 
+40 interactive, hands-on exhibits that relate to the science of LIGO. The 
+site hosts field trips for students, teacher training programs, and tours 
+for the general public. Visitors can explore science concepts such as 
+light, gravity, waves, and interference; learn about LIGO's search for 
+gravitational waves; and interact with scientists and engineers.
+     \item{}\qquad{\tt http://www.ligo-la.caltech.edu/SEC.html}\rm
+
+
+\medskip
+
+\item{$\bullet$}
+PIERRE AUGER OBSERVATORY'S EDUCATIONAL PAGES: The site offers information about cosmic rays and their detection, and provides material for students and teachers.
+     \item{}\qquad{\tt http://www.auger.org/cosmic\_rays/}\rm
+
+
+
+\medskip
+
+
+\vfil\eject
+
+\leftline{\bf Art in Physics}
+
+
+\medskip
+
+\item{$\bullet$}
+Arts@CERN:  a 3-year artist's residency programme in Digital Arts and Dance/Performance
+	\item{}\qquad{\tt http://arts.web.cern.ch/collide/}\rm
+
+\medskip
+
+\item{$\bullet$}
+Art of Physics Competition: The Canadian Association of Physicists organizes this competition, the first was launched in 1992, with the aim of stimulating interest, especially among non-scientists, in some of the captivating imagery associated with physics. The challenge is to capture photographically a beautiful or unusual physics phenomenon and explain it in less than 200 words in terms that everyone can understand.
+	\item{}\qquad{\tt http://www.cap.ca/aop/art.html}\rm
+
+\medskip
+
+\item{$\bullet$}
+Photowalk: More than 200 amateur photographers from around the world had the opportunity to experience state-of-the-art accelerators and detectors. Five of the world's leading particle physics laboratories in Asia, Europe and North America offered special behind-the-scenes access to their scientific facilities. The winning photos can be viewed.
+	\item{}\qquad{\tt http://www.interactions.org/cms/?pid=1029664}\rm
+
+\medskip
+
+\leftline{\bf Blogs}
+
+This is a very incomplete collection of particle physics related blogs:
+ 
+\medskip
+
+\item{$\bullet$}
+ATLAS blog
+	\item{}\qquad{\tt http://www.atlas.ch/blog}\rm
+
+\medskip
+
+\item{$\bullet$}
+U.S. LHC blog: The blog give a vivid account of the daily activity of US LHC
+researchers.
+	\item{}\qquad{\tt http://www.quantumdiaries.org/lab-81/}\rm
+
+\medskip
+
+\item{$\bullet$}
+Physics arXiv blog: Technology Review blog on new ideas at arXiv.org
+	\item{}\qquad{\tt http://www.technologyreview.com/blog/arxiv/}\rm
+
+\medskip
+
+
+\item{$\bullet$}
+CERN Love:
+	\item{}\qquad{\tt http://www.cernlove.org/blog/}\rm
+
+\medskip
+
+\item{$\bullet$}
+Not Even Wrong: Peter Woit's blog on topics in physics and mathematics
+	\item{}\qquad{\tt http://www.math.columbia.edu/~woit/wordpress/}\rm
+
+\medskip
+
+\item{$\bullet$}
+Quantum diaries: Thoughts on work and life from particle physicists from around the world.
+	\item{}\qquad{\tt http://www.quantumdiaries.org/}\rm
+
+\medskip
+
+\item{$\bullet$}
+Science blogs: Launched in January 2006, ScienceBlogs features bloggers from a wide array of scientific disciplines, including physics:
+	\item{}\qquad{\tt http://scienceblogs.com/channel/physical-science/}\rm
+
+\medskip
+
+\item{$\bullet$}
+Life and Physics: Jon Butterworth's blog in the Guardian
+	\item{}\qquad{\tt http://www.guardian.co.uk/science/life-and-physics}\rm
+
+
+
+
+\endRPPonly
+
+%% Continuations of this discussion and all references found in full
+%% edition of the {\it Review of Particle Physics}\/ only.
+%% \endDBonly
+
+%%%+++++++++++++++++++++++++++++++
+
+% blank page
+\vfill\eject
+\nochapternumberrunninghead{}
+\vglue 1in
+%\IndexEntry{colorFigsThirtyThree}
+%% \vfill\eject
+
