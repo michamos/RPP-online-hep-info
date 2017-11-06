@@ -13,20 +13,20 @@
 %%%+++++++++++++++++++++++++++++++
 %INDEX ENTRIES:
 %STYLISTIC STUFF--
-\newbox\outsideback
-\newbox\sidebox
-\newbox\innerbox
-\newbox\Metricruler
-\newbox\rulerbox
-\newbox\RPPbox
-\newbox\RPPboxtwo
-\newbox\RPPboxthree
-\hyphenation{Secre-tar-iat}
-\font\scshape=cmcsc10
-\sectionnum=0
-\tenpoint
-\parindent=0pt
-\parindent=20pt
+%% \newbox\outsideback
+%% \newbox\sidebox
+%% \newbox\innerbox
+%% \newbox\Metricruler
+%% \newbox\rulerbox
+%% \newbox\RPPbox
+%% \newbox\RPPboxtwo
+%% \newbox\RPPboxthree
+%% \hyphenation{Secre-tar-iat}
+%% \font\scshape=cmcsc10
+%% \sectionnum=0
+%% \tenpoint
+%% \parindent=0pt
+%% \parindent=20pt
 \ifnum\WhichSection=7
 \magnification=\magstep1
 \fi
@@ -61,7 +61,7 @@
 \headline={\ifodd\pageno\hfil\copy\RUNHEADhbox\quad\elevenssbf\Folio%
                 \else\elevenssbf\Folio\quad\copy\RUNHEADhbox\hfill\fi}
 \nochapternumberrunninghead{Online particle physics information}
-\nochapterdbheading{ONLINE HEP INFORMATION}
+%% \nochapterdbheading{ONLINE HEP INFORMATION}
 \endDBonly
 
 
@@ -71,18 +71,17 @@
 %% \nochapternumberheading{ONLINE PARTICLE PHYSICS INFORMATION}
 %% \def\nochapterheading#1{%
 %%            \centerline{\boldhead\hfill #1\hfill}\vskip .1in}%
-\def\no
-chapterheading#1{\chapter{#1}\label{Chap.\jobname}%
+\def\nochapterheading#1{\chapter{#1}\label{Chap.\jobname}%
 \setbox\HEADFIRST=\hbox{\boldhead #1}
 \printtheheading}
 
 %% \nochapterheading{ONLINE PARTICLE PHYSICS INFORMATION}
-\nochapternumberheading{ONLINE PARTICLE PHYSICS INFORMATION}
+%% \nochapternumberheading{ONLINE PARTICLE PHYSICS INFORMATION}
 \nochapternumberrunninghead{Online particle physics information}
-\heading{ONLINE PARTICLE PHYSICS INFORMATION}
-\WhoDidIt{Updated August 2017 by A. Holtkamp and M. Moskovic (CERN)$^\dagger$}
-\footnote{ }{$^\dagger$ Please send comments and corrections to \hfill\break
-{\tt Annette.Holtkamp@cern.ch}.
+%% \heading{ONLINE PARTICLE PHYSICS INFORMATION}
+%% \WhoDidIt{Updated August 2017 by A. Holtkamp and M. Moskovic (CERN)$^\dagger$}
+\footnote{ }{$^\dagger$ Please send comments and corrections to \hfill\break  %% WhoDidIt
+{\tt Annette.Holtkamp@cern.ch}.  %% WhoDidIt
 
 }
 

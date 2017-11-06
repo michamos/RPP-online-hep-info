@@ -11,7 +11,7 @@
 %
 %
 \beginRPPonly
-\restart{historyrpp}
+%% \restart{historyrpp}
 \twocol
 \pageno=1
 \Firstpage=\pageno
@@ -22,12 +22,12 @@
 \refReset
 \eqReset
 \Contentstrue
-\def\no
-chapterheading#1{\chapter{#1}\label{Chap.\jobname}%
-\setbox\HEADFIRST=\hbox{\boldhead #1}
-\printtheheading}
-\nochapternumberheading{ONLINE PARTICLE PHYSICS INFORMATION}
-\WhoDidIt{Updated August 2015 by T. Basaglia (CERN), A. Holtkamp (CERN).$^{\dagger}$}
+%% \def\nochapterheading#1{\chapter{#1}\label{Chap.\jobname}%
+%% \def\nochapternumberheading#1{\chapter{#1}\label{Chap.\jobname}%
+\setbox\HEADFIRST=\hbox{\boldhead Online Particle Physics Information} \printtheheading
+%% \printtheheading}
+%% \nochapternumberheading{Online Particle Physics Information}
+\WhoDidIt{Updated August 2017 by A. Holtkamp and M. Moskovic (CERN)$^\dagger$}
 \input \jobname.allref
 \input \jobname.body
 \vfill\supereject
