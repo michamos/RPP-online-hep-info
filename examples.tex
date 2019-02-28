@@ -1,0 +1,422 @@
+%Examples of how to write PDG reviews
+
+
+\section{Introduction to PDG review example}
+
+This file, {\tt examples.tex}, contains examples for writing PDG
+reviews. When you start writing your review, you should
+comment out the line in databases-main.tex that includes this file.\\
+
+PDG review source files consist of files edited by the review author as well as generated files. Do NOT edit generated files - your changes will be lost as the files are periodically regenerated.\\
+Files edited by review authors:
+\begin{itemize}
+\item BASENAME-main.tex - this file contains the text of your review (you may include other files)
+\item BASENAME-booklet.tex - contents of the booklet version (if there is one)
+\item BASENAME-preamble.tex - for review-specific definitions or packages that need to go into the document's preamble
+\item BASENAME.bib - BibTeX bibliography entries (see below)
+\item figures - directory where to put all figures
+\end{itemize}
+Generated files (do not edit them!):
+\begin{itemize}
+\item Makefile - Makefile to generate different formats
+\item pdg.cls - PDG review sytle file
+\item pdg.bst - BibTeX style file
+\item pdgdefs.tex - PDG standard symbols and macros
+\item BASENAME.tex - driver file for this review in standalone mode
+\item examples.tex
+\end{itemize}
+
+
+\section{How to include figures}
+
+To add a figure, it is recommended to use the {\tt \string\pdgfigure} or {\tt \string\pdgwidefigure} enviroments
+for a single-column or double-column wide figure in the book format, respectively. To include two images in one figure use the enviroment {\tt \string\pdgdoublefigure}.
+The figures need to be in {\tt .pdf} format. Depending on your version of latex, running pdflatex may or may not convert the {\tt .eps} files into {\tt .pdf}. In case the conversion fails, the conversion can be done manually with variuos programs (ImageMagick on linux for example).
+Make sure that the {\tt .pdf} figure is added into the subdirectory {\tt figures}, and that it is commited in svn or provided with your text.\\
+The macros {\tt \string\pdgfigure} and {\tt \string\pdgwidefigure} take the following arguments:
+\begin{verbatim}
+\pdgfigure{name of the file in the figures directory}
+{your caption }{ label }{option to determine the position}
+{other options}
+\end{verbatim}
+The macro {\tt \string\pdgdoublefigure} takes the following arguments:
+\begin{verbatim}
+\pdgdoublefigure{name of the file1 in the figures directory}
+{name of the file2 in the figures directory}
+{your caption }{ label }{option to determine the position}
+{other options}
+\end{verbatim}
+
+Good practice for the label is to use the following convention: {\tt databases:fig:some-meaningful-name}.\\
+Examples on how to use these enviroments are shown below. The snippets of code can be directly included in databases-main.tex.
+\begin{verbatim}
+\pdgfigure{filename.pdf}{Figure with caption and label}
+{databases:fig:ideogram}{}{}
+\end{verbatim}
+\pdgfigure{filename.pdf}{Figure with caption and label}{databases:fig:ideogram}{ht!}{}
+
+\begin{verbatim}
+\pdgdoublefigure{filename.pdf}{filename.pdf}
+{Two figures, with caption and label, reduced in size}
+{databases:fig:ideogram2}{ht!}{width=0.4\textwidth}
+\end{verbatim}
+\pdgdoublefigure{filename.pdf}{filename.pdf}{Two figures, with caption and label, reduced in size}{databases:fig:ideogram2}{ht!}{width=0.4\textwidth}
+\begin{verbatim}
+\pdgwidefigure{filename.pdf}
+{Wide figure forced to be placed at the top of the page}
+{databases:fig:ideogram3}{t}{}
+\end{verbatim}
+\pdgwidefigure{filename.pdf}{Wide figure forced to be placed at the top of the page}{databases:fig:ideogram3}{t}{}
+To add a reference to the figure in the text, the following command can be used: {\tt \string\ref\{label\}}.
+For example, to reference Figure \ref{databases:fig:ideogram} use the following code: {\tt \string\ref\{databases:fig:ideogram\}}.
+
+
+
+\section{How to include tables}
+
+To add a table it is recommended to use the {\tt \string\pdgtable} or {\tt \string\pdgwidetable} environments for single-column or double-column wide tables in the book format, respectively. 
+It is recommended also to use {\tt \string\pdgtableheader} enviroment for the first line of the table.
+The macros {\tt \string\pdgtable} and {\tt \string\pdgwidetable} take the following arguments:
+\begin{verbatim}
+\pdgtable{ dimension of the table }
+{ your caption }{ label }{options}
+\end{verbatim}
+Good practice for the label is to use the following convention: {\tt databases:tab:some-meaningful-name}.\\
+Examples on how to use these enviroments are shown below. The snippets of code can be directly included in databases-main.tex.
+\begin{verbatim}
+\begin{pdgtable}{c c c} 
+{Table}{databases:tab:mytable}{h!}
+\pdgtableheader{ Column 1 & Column 2 & Column 3}
+row1  & 1  & 2\\
+row2  & 1  & 2\\
+row3  & 1  & 2\\
+\end{pdgtable}
+
+\end{verbatim}    
+\begin{pdgtable}{c c c} 
+{Table}{databases:tab:mytable}{h!}
+\pdgtableheader{ Column 1 & Column 2 & Column 3}
+row1  & 1  & 2\\
+row2  & 1  & 2\\
+row3  & 1  & 2\\
+\end{pdgtable}
+
+\begin{verbatim}
+\begin{pdgtable}{|c | c | c | c|} 
+{Multicolumn table}{databases:tab:mytable2}{h!}
+\pdgtableheader{ \multicolumn{2}{c}{Column 1} & 
+\multicolumn{2}{c}{Column 2}}
+\pdgtableheader{ A & B& C & D }
+row1  & 1 & 2 &3 \\
+row2  & 1 & 2 &3 \\
+\end{pdgtable}
+\end{verbatim}    
+\begin{pdgtable}{|c | c | c | c|} 
+{Multicolumn table}{databases:tab:mytable2}{h!}
+\pdgtableheader{ \multicolumn{2}{|c|}{Column 1} & 
+\multicolumn{2}{|c|}{Column 2}}
+\pdgtableheader{ A & B& C & D }
+row1  & 1 & 2 &3 \\
+row2  & 1 & 2 &3 \\
+\end{pdgtable}
+
+\begin{verbatim}
+\begin{pdgtable}{c l}
+{Table with footnotes}{databases:tab:table3}{}
+One value & another\footnote{This is something to notice
+\label{databases:foot:one}}\\
+Two values\footref{databases:foot:one} & another \\
+\end{pdgtable}
+\end{verbatim}
+\begin{pdgtable}{c l}
+{Table with footnotes}{databases:tab:table3}{}
+One value & another\footnote{This is something to notice\label{databases:foot:one}}\\
+Two values\footref{databases:foot:one} & another \\
+\end{pdgtable}
+To add a reference to a table in the text, the following command can be used: {\tt \string\ref\{label\}}.
+For example, to reference Table \ref{databases:tab:mytable2} use the following code: {\tt \string\ref\{databases:tab:mytable2\}}.
+
+
+\section{Equations}
+
+If you want to add equations, you need to use the {\tt equation} environment. A working example is:
+\begin{verbatim}
+\begin{equation}\label{databases:eq:equation}
+N_{exp} = \sigma_{exp} \times \int L(t) dt
+\end{equation}
+\end{verbatim}
+\begin{equation}\label{databases:eq:equation}
+N_{exp} = \sigma_{exp} \times \int L(t) dt
+\end{equation}
+
+If you want to add a set of equation, please use the {\tt subequation} enviroment, together with {\tt allign}.
+This will add a number for every equation in the array. A working example is:
+\begin{verbatim}
+\begin{subequations}
+\label{databases:eq:equation1}
+\begin{align}
+A + B = C\\
+D= \frac{E}{F}  
+\end{align}
+\end{subequations}
+\end{verbatim}
+\begin{subequations}
+\label{databases:eq:equation1}
+\begin{align}
+A + B = C\\
+D= \frac{E}{F}  
+\end{align}
+\end{subequations}
+
+%If you only want a single equation number for the entire array, you can use {\tt \string\cr} command to separate equations, for example:
+%\begin{verbatim}
+%\begin{align}
+%A + B = C \cr
+%D= \frac{E}{F}  
+%\end{align}
+%\end{verbatim}
+%\begin{align}
+%A + B = C \cr
+%D= \frac{E}{F}  
+%\end{align}
+%
+You can also add text within equation with the {\tt \string\intertex} enviroment.
+\begin{verbatim}
+\begin{subequations}
+\begin{align}
+A+B = C  \\
+\intertext{One can then add a comment or a reference here}
+D = E 
+\end{align}
+\end{subequations}
+\end{verbatim}
+\begin{subequations}
+\begin{align}
+A+B = C  \\
+\intertext{One can then add a comment or a reference here}
+D = E 
+\end{align}
+\end{subequations}
+
+
+
+\section{Labels and referencing}
+
+
+If you are creating a new label, use the following convention: {\tt databases:type:some-meaningful-name }
+with {\tt type} corresponding to one of the following options:
+\begin{itemize}
+\item {\tt fig} for figures
+\item {\tt eq } for equation
+\item {\tt tab} for tables
+\item {\tt sec} for section, subsection etc..
+\item {\tt foot} for footnotes.
+\end{itemize}
+Table \ref{databases:tab:labels} lists the commands to use when referencing sections, subsections, figures, table, equations or different reviews:
+\begin{pdgwidetable}{ c | c  }{Referencing commands.}{databases:tab:labels}{ht!} 
+\pdgtableheader{ Type of reference & Command}
+reference to an object in databases review & {\tt \string\ref\{databases:type:some-meaningful-name\}} \\
+reference to an object in different review  & {\tt \string\ref\{BASENAME:type:some-meaningful-name\}}   \\
+reference a full review                     & {\tt \string\ref\{BASENAME\}                          }    \\
+\end{pdgwidetable}
+
+To identify the {\tt BASENAME} of a review, login into \href{https://pdgprod.lbl.gov/pdgprod/PdgWorkspace/Reviews.action}{pdgWorkspace} (click to be redirected). Under \textbf{Reviews} select from the drop-down menu \textbf{all reviews}. Click on the title of the review you are interested in, and then select the \textbf{Technical details} tab. The \textbf{Basename} is the fist entry.
+
+When including references or citations into caption, use the {\tt \string\protect} enviroment, as shown below:
+\begin{verbatim}
+\begin{pdgtable}{ c | c }
+{Example on how to cite a paper {\protect \cite{InspireLabel}}
+into a caption.}{}{ht!} 
+\pdgtableheader{ Column 1 & Column 2}
+A & B \\
+\end{pdgtable}
+\end{verbatim}
+%\begin{pdgtable}{ c | c }{{Example on how to cite a paper {\protect \cite{InspireLabel}} into a caption}{}{ht!} 
+%\pdgtableheader{ Column 1 & Column 2}
+%A & B \\
+%\end{pdgtable}
+
+
+
+\section{Bibliography}
+
+References are handled using BibTeX. To add a reference to your review:
+\begin{itemize}
+\item look up the reference in INSPIRE and download its BibTeX entry (see bottom of the \textbf{Information} tab for the article, under \textbf{Export}).
+\item add the BibTeX entry to databases.bib file. Note the article tag assigned by INSPIRE - you can see it in the first line of the BibTeX entry, after {\tt \string\@article\{}.
+\item cite the reference with {\tt \string\cite}, using the article tag assigned by INSPIRE.
+\end{itemize}
+In case the reference does not appear in INSPIRE, use the standard convention for the label: {\tt databases:meaningful-name}.
+For example, to add a reference to the Review of Particle Phsyics (2018) 
+add the following code to databases.bib:
+\begin{verbatim}
+@article{Tanabashi:2018oca,
+      author         = "Tanabashi, M. and others",
+      title          = "{Review of Particle Physics}",
+      collaboration  = "Particle Data Group",
+      journal        = "Phys. Rev.",
+      volume         = "D98",
+      year           = "2018",
+      number         = "3",
+      pages          = "030001",
+      doi            = "10.1103/PhysRevD.98.030001",
+      SLACcitation   = "%%CITATION = PHRVA,D98,030001;%%"
+ }
+\end{verbatim}
+and then use the following snippet of code to add a reference to it in databases-main.tex:
+\begin{verbatim}
+\cite{Tanabashi:2018oca}
+\end{verbatim}
+
+
+\section{Booklet}
+
+If your review has a booklet version, it needs to be prepared at the same time as you prepare your full review.
+The content to be displayed in the booklet needs to be included in databases-booklet.tex. 
+To test the rendering of your review in the booklet, you can run the following command:
+\begin{verbatim}
+make booklet
+\end{verbatim}
+
+
+
+
+
+\section{Standard PDG symbols}
+
+The pdgdefs.tex file implements a series of useful shortcuts to typeset the rewies, such as particle symbols. 
+All definitions are terminated with  \texttt{\string\xspace} , so you can simply write  \texttt{\string\ttbar} \texttt{production} instead of  \texttt{\string\ttbar \string\ production}.\\
+Most Monte Carlo generators have a form with a suffix 'V' that allows you to include the version, e.g. \texttt{\string\PYTHIAV{8}} to produce \texttt{\PYTHIAV{8}}.
+In case you need to define other symbols, please add them to the databases-preamble.tex file.
+
+
+\begin{pdgwidetable}
+   {|l l|l l|l l|} {Units}{}{}
+   \showsymbol{\TeV     } &  \showsymbol{\syin} & \showsymbol{\barn     }   \\
+   \showsymbol{\MeV     } &  \showsymbol{\inch} & \showsymbol{\mbarn    }   \\
+   \showsymbol{\keV     } &  \showsymbol{\ft  } & \showsymbol{\microbarn}   \\
+   \showsymbol{\eV      } &  \showsymbol{\km  } & \showsymbol{\nb       }   \\
+   \showsymbol{\GeVc    } &  \showsymbol{\m   } & \showsymbol{\pb       }   \\
+   \showsymbol{\GeVcSq  } &  \showsymbol{\cm  } & \showsymbol{\fb       }   \\
+   \showsymbol{\GeVcc   } &  \showsymbol{\mm  } & \showsymbol{\invnb    }   \\
+   \showsymbol{\GeVccSq } &  \showsymbol{\mum } & \showsymbol{\invpb    }   \\
+   \showsymbol{\MeVc    } &  \showsymbol{\nm  } & \showsymbol{\invfb    }   \\
+   \showsymbol{\MeVcc   } &  \showsymbol{\fm  } & \showsymbol{\invab    }   \\
+   \showsymbol{\invps   } &  \showsymbol{\nm  } & \showsymbol{\lum      }   \\
+   \showsymbol{         } &  \showsymbol{\ma  } & \showsymbol{          }   \\
+   \showsymbol{\degr    } &  \showsymbol{\cma } & \showsymbol{          }   \\
+   \showsymbol{         } &  \showsymbol{\mma } & \showsymbol{   	}   \\
+   \showsymbol{         } &  \showsymbol{\muma} & \showsymbol{          }   \\
+\end{pdgwidetable}
+
+\begin{pdgwidetable}
+   {|l l|l l|l l|} {Particles}{}{}
+   \showsymbol{\pp         } &  \showsymbol{\ee           } & \showsymbol{\pizero   }   \\
+   \showsymbol{\pbar       } &  \showsymbol{\epm          } & \showsymbol{\piplus   }   \\
+   \showsymbol{\ppbar      } &  \showsymbol{\epem         } & \showsymbol{\piminus  }   \\
+   \showsymbol{\tbar       } &  \showsymbol{\en           } & \showsymbol{\pipm     }   \\
+   \showsymbol{\ttbar      } &  \showsymbol{\ep           } & \showsymbol{\pimp     }   \\
+   \showsymbol{\bbar       } &  \showsymbol{\mumu         } & \showsymbol{\etaprime }   \\
+   \showsymbol{\bbbar      } &  \showsymbol{\mun          } & \showsymbol{\Kzero    }   \\
+   \showsymbol{\cbar       } &  \showsymbol{\mup          } & \showsymbol{\Kzerobar }   \\
+   \showsymbol{\ccbar      } &  \showsymbol{\tautau       } & \showsymbol{\kaon     }   \\
+   \showsymbol{\sbar       } &  \showsymbol{\taup         } & \showsymbol{\Kplus    }   \\
+   \showsymbol{\ssbar      } &  \showsymbol{\taum         } & \showsymbol{\Kminus   }   \\
+   \showsymbol{\ubar       } &  \showsymbol{\lepton       } & \showsymbol{\KzeroL   }   \\
+   \showsymbol{\uubar      } &  \showsymbol{\leptonm      } & \showsymbol{\Kzerol   }   \\
+   \showsymbol{\dbar       } &  \showsymbol{\ellm         } & \showsymbol{\Klong    }   \\
+   \showsymbol{\ddbar      } &  \showsymbol{\leptonp      } & \showsymbol{\KzeroS   }   \\
+   \showsymbol{\fbar       } &  \showsymbol{\ellp         } & \showsymbol{\Kzeros   }   \\
+   \showsymbol{\ffbar      } &  \showsymbol{\leptonlepton } & \showsymbol{\Kshort   }   \\
+   \showsymbol{\qbar       } &  \showsymbol{\ellell       } & \showsymbol{\Kstar    }   \\
+   \showsymbol{\qqbar      } &  \showsymbol{\enu          } & \showsymbol{\jpsi     }   \\
+   \showsymbol{\nbar       } &  \showsymbol{\munu         } & \showsymbol{\Jpsi     }   \\
+   \showsymbol{\nnbar      } &  \showsymbol{\taunu        } & \showsymbol{\psip     }   \\
+   \showsymbol{\neutron    } &  \showsymbol{\lnu          } & \showsymbol{\chic     }   \\
+   \showsymbol{\antineutron} &  \showsymbol{\nub          } & \showsymbol{\UoneS    }   \\
+   \showsymbol{\deuteron   } &  \showsymbol{\nunub        } & \showsymbol{\chib     }   \\
+   \showsymbol{\Zzero      } &  \showsymbol{\nue          } & \showsymbol{\Dstar    }   \\
+   \showsymbol{\Zboson     } &  \showsymbol{\nueb         } & \showsymbol{\Bd       }   \\
+   \showsymbol{\Wplus      } &  \showsymbol{\nuenueb      } & \showsymbol{\Bs       }   \\
+   \showsymbol{\Wminus	   } &  \showsymbol{\num          } & \showsymbol{\Bu       }   \\
+   \showsymbol{\Wboson	   } &  \showsymbol{\numb         } & \showsymbol{\Bc       }   \\ 
+   \showsymbol{\Wpm   	   } &  \showsymbol{\numnumb      } & \showsymbol{\Lb       }   \\
+   \showsymbol{\Wmp        } &  \showsymbol{\nut          } & \showsymbol{\Bstar    }   \\
+   \showsymbol{            } &  \showsymbol{\nutb         } & \showsymbol{\BoBo     }   \\
+   \showsymbol{            } &	\showsymbol{\nutnutb      } & \showsymbol{\BodBod   }    \\		    
+   \showsymbol{            } &	\showsymbol{              } & \showsymbol{\BosBos   }    \\		    
+   \showsymbol{            } &	\showsymbol{              } & \showsymbol{\LambdaStar}  \\
+
+
+\end{pdgwidetable}
+
+
+
+\begin{pdgwidetable}
+   {|l l|l l|l l|} {Hypothetical Particles}{}{}
+   \showsymbol{\Azero }      &  \showsymbol{\gravino   } & \showsymbol{\slepton   }   \\
+   \showsymbol{\hzero }      &  \showsymbol{\Zprime    } & \showsymbol{\sleptonL  }   \\
+   \showsymbol{\Hzero }      &  \showsymbol{\Zstar     } & \showsymbol{\sleptonR  }   \\
+   \showsymbol{\Hboson}      &  \showsymbol{\squark    } & \showsymbol{\sel       }   \\
+   \showsymbol{\Hplus }      &  \showsymbol{\squarkL   } & \showsymbol{\selL      }   \\
+   \showsymbol{\Hminus}      &  \showsymbol{\squarkR   } & \showsymbol{\selR      }   \\
+   \showsymbol{\Hpm   }      &  \showsymbol{\gluino    } & \showsymbol{\smu       }   \\
+   \showsymbol{\Hmp   }      &  \showsymbol{\stop      } & \showsymbol{\smuL      }   \\
+   \showsymbol{\ggino }      &  \showsymbol{\stopone   } & \showsymbol{\smuR      }   \\
+   \showsymbol{\chinop}      &  \showsymbol{\stoptwo   } & \showsymbol{\stau      }   \\
+   \showsymbol{\chinom}      &  \showsymbol{\stopL     } & \showsymbol{\stauL     }   \\
+   \showsymbol{\chinopm}     &  \showsymbol{\stopR     } & \showsymbol{\stauR     }   \\
+   \showsymbol{\chinomp}     &  \showsymbol{\sbottom   } & \showsymbol{\stauone   }   \\
+   \showsymbol{\chinoonep}   &  \showsymbol{\sbottomone} & \showsymbol{\stautwo   }   \\
+   \showsymbol{\chinoonem}   &  \showsymbol{\sbottomtwo} & \showsymbol{\snu       }   \\
+   \showsymbol{\chinoonepm}  &  \showsymbol{\sbottomL  } & \showsymbol{           }   \\
+   \showsymbol{\chinotwop}   &  \showsymbol{\sbottomR  } & \showsymbol{           }   \\
+   \showsymbol{\chinotwom}   &  \showsymbol{           } & \showsymbol{           }   \\
+   \showsymbol{\chinotwopm}  &  \showsymbol{           } & \showsymbol{           }   \\
+   \showsymbol{\nino}        &  \showsymbol{           } & \showsymbol{           }   \\
+   \showsymbol{\ninoone}     &  \showsymbol{           } & \showsymbol{           }   \\
+   \showsymbol{\ninotwo}     &  \showsymbol{           } & \showsymbol{           }   \\
+   \showsymbol{\ninothree}   &  \showsymbol{           } & \showsymbol{           }   \\
+   \showsymbol{\ninofour}    &  \showsymbol{           } & \showsymbol{           }   \\
+
+\end{pdgwidetable}
+
+
+\begin{pdgwidetable}
+   {|l l|l l|} {Useful symbols for proton-proton physics}{}{}
+   \showsymbol{\pT  }      &  \showsymbol{\mh}  \\
+   \showsymbol{\pt  }      &  \showsymbol{\mW} \\
+   \showsymbol{\ET  }      &  \showsymbol{\mZ} \\
+   \showsymbol{\eT  }      &  \showsymbol{\mH} \\
+   \showsymbol{\et  }      &  \showsymbol{   } \\
+   \showsymbol{\HT  }      &  \showsymbol{   } \\
+   \showsymbol{\pTsq}      &  \showsymbol{   } \\
+   \showsymbol{\MET }      &  \showsymbol{   } \\
+   \showsymbol{\met }      &  \showsymbol{   } \\
+   \showsymbol{\Ecm }      &  \showsymbol{   } \\
+   \showsymbol{\rts }      &  \showsymbol{   } \\
+   \showsymbol{\sqs }      &  \showsymbol{   } \\
+
+\end{pdgwidetable}
+    		   
+			
+		   
+			
+
+
+\begin{pdgwidetable}
+   {|l l|l l|l l|} {Monte Carlo Generators}{}{}
+   \showsymbol{\ACERMC    }      &  \showsymbol{\MCatNLO   } & \showsymbol{\Comphep    }   \\
+   \showsymbol{\ALPGEN    }      &  \showsymbol{\AMCatNLO  } & \showsymbol{\Prospino   }   \\
+   \showsymbol{\GEANT     }      &  \showsymbol{\MCFM      } & \showsymbol{\LO         }   \\
+   \showsymbol{\Herwigpp  }      &  \showsymbol{\METOP     } & \showsymbol{\NLO        }   \\
+   \showsymbol{\HERWIGpp  }      &  \showsymbol{\POWHEG    } & \showsymbol{\NLL        }   \\
+   \showsymbol{\Herwig    }      &  \showsymbol{\POWHEGBOX } & \showsymbol{\NNLO       }   \\
+   \showsymbol{\HERWIG    }      &  \showsymbol{\POWPYTHIA } & \showsymbol{\muF        }   \\
+   \showsymbol{\JIMMY     }      &  \showsymbol{\PROTOS    } & \showsymbol{\muR        }   \\
+   \showsymbol{\MADSPIN   }      &  \showsymbol{\PYTHIA    } & \showsymbol{            }   \\
+   \showsymbol{\MADGRAPH  }      &  \showsymbol{\SHERPA    } & \showsymbol{            }   \\
+   \showsymbol{\MGMCatNLO }      &  \showsymbol{           } & \showsymbol{            }   \\
+						
+\end{pdgwidetable}
+
