@@ -2,7 +2,7 @@
 % Format reviews for PDG
 % 2018-Mar-08  Jeffrey Anderson JDAnderson (at) lbl.gov
 
-\ProvidesClass{pdg}[2019/01/18 version 1.10 PDG review format]
+\ProvidesClass{pdg}[2019/03/01 version 1.20 PDG review format]
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{xifthen} % for conditional statements
 
@@ -209,13 +209,14 @@
   \begin{table}[!ht]}{%
   \begin{table}[#4]}
 \centering
-\begin{minipage}{\linewidth}% so footnote will appear
+\setlength{\parindent}{0pt}
+\begin{minipage}{\columnwidth}% so footnote will appear
 \renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
 \renewcommand*\footnoterule{}
     \caption{#2}
     \label{#3}
     \centering
-    \begin{tabular}{#1}
+    \begin{tabular}{@{}#1@{}}
         \hline\hline
 }{%
   \hline\hline
@@ -237,7 +238,7 @@
     \caption{#2}
     \label{#3}
     \centering
-    \begin{tabular}{#1}
+    \begin{tabular}{@{}#1@{}}
         \hline\hline
 }{%
   \hline\hline
@@ -457,7 +458,7 @@
 
 
 \newcommand\rppfooter[1]{%
-  \ifthenelse{\isempty{#1} \OR \equal{#1}{none}}{%
+  \ifthenelse{\isempty{#1}}{%
     \fancyfoot{}
     \fancypagestyle{plain}{\fancyfoot{}}
 }{
