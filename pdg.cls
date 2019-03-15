@@ -202,6 +202,8 @@
 }
 
 \RequirePackage{footmisc}
+%\RequirePackage{adjustbox}
+\RequirePackage{relsize}
 
 \newenvironment{pdgtable}[4]{% #1
 \captionsetup{width=.75\linewidth,labelfont=bf}
@@ -245,6 +247,57 @@
     \end{tabular}
     \end{minipage}
     \end{table*}
+}
+
+\newenvironment{pdgverywidetable}[4]{% #1
+\captionsetup{width=.75\linewidth,labelfont=bf}
+\ifthenelse{\isempty{#4}}{%
+  \begin{table}[!ht]}{%
+  \begin{table}[#4]}
+\relscale{.95}
+\centering
+\setlength{\parindent}{0pt}
+\begin{minipage}{\linewidth}% so footnote will appear
+\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
+\renewcommand*\footnoterule{}
+    \caption{#2}
+    \label{#3}
+%    \begin{adjustbox}{width=\linewidth}
+    \centering
+    \begin{tabular}{#1}
+        \hline\hline
+}{%
+  \hline\hline
+    \end{tabular}
+%    \end{adjustbox}
+    \end{minipage}
+    \end{table}
+}
+
+
+\newenvironment{pdgscaletable}[5]{% #1
+\captionsetup{width=.75\linewidth,labelfont=bf}
+\ifthenelse{\isempty{#4}}{%
+  \begin{table}[!ht]}{%
+  \begin{table}[#4]}
+\ifthenelse{\isempty{#5}}{\relscale{.95}}{\relscale{#5}}
+\centering
+\setlength{\parindent}{0pt}
+\begin{minipage}{\linewidth}% so footnote will appear
+\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
+\renewcommand*\footnoterule{}
+    \caption{#2}
+    \label{#3}
+%    \begin{adjustbox}{width=\linewidth}
+    \centering
+    \begin{tabular}{#1}
+        \hline\hline
+}{%
+  \hline\hline
+    \end{tabular}
+%    \end{adjustbox}
+    \end{minipage}
+    \end{table}
 }
 
 %
@@ -332,8 +385,8 @@
 }
 
 %%% Customize title formats
-\RequirePackage{titlesec}
-\titlespacing*{\chapter}{0pt}{-15pt}{5pt}
+\RequirePackage[compact]{titlesec}
+\titlespacing{\chapter}{0pt}{-15pt}{5pt}
 \titleformat{\chapter}[block]
 {\centering\bfseries\Large}
 {\thechapter.}
@@ -342,8 +395,14 @@
   {\vspace{1ex}}
   [\vspace{1ex}]
 
-\titleformat*{\section}{\large\bfseries}
-\titleformat*{\subsection}{\normalsize\bfseries}
+\titleformat{\section}[block]{\large\bfseries}{\thesection}{.5em}{}
+%\titleformat*{\subsection}{\normalsize\bfseries}
+\titleformat{\subsection}[block]{\normalsize\bfseries}{\thesubsection}{.5em}{\itshape}
+\titleformat{\subsubsection}[block]{\normalsize\mdseries}{\thesubsubsection}{.5em}{\itshape}
+\titlespacing{\section}{0pt}{5pt}{0pt}
+\titlespacing{\subsection}{0pt}{5pt}{0pt}
+\titlespacing{\subsubsection}{0pt}{5pt}{0pt}
+
 
 %%% New macros for setting titles and authors
 \newcommand{\chapterauthor}[1]{%
@@ -355,12 +414,14 @@
 
 %%% Don't label sections and subsections as chapter 0 if using \chapter*
 \let\stdthesubsection\thesubsection
-\renewcommand{\thesubsection}{
-  \ifischapter \stdthesubsection \else \arabic{subsection} \fi
+\renewcommand{\thesubsection}{%
+  \ifischapter%
+  \stdthesubsection\else\arabic{subsection}\fi%
 }
 \let\stdthesection\thesection
-\renewcommand{\thesection}{
-  \ifischapter \stdthesection \else \arabic{section} \fi
+\renewcommand{\thesection}{%
+  \ifischapter%
+  \stdthesection\else\arabic{section}\fi%
 }
 
 \newcommand\reviewtitle[1]{\renewcommand\@reviewtitle{#1}}
@@ -381,6 +442,7 @@
 \newcommand\@sectionlabel{}
 
 
+
 \newcommand\pdgtitle[1][]{%
 \ifthenelse{\equal{\@subsectiontitle}{}}
 {
@@ -388,34 +450,26 @@
       {
 	\ifthenelse{\equal{#1}{}}
 	{ %\bibliographyunit[\chapter]
-%	  \ifcounter{chapter}{\chapter{\@reviewtitle}}{\chapter*{\@reviewtitle}}
-	  \ifischapter \chapter{\@reviewtitle} 
-	  \else {\chapter*{\@reviewtitle} \markboth{\@reviewtitle}{\@reviewtitle}}
-	  \fi
-%	  \chapter{\@reviewtitle}
+	  \ifischapter \chapter{\@reviewtitle}% 
+	  \else{\chapter*{\@reviewtitle}\markboth{\@reviewtitle}{\@reviewtitle}}
+	  \fi%
 	}
 	{ %\bibliographyunit[\chapter]
-	  \ifischapter \chapter{#1} 
-	  \else {\chapter*{#1} \markboth{#1}{#1}}
-	  \fi
-%	  \ifcounter{chapter}{\chapter{#1}}{\chapter*{#1}}
+	  \ifischapter \chapter{#1}%
+	  \else{\chapter*{#1}\markboth{#1}{#1}}
+	  \fi%
 	}
       }
       {
 	\ifthenelse{\equal{#1}{}}
-		   { %\bibliographyunit[\section]
-		     \section{\@sectiontitle}}
-		   { %\bibliographyunit[\section]
-		     \section{#1}}
+		   {\section{\@sectiontitle}}
+		   {\section{#1}}
       }
 }
 {
   \ifthenelse{\equal{#1}{}}
-  { %\bibliographyunit[\subsection]
-
-    \subsection{\@subsectiontitle}}
-  { %\bibliographyunit[\subsection]
-    \subsection{#1}}
+  {\subsection{\@subsectiontitle}}
+  {\subsection{#1}}
 }
 \ifthenelse{\equal{\@reviewlabel}{}}
 {}{\label{\@reviewlabel}}
@@ -434,21 +488,21 @@
 \newcommand{\written}[1]{%
   {\parindent0pt%\vspace*{-25pt}%
   \linespread{1.1}{Written #1 by \@reviewauthor.}%
-  \par\nobreak\vspace*{10pt}}
+  \par\nobreak\vspace*{5pt}}
   \@afterheading%
 }
 
 \newcommand{\revised}[1]{%
   {\parindent0pt%\vspace*{-25pt}%
   \linespread{1.1}{Revised #1 by \@reviewauthor.}%
-  \par\nobreak\vspace*{10pt}}
+  \par\nobreak\vspace*{5pt}}
   \@afterheading%
 }
 
 \newcommand{\customauthor}[1]{%
   {\parindent0pt%\vspace*{-25pt}%
   \linespread{1.1}#1%
-  \par\nobreak\vspace*{10pt}}
+  \par\nobreak\vspace*{5pt}}
   \@afterheading%
 }
 
