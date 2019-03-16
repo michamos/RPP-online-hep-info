@@ -5,7 +5,7 @@
 \ProvidesClass{pdg}[2019/03/01 version 1.20 PDG review format]
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{xifthen} % for conditional statements
-
+\RequirePackage{array}
 
 % This class extends the extbook class
 
@@ -67,7 +67,7 @@
 % We actually set the booklet font in the tex files.  
 % 8pt is the smallest we can pass to book as an option
 \DeclareOption{rppbooklet} {%
-  \PassOptionsToClass{8pt,onecolumn}{\baseclass}
+  \PassOptionsToClass{8pt,twoside,onecolumn}{\baseclass}
 }
 
 %\DeclareOption{draft} {}
@@ -264,7 +264,7 @@
     \label{#3}
 %    \begin{adjustbox}{width=\linewidth}
     \centering
-    \begin{tabular}{#1}
+    \begin{tabular}{@{}#1@{}}
         \hline\hline
 }{%
   \hline\hline
@@ -290,7 +290,7 @@
     \label{#3}
 %    \begin{adjustbox}{width=\linewidth}
     \centering
-    \begin{tabular}{#1}
+    \begin{tabular}{@{}#1@{}}
         \hline\hline
 }{%
   \hline\hline
@@ -386,6 +386,16 @@
 
 %%% Customize title formats
 \RequirePackage[compact]{titlesec}
+\ifrppbooklet
+\titlespacing{\chapter}{0pt}{-30pt}{5pt}
+\titleformat{\chapter}[block]
+{\centering\bfseries\Large}
+{\thechapter.}
+  {1ex}
+%  {\vspace{1ex}\filcenter}
+  {\vspace{0ex}}
+  [\vspace{0ex}]
+\else
 \titlespacing{\chapter}{0pt}{-15pt}{5pt}
 \titleformat{\chapter}[block]
 {\centering\bfseries\Large}
@@ -394,6 +404,7 @@
 %  {\vspace{1ex}\filcenter}
   {\vspace{1ex}}
   [\vspace{1ex}]
+\fi
 
 \titleformat{\section}[block]{\large\bfseries}{\thesection}{.5em}{}
 %\titleformat*{\subsection}{\normalsize\bfseries}
@@ -551,6 +562,15 @@
 \fancyfoot[C]{\scriptsize DRAFT \scriptsize\today\hspace{2mm}\currenttime - Not for public distribution}
 }
 
+\fancypagestyle{rppbooklet}{%
+\fancyhf{} % clear the fields
+\renewcommand{\@chapapp}{}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{14pt}
+\fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\leftmark}}
+\fancyhead[RO]{{\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\thepage}
+\fancyhead[RE,LO]{}
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -580,7 +600,11 @@
 
 \ifrppbooklet
 %\RequirePackage[total={76mm,147mm}]{geometry}
-\RequirePackage[paperwidth=76mm,paperheight=147mm,top=5mm,right=5mm,left=5mm,bottom=5mm]{geometry}
+\setlength{\textfloatsep}{0.1cm}
+\setlength{\intextsep}{0.1mm}
+\RequirePackage[paperwidth=120mm,paperheight=200mm,top=20mm,outer=3mm,inner=19mm,bottom=5mm]{geometry}
+\fancypagestyle{plain}{}
+\pagestyle{rppbooklet}
 \fi
 
 %\RequirePackage[]{thumbs}
