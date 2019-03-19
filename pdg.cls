@@ -155,7 +155,9 @@
   \begin{figure}[#4]}
     \centering
 %% Still experimenting with figure scaling
-    \includegraphics[width=.85\linewidth,#5]{figures/#1}
+\ifthenelse{\isempty{#5}}{%
+    \includegraphics[width=.85\linewidth]{figures/#1}}{%
+  \includegraphics[#5]{figures/#1}}
 %    \includegraphics[#5]{figures/#1}
     \caption{#2}\label{#3}
   \end{figure}
@@ -166,7 +168,9 @@
   \begin{figure*}[!ht]}{%
   \begin{figure*}[#4]}
     \centering
-    \includegraphics[width=\textwidth,#5]{figures/#1}
+\ifthenelse{\isempty{#5}}{%
+    \includegraphics[width=\textwidth]{figures/#1}}{%
+  \includegraphics[#5]{figures/#1}}
     \caption{#2}\label{#3}
   \end{figure*}
 }
@@ -387,7 +391,7 @@
 %%% Customize title formats
 \RequirePackage[compact]{titlesec}
 \ifrppbooklet
-\titlespacing{\chapter}{0pt}{-30pt}{5pt}
+\titlespacing{\chapter}{0pt}{-15pt}{5pt}
 \titleformat{\chapter}[block]
 {\centering\bfseries\Large}
 {\thechapter.}
@@ -600,9 +604,10 @@
 
 \ifrppbooklet
 %\RequirePackage[total={76mm,147mm}]{geometry}
-\setlength{\textfloatsep}{0.1cm}
-\setlength{\intextsep}{0.1mm}
-\RequirePackage[paperwidth=120mm,paperheight=200mm,top=20mm,outer=3mm,inner=19mm,bottom=5mm]{geometry}
+%\setlength{\textfloatsep}{0.1cm}
+%\setlength{\intextsep}{0.1mm}
+\setlength\abovecaptionskip{-4pt}
+\RequirePackage[paperwidth=120mm,paperheight=200mm,top=3mm,outer=3mm,inner=19mm,bottom=5mm,includehead,headsep=2mm]{geometry}
 \fancypagestyle{plain}{}
 \pagestyle{rppbooklet}
 \fi
