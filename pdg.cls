@@ -4,10 +4,11 @@
 
 \ProvidesClass{pdg}[2019/03/01 version 1.20 PDG review format]
 \NeedsTeXFormat{LaTeX2e}
-\RequirePackage{xifthen} % for conditional statements
-\RequirePackage{array}
-
 % This class extends the extbook class
+
+
+\RequirePackage{xifthen} % for conditional statements
+
 
 % Some internal booleans to control flow
 \newif\ifrppbook
@@ -100,6 +101,9 @@
 % Many external packages and definitions.  These will be replaced with canonical definitions in the final version.
 
 
+\newcommand\bumpupsectionnumber{\stepcounter{section}}
+\newcommand\bumpupequationnumber{\stepcounter{equation}}
+
 % This allows us to test whether a counter has been set
 \newcommand*\ifcounter[1]{%
   \ifcsname c@#1\endcsname
@@ -120,6 +124,7 @@
 \RequirePackage{float} % to control figure placement
 \RequirePackage[utf8]{inputenc} 
 \RequirePackage{xspace} 
+\RequirePackage{array}
 
 % Use hyperref, but hide the ugly green boxes.  Also try to suppress warnings
 % related to math symbols in PDF bookmarks
@@ -196,9 +201,11 @@
     \setlength\mylenb{#1\dp\@arstrutbox}%
     \rule[\mylenb]{0pt}{\mylena}}
 
+\newcommand\tableline{\noalign{\smallskip}\hline\noalign{\smallskip}\bigstrut[t]\bigstrut[b]}
+
 \newcommand{\pdgtableheader}[1]{%
 #1\\
-\hline
+\tableline
 %\noalign{\smallskip}
 %\mystrut[.5]
 %\noalign{\smallskip}#1\\
@@ -231,13 +238,11 @@
     \end{table}
 }
 
-
-
 \newenvironment{pdgwidetable}[4]{%
 \captionsetup{width=.75\textwidth,labelfont=bf}
 \ifthenelse{\isempty{#4}}{%
-  \begin{table*}[!ht]}{%
-  \begin{table*}[#4]}
+  \begin{table}[!ht]}{%
+  \begin{table}[#4]}
 \begin{minipage}{\textwidth} % so footnote will appear
 \renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
 \renewcommand*\footnoterule{}
@@ -250,7 +255,7 @@
   \hline\hline
     \end{tabular}
     \end{minipage}
-    \end{table*}
+    \end{table}
 }
 
 \newenvironment{pdgverywidetable}[4]{% #1
