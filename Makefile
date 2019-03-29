@@ -1,4 +1,4 @@
-# $Id: Makefile 23911 2019-03-21 17:11:06Z anderson $
+# $Id: Makefile 23955 2019-03-27 18:12:41Z anderson $
 # Template for general Makefile for LaTeX-based reviews
 
 # Determine base name of review from containing directory
@@ -26,9 +26,9 @@ web:
 	pdflatex "\def\isweb{1} \input{$(BASENAME).tex}"
 
 
-booklet:
+booklet:	$(BASENAME)-full.aux
 	pdflatex '\def\isbooklet{1} \input{$(BASENAME).tex}'
-	if [ -s $(BASENAME).bib ]; then bibtex $(BASENAME).1 ; fi
+#	if [ -s $(BASENAME).bib ]; then bibtex $(BASENAME).1 ; fi
 	pdflatex '\def\isbooklet{1} \input{$(BASENAME).tex}'
 	pdflatex '\def\isbooklet{1} \input{$(BASENAME).tex}'
 
@@ -43,3 +43,7 @@ mergedbib:
 clean:
 	@echo rm -vf \*.aux \*.dvi \*.lof \*.log \*.toc \*.out \*.bbl \*.blg \*.idx \*.ilg \*.ind
 	@rm -vf *.aux *.dvi *.lof *.log *.toc *.out *.bbl *.blg *.idx *.ilg *.ind
+
+$(BASENAME)-full.aux:
+	$(MAKE) book
+	@mv $(BASENAME).aux $(BASENAME)-full.aux

@@ -9,6 +9,8 @@
 
 \RequirePackage{xifthen} % for conditional statements
 
+\RequirePackage{xcite}
+\RequirePackage{xr-hyper}
 
 % Some internal booleans to control flow
 \newif\ifrppbook
@@ -128,16 +130,19 @@
 
 % Use hyperref, but hide the ugly green boxes.  Also try to suppress warnings
 % related to math symbols in PDF bookmarks
-\RequirePackage{hyperref}
-\hypersetup{
-    colorlinks=false,
-    pdfborder={0 0 0},
-}
-\PassOptionsToPackage{pdfencoding=auto,psdextra, unicode, naturalnames}{hyperref}
-\pdfstringdefDisableCommands{%
-  \def\pi{pi}%
-  \def\eta{eta}%
-}
+% Disable hyperref in booklet mode due to conflicts with xcite
+\ifrppweb
+ \RequirePackage{hyperref}
+ \hypersetup{
+     colorlinks=false,
+     pdfborder={0 0 0},
+ }
+ \PassOptionsToPackage{pdfencoding=auto,psdextra, unicode, naturalnames}{hyperref}
+ \pdfstringdefDisableCommands{%
+   \def\pi{pi}%
+   \def\eta{eta}%
+ }
+\fi
 
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
@@ -201,7 +206,8 @@
     \setlength\mylenb{#1\dp\@arstrutbox}%
     \rule[\mylenb]{0pt}{\mylena}}
 
-\newcommand\tableline{\noalign{\smallskip}\hline\noalign{\smallskip}\bigstrut[t]\bigstrut[b]}
+%\newcommand\tableline{\noalign{\smallskip}\hline\noalign{\smallskip}\bigstrut[t]\bigstrut[b]}
+\newcommand\tableline{\noalign{\smallskip}\hline\noalign{\smallskip}}
 
 \newcommand{\pdgtableheader}[1]{%
 #1\\
@@ -241,8 +247,8 @@
 \newenvironment{pdgwidetable}[4]{%
 \captionsetup{width=.75\textwidth,labelfont=bf}
 \ifthenelse{\isempty{#4}}{%
-  \begin{table}[!ht]}{%
-  \begin{table}[#4]}
+  \begin{table*}[!ht]}{%
+  \begin{table*}[#4]}
 \begin{minipage}{\textwidth} % so footnote will appear
 \renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
 \renewcommand*\footnoterule{}
@@ -255,14 +261,14 @@
   \hline\hline
     \end{tabular}
     \end{minipage}
-    \end{table}
+    \end{table*}
 }
 
 \newenvironment{pdgverywidetable}[4]{% #1
 \captionsetup{width=.75\linewidth,labelfont=bf}
 \ifthenelse{\isempty{#4}}{%
-  \begin{table}[!ht]}{%
-  \begin{table}[#4]}
+  \begin{table*}[!ht]}{%
+  \begin{table*}[#4]}
 \relscale{.95}
 \centering
 \setlength{\parindent}{0pt}
@@ -280,7 +286,7 @@
     \end{tabular}
 %    \end{adjustbox}
     \end{minipage}
-    \end{table}
+    \end{table*}
 }
 
 
@@ -307,6 +313,31 @@
 %    \end{adjustbox}
     \end{minipage}
     \end{table}
+}
+
+\newenvironment{pdgscaletable*}[5]{% #1
+\captionsetup{width=.75\linewidth,labelfont=bf}
+\ifthenelse{\isempty{#4}}{%
+  \begin{table*}[!ht]}{%
+  \begin{table*}[#4]}
+\ifthenelse{\isempty{#5}}{\relscale{.95}}{\relscale{#5}}
+\centering
+\setlength{\parindent}{0pt}
+\begin{minipage}{\linewidth}% so footnote will appear
+\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
+\renewcommand*\footnoterule{}
+    \caption{#2}
+    \label{#3}
+%    \begin{adjustbox}{width=\linewidth}
+    \centering
+    \begin{tabular}{@{}#1@{}}
+        \hline\hline
+}{%
+  \hline\hline
+    \end{tabular}
+%    \end{adjustbox}
+    \end{minipage}
+    \end{table*}
 }
 
 %
