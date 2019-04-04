@@ -1,8 +1,7 @@
-# $Id: Makefile 23955 2019-03-27 18:12:41Z anderson $
+# $Id: Makefile 23994 2019-04-03 21:01:23Z beringer $
 # Template for general Makefile for LaTeX-based reviews
 
-# Determine base name of review from containing directory
-BASENAME := $(notdir $(realpath .))
+BASENAME := databases
 
 draft:
 	pdflatex '\def\isdraft{1} \input{$(BASENAME).tex}'

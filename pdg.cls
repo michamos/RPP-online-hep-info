@@ -12,6 +12,7 @@
 \RequirePackage{xcite}
 \RequirePackage{xr-hyper}
 
+
 % Some internal booleans to control flow
 \newif\ifrppbook
 \newif\ifrppweb
@@ -127,6 +128,19 @@
 \RequirePackage[utf8]{inputenc} 
 \RequirePackage{xspace} 
 \RequirePackage{array}
+\RequirePackage{multirow}
+
+%%% Decrease line spacing in itemize and enumerate lists
+\RequirePackage{paralist}
+  \let\itemize\compactitem
+  \let\enditemize\endcompactitem
+  \let\enumerate\compactenum
+  \let\endenumerate\endcompactenum
+  \let\description\compactdesc
+  \let\enddescription\endcompactdesc
+  \pltopsep=\medskipamount
+  \plitemsep=1pt
+  \plparsep=1pt
 
 % Use hyperref, but hide the ugly green boxes.  Also try to suppress warnings
 % related to math symbols in PDF bookmarks
@@ -426,6 +440,41 @@
 
 %%% Customize title formats
 \RequirePackage[compact]{titlesec}
+
+%%%% Define subsubsubsection between subsubsection and paragraph
+\titleclass{\subsubsubsection}{straight}[\subsection]
+
+\newcounter{subsubsubsection}[subsubsection]
+%\renewcommand\thesubsubsubsection{\thesubsubsection.\roman{subsubsubsection}}
+\renewcommand\thesubsubsubsection{\roman{subsubsubsection}.}
+%\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+
+\titleformat{\subsubsubsection}
+  {\normalsize\mdseries}{\thesubsubsubsection}{.5em}{\itshape}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+  {3.25ex \@plus1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\def\toclevel@subsubsubsection{4}
+\def\toclevel@paragraph{5}
+\def\toclevel@paragraph{6}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+
+\setcounter{secnumdepth}{4}
+%%%%
+
+
+%% Format Chapter titles
 \ifrppbooklet
 \titlespacing{\chapter}{0pt}{-15pt}{5pt}
 \titleformat{\chapter}[block]
@@ -445,6 +494,7 @@
   {\vspace{1ex}}
   [\vspace{1ex}]
 \fi
+%%
 
 \titleformat{\section}[block]{\large\bfseries}{\thesection}{.5em}{}
 %\titleformat*{\subsection}{\normalsize\bfseries}
