@@ -142,21 +142,6 @@
   \plitemsep=1pt
   \plparsep=1pt
 
-% Use hyperref, but hide the ugly green boxes.  Also try to suppress warnings
-% related to math symbols in PDF bookmarks
-% Disable hyperref in booklet mode due to conflicts with xcite
-\ifrppweb
- \RequirePackage{hyperref}
- \hypersetup{
-     colorlinks=false,
-     pdfborder={0 0 0},
- }
- \PassOptionsToPackage{pdfencoding=auto,psdextra, unicode, naturalnames}{hyperref}
- \pdfstringdefDisableCommands{%
-   \def\pi{pi}%
-   \def\eta{eta}%
- }
-\fi
 
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
@@ -704,6 +689,22 @@
 % See https://tex.stackexchange.com/questions/46512/too-many-unprocessed-floats
 \RequirePackage{morefloats}
 \RequirePackage[section]{placeins}
+
+% Use hyperref, but hide the ugly green boxes.  Also try to suppress warnings
+% related to math symbols in PDF bookmarks
+% Disable hyperref in booklet mode due to conflicts with xcite
+\ifrppweb
+ \RequirePackage{hyperref}
+ \hypersetup{
+     colorlinks=false,
+     pdfborder={0 0 0},
+ }
+ \PassOptionsToPackage{pdfencoding=auto,psdextra, unicode, naturalnames}{hyperref}
+ \pdfstringdefDisableCommands{%
+   \def\pi{pi}%
+   \def\eta{eta}%
+ }
+\fi
 
 %%% Define some useful macros for authors to use
 
