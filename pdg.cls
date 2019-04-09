@@ -217,6 +217,9 @@
 %\noalign{\smallskip}\hline\noalign{\smallskip}
 }
 
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\RequirePackage{varwidth}
+
 \RequirePackage{footmisc}
 %\RequirePackage{adjustbox}
 \RequirePackage{relsize}
