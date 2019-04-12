@@ -207,6 +207,7 @@
 
 %\newcommand\tableline{\noalign{\smallskip}\hline\noalign{\smallskip}\bigstrut[t]\bigstrut[b]}
 \newcommand\tableline{\noalign{\smallskip}\hline\noalign{\smallskip}}
+\newcommand\tabledoubleline{\noalign{\smallskip}\hline\hline\noalign{\smallskip}}
 
 \newcommand{\pdgtableheader}[1]{%
 #1\\
@@ -696,7 +697,9 @@
 % Use hyperref, but hide the ugly green boxes.  Also try to suppress warnings
 % related to math symbols in PDF bookmarks
 % Disable hyperref in booklet mode due to conflicts with xcite
-\ifrppweb
+\ifdefined\nohyperref
+\relax
+\else
  \RequirePackage{hyperref}
  \hypersetup{
      colorlinks=false,
