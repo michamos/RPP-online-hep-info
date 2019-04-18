@@ -698,7 +698,8 @@
 % related to math symbols in PDF bookmarks
 % Disable hyperref in booklet mode due to conflicts with xcite
 \ifdefined\nohyperref
-\relax
+\newcommand{\href[1]}{\tt{#1}}
+%\relax
 \else
  \RequirePackage{hyperref}
  \hypersetup{

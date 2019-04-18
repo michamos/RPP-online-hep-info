@@ -27,6 +27,12 @@ Generated files (do not edit them!):
 \end{itemize}
 
 
+\section{Type-setting style}
+We give here our conventions on type-setting style. Particle symbols are italic (or slanted) characters: \en, \pbar, \Lb, \pizero, \Klong, \Dstar. Charge is indicated by a superscript: $B^{-}$, $\Delta^{++}$. Charge is not normally indicated for $p$, $n$, or the quarks, and is optional for neutral isosinglets: $\eta$ or $\eta^{0}$. Antiparticles and particles are distinguished by charge for
+charged leptons and mesons: $\tau^{+}$, $\kaon^{-}$ Otherwise, distinct antiparticles are indicated by a bar (overline): $\nbar_{\mu}$, \tbar, \pbar, \Kzerobar.
+
+
+
 \section{How to include figures}
 
 To add a figure, it is recommended to use the {\tt \string\pdgfigure} or {\tt \string\pdgwidefigure} enviroments
@@ -212,13 +218,17 @@ with {\tt type} corresponding to one of the following options:
 \item {\tt sec} for section, subsection etc..
 \item {\tt foot} for footnotes.
 \end{itemize}
-Table \ref{databases:tab:labels} lists the commands to use when referencing sections, subsections, figures, table, equations or different reviews:
-\begin{pdgwidetable}{ c | c  }{Referencing commands.}{databases:tab:labels}{ht!} 
-\pdgtableheader{ Type of reference & Command}
-reference to an object in databases review & {\tt \string\ref\{databases:type:some-meaningful-name\}} \\
-reference to an object in different review  & {\tt \string\ref\{BASENAME:type:some-meaningful-name\}}   \\
-reference a full review                     & {\tt \string\ref\{BASENAME\}                          }    \\
-\end{pdgwidetable}
+
+Please, pay special attention when referencing sections, subsections, figures, table, equations in different reviews - use the {\tt BASENAME} associated
+with the target review, not the {\tt BASENAME} of the review you're currently working on. 
+
+%Table \ref{databases:tab:labels} lists the commands to use when referencing sections, subsections, figures, table, equations or different reviews:
+%\begin{pdgwidetable}{ c | c  }{Referencing commands.}{databases:tab:labels}{ht!} 
+%\pdgtableheader{ Type of reference & Command}
+%reference to an object in databases review & {\tt \string\ref\{databases:type:some-meaningful-name\}} \\
+%reference to an object in different review  & {\tt \string\ref\{BASENAME:type:some-meaningful-name\}}   \\
+%reference a full review                     & {\tt \string\ref\{BASENAME\}                          }    \\
+%\end{pdgwidetable}
 
 To identify the {\tt BASENAME} of a review, login into \href{https://pdgprod.lbl.gov/pdgprod/PdgWorkspace/Reviews.action}{pdgWorkspace} (click to be redirected). Under \textbf{Reviews} select from the drop-down menu \textbf{all reviews}. Click on the title of the review you are interested in, and then select the \textbf{Technical details} tab. The \textbf{Basename} is the fist entry.
 
@@ -267,6 +277,17 @@ and then use the following snippet of code to add a reference to it in databases
 \begin{verbatim}
 \cite{Tanabashi:2018oca}
 \end{verbatim}
+In case you need to add multiple references within the same set of brakets, use the following code:
+\begin{verbatim}
+\cite{paper1,paper2}
+\end{verbatim}
+In case you want to cluster into one reference multiple papers, use the following code:
+\begin{verbatim}
+\cite{paper1,*paper2,*paper3}
+\end{verbatim}
+Note the use of the asterisk to signal trailing papers. 
+If a paper is preceded by the asterisk, it can't be cited separately later - latex will fail and provide an error.
+In general, the recommendation is to cite papers individually, without using the asterisk to group them.
 
 
 \section{Booklet}
@@ -291,7 +312,7 @@ In case you need to define other symbols, please add them to the databases-pream
 
 
 \begin{pdgwidetable}
-   {|l l|l l|l l|} {Units}{}{}
+   {|l l|l l|l l|} {Units}{databases:tab:def1}{}
    \showsymbol{\TeV     } &  \showsymbol{\syin} & \showsymbol{\barn     }   \\
    \showsymbol{\MeV     } &  \showsymbol{\inch} & \showsymbol{\mbarn    }   \\
    \showsymbol{\keV     } &  \showsymbol{\ft  } & \showsymbol{\microbarn}   \\
@@ -310,7 +331,7 @@ In case you need to define other symbols, please add them to the databases-pream
 \end{pdgwidetable}
 
 \begin{pdgwidetable}
-   {|l l|l l|l l|} {Particles}{}{}
+   {|l l|l l|l l|} {Particles}{databases:tab:def2}{}
    \showsymbol{\pp         } &  \showsymbol{\ee           } & \showsymbol{\pizero   }   \\
    \showsymbol{\pbar       } &  \showsymbol{\epm          } & \showsymbol{\piplus   }   \\
    \showsymbol{\ppbar      } &  \showsymbol{\epem         } & \showsymbol{\piminus  }   \\
@@ -353,7 +374,7 @@ In case you need to define other symbols, please add them to the databases-pream
 
 
 \begin{pdgwidetable}
-   {|l l|l l|l l|} {Hypothetical Particles}{}{}
+   {|l l|l l|l l|} {Hypothetical Particles}{databases:tab:def3}{}
    \showsymbol{\Azero }      &  \showsymbol{\gravino   } & \showsymbol{\slepton   }   \\
    \showsymbol{\hzero }      &  \showsymbol{\Zprime    } & \showsymbol{\sleptonL  }   \\
    \showsymbol{\Hzero }      &  \showsymbol{\Zstar     } & \showsymbol{\sleptonR  }   \\
@@ -383,7 +404,7 @@ In case you need to define other symbols, please add them to the databases-pream
 
 
 \begin{pdgwidetable}
-   {|l l|l l|} {Useful symbols for proton-proton physics}{}{}
+   {|l l|l l|} {Useful symbols for proton-proton physics}{databases:tab:def4}{}
    \showsymbol{\pT  }      &  \showsymbol{\mh}  \\
    \showsymbol{\pt  }      &  \showsymbol{\mW} \\
    \showsymbol{\ET  }      &  \showsymbol{\mZ} \\
@@ -405,7 +426,7 @@ In case you need to define other symbols, please add them to the databases-pream
 
 
 \begin{pdgwidetable}
-   {|l l|l l|l l|} {Monte Carlo Generators}{}{}
+   {|l l|l l|l l|} {Monte Carlo Generators}{databases:tab:def5}{}
    \showsymbol{\ACERMC    }      &  \showsymbol{\MCatNLO   } & \showsymbol{\Comphep    }   \\
    \showsymbol{\ALPGEN    }      &  \showsymbol{\AMCatNLO  } & \showsymbol{\Prospino   }   \\
    \showsymbol{\GEANT     }      &  \showsymbol{\MCFM      } & \showsymbol{\LO         }   \\
