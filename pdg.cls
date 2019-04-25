@@ -207,6 +207,7 @@
 
 %\newcommand\tableline{\noalign{\smallskip}\hline\noalign{\smallskip}\bigstrut[t]\bigstrut[b]}
 \newcommand\tableline{\noalign{\smallskip}\hline\noalign{\smallskip}}
+\newcommand\Tablerule{\noalign{\smallskip}\hline\noalign{\smallskip}}
 \newcommand\tabledoubleline{\noalign{\smallskip}\hline\hline\noalign{\smallskip}}
 
 \newcommand{\pdgtableheader}[1]{%
