@@ -46,6 +46,7 @@
 \rppbooklettrue
 \rppwebfalse
 \rppbookfalse
+\def\nohyperref
 \fi
 
 % If neither book nor web is specified, assume draft
@@ -104,6 +105,10 @@
 % Many external packages and definitions.  These will be replaced with canonical definitions in the final version.
 
 
+\newcommand\bumpupfigurenumber{\stepcounter{figure}}
+\newcommand\bumpuptablenumber{\stepcounter{table}}
+\newcommand\bumpupsubsubsectionnumber{\stepcounter{subsubsection}}
+\newcommand\bumpupsubsectionnumber{\stepcounter{subsection}}
 \newcommand\bumpupsectionnumber{\stepcounter{section}}
 \newcommand\bumpupequationnumber{\stepcounter{equation}}
 
@@ -699,7 +704,8 @@
 % related to math symbols in PDF bookmarks
 % Disable hyperref in booklet mode due to conflicts with xcite
 \ifdefined\nohyperref
-\newcommand{\href[1]}{\tt{#1}}
+\RequirePackage{url}
+%\newcommand{\href[1]}{\tt{#1}}
 %\relax
 \else
  \RequirePackage{hyperref}
