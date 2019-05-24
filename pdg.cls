@@ -151,7 +151,7 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{hhline}
-
+\RequirePackage{isomath}
 
 \RequirePackage{graphicx}  % to include figures (can also use other packages)
 % Set default graphics width to be one column of a two-column page.
@@ -426,12 +426,15 @@
 % Packages to control style of titles and page headers
 \RequirePackage{titling}
 \RequirePackage{fancyhdr}
+\RequirePackage{tocloft}
 
 % Prevent clearpage before TOC.  Insert blank line after TOC
 \renewcommand\tableofcontents{%
   \@starttoc{toc}
   \hfill\par
 }
+\addtolength{\cftsecnumwidth}{10pt}
+\addtolength{\cftchapnumwidth}{10pt}
 
 %%% Customize title formats
 \RequirePackage[compact]{titlesec}
@@ -705,7 +708,7 @@
 % Disable hyperref in booklet mode due to conflicts with xcite
 \ifdefined\nohyperref
 \RequirePackage{url}
-%\newcommand{\href[1]}{\tt{#1}}
+\newcommand{\href[1]}{\tt{#1}}
 %\relax
 \else
  \RequirePackage{hyperref}
