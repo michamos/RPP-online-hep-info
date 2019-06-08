@@ -426,7 +426,10 @@
 % Packages to control style of titles and page headers
 \RequirePackage{titling}
 \RequirePackage{fancyhdr}
-\RequirePackage{tocloft}
+\RequirePackage[titles]{tocloft}
+%\RequirePackage{minitoc}
+%\nomtcrule
+%\renewcommand{\mtctitle}{}
 
 % Prevent clearpage before TOC.  Insert blank line after TOC
 \renewcommand\tableofcontents{%
@@ -435,6 +438,8 @@
 }
 \addtolength{\cftsecnumwidth}{10pt}
 \addtolength{\cftchapnumwidth}{10pt}
+\renewcommand{\@cftmaketoctitle}{}
+
 
 %%% Customize title formats
 \RequirePackage[compact]{titlesec}
