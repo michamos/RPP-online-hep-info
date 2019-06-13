@@ -134,6 +134,7 @@
 \RequirePackage{xspace} 
 \RequirePackage{array}
 \RequirePackage{multirow}
+\RequirePackage{rotating}
 
 %%% Decrease line spacing in itemize and enumerate lists
 \RequirePackage{paralist}
@@ -349,6 +350,32 @@
     \end{table*}
 }
 
+\newenvironment{pdgsidewaystable}[4]{% #1
+\captionsetup{width=.75\linewidth,labelfont=bf}
+\ifthenelse{\isempty{#4}}{%
+  \begin{sidewaystable*}[!ht]}{%
+  \begin{sidewaystable*}[#4]}
+\relscale{.95}
+\centering
+\setlength{\parindent}{0pt}
+\begin{minipage}{\linewidth}% so footnote will appear
+\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
+\renewcommand*\footnoterule{}
+    \caption{#2}
+    \label{#3}
+%    \begin{adjustbox}{width=\linewidth}
+    \centering
+    \begin{tabular}{@{}#1@{}}
+        \hline\hline
+}{%
+  \hline\hline
+    \end{tabular}
+%    \end{adjustbox}
+    \end{minipage}
+    \end{sidewaystable*}
+}
+
+
 %
 \RequirePackage{import}
 
@@ -430,6 +457,9 @@
 %\RequirePackage{minitoc}
 %\nomtcrule
 %\renewcommand{\mtctitle}{}
+\let\@@l@chapter\l@chapter
+\def\l@chapter#1{\@@l@chapter{}}
+\cftpagenumbersoff{chapter}
 
 % Prevent clearpage before TOC.  Insert blank line after TOC
 \renewcommand\tableofcontents{%
