@@ -19,7 +19,7 @@ Files edited by review authors:
 Generated files (do not edit them!):
 \begin{itemize}
 \item Makefile - Makefile to generate different formats
-\item pdg.cls - PDG review sytle file
+\item pdg.cls - PDG review style file
 \item pdg.bst - BibTeX style file
 \item pdgdefs.tex - PDG standard symbols and macros
 \item BASENAME.tex - driver file for this review in standalone mode
@@ -35,9 +35,9 @@ charged leptons and mesons: $\tau^{+}$, $\kaon^{-}$ Otherwise, distinct antipart
 
 \section{How to include figures}
 
-To add a figure, it is recommended to use the {\tt \string\pdgfigure} or {\tt \string\pdgwidefigure} enviroments
-for a single-column or double-column wide figure in the book format, respectively. To include two images in one figure use the enviroment {\tt \string\pdgdoublefigure}.
-The figures need to be in {\tt .pdf} format. Depending on your version of latex, running pdflatex may or may not convert the {\tt .eps} files into {\tt .pdf}. In case the conversion fails, the conversion can be done manually with variuos programs (ImageMagick on linux for example).
+To add a figure, it is recommended to use the {\tt \string\pdgfigure} or {\tt \string\pdgwidefigure} environments
+for a single-column or double-column wide figure in the book format, respectively. To include two images in one figure use the environment {\tt \string\pdgdoublefigure}.
+The figures need to be in {\tt .pdf} format. Depending on your version of latex, running pdflatex may or may not convert the {\tt .eps} files into {\tt .pdf}. In case the conversion fails, the conversion can be done manually with various programs (ImageMagick on linux for example).
 Make sure that the {\tt .pdf} figure is added into the subdirectory {\tt figures}, and that it is commited in svn or provided with your text.\\
 The macros {\tt \string\pdgfigure} and {\tt \string\pdgwidefigure} take the following arguments:
 \begin{verbatim}
@@ -54,7 +54,7 @@ The macro {\tt \string\pdgdoublefigure} takes the following arguments:
 \end{verbatim}
 
 Good practice for the label is to use the following convention: {\tt databases:fig:some-meaningful-name}.\\
-Examples on how to use these enviroments are shown below. The snippets of code can be directly included in databases-main.tex.
+Examples on how to use these environments are shown below. The snippets of code can be directly included in databases-main.tex.
 \begin{verbatim}
 \pdgfigure{filename.pdf}{Figure with caption and label}
 {databases:fig:ideogram}{}{}
@@ -81,14 +81,14 @@ For example, to reference Figure \ref{databases:fig:ideogram} use the following 
 \section{How to include tables}
 
 To add a table it is recommended to use the {\tt \string\pdgtable} or {\tt \string\pdgwidetable} environments for single-column or double-column wide tables in the book format, respectively. 
-It is recommended also to use {\tt \string\pdgtableheader} enviroment for the first line of the table.
+It is recommended also to use {\tt \string\pdgtableheader} environment for the first line of the table.
 The macros {\tt \string\pdgtable} and {\tt \string\pdgwidetable} take the following arguments:
 \begin{verbatim}
 \pdgtable{ dimension of the table }
 { your caption }{ label }{options}
 \end{verbatim}
 Good practice for the label is to use the following convention: {\tt databases:tab:some-meaningful-name}.\\
-Examples on how to use these enviroments are shown below. The snippets of code can be directly included in databases-main.tex.
+Examples on how to use these environments are shown below. The snippets of code can be directly included in databases-main.tex.
 \begin{verbatim}
 \begin{pdgtable}{c c c} 
 {Table}{databases:tab:mytable}{h!}
@@ -155,7 +155,7 @@ N_{exp} = \sigma_{exp} \times \int L(t) dt
 N_{exp} = \sigma_{exp} \times \int L(t) dt
 \end{equation}
 
-If you want to add a set of equation, please use the {\tt subequation} enviroment, together with {\tt allign}.
+If you want to add a set of equation, please use the {\tt subequation} environment, together with {\tt align}.
 This will add a number for every equation in the array. A working example is:
 \begin{verbatim}
 \begin{subequations}
@@ -186,7 +186,7 @@ D= \frac{E}{F}
 %D= \frac{E}{F}  
 %\end{align}
 %
-You can also add text within equation with the {\tt \string\intertex} enviroment.
+You can also add text within equation with the {\tt \string\intertex} environment.
 \begin{verbatim}
 \begin{subequations}
 \begin{align}
@@ -232,7 +232,7 @@ with the target review, not the {\tt BASENAME} of the review you're currently wo
 
 To identify the {\tt BASENAME} of a review, login into \href{https://pdgprod.lbl.gov/pdgprod/PdgWorkspace/Reviews.action}{pdgWorkspace} (click to be redirected). Under \textbf{Reviews} select from the drop-down menu \textbf{all reviews}. Click on the title of the review you are interested in, and then select the \textbf{Technical details} tab. The \textbf{Basename} is the fist entry.
 
-When including references or citations into caption, use the {\tt \string\protect} enviroment, as shown below:
+When including references or citations into caption, use the {\tt \string\protect} environment, as shown below:
 \begin{verbatim}
 \begin{pdgtable}{ c | c }
 {Example on how to cite a paper {\protect \cite{InspireLabel}}
@@ -257,7 +257,7 @@ References are handled using BibTeX. To add a reference to your review:
 \item cite the reference with {\tt \string\cite}, using the article tag assigned by INSPIRE.
 \end{itemize}
 In case the reference does not appear in INSPIRE, use the standard convention for the label: {\tt databases:meaningful-name}.
-For example, to add a reference to the Review of Particle Phsyics (2018) 
+For example, to add a reference to the Review of Particle Physics (2018) 
 add the following code to databases.bib:
 \begin{verbatim}
 @article{Tanabashi:2018oca,
@@ -277,7 +277,7 @@ and then use the following snippet of code to add a reference to it in databases
 \begin{verbatim}
 \cite{Tanabashi:2018oca}
 \end{verbatim}
-In case you need to add multiple references within the same set of brakets, use the following code:
+In case you need to add multiple references within the same set of brackets, use the following code:
 \begin{verbatim}
 \cite{paper1,paper2}
 \end{verbatim}
@@ -305,7 +305,7 @@ make booklet
 
 \section{Standard PDG symbols}
 
-The pdgdefs.tex file implements a series of useful shortcuts to typeset the rewies, such as particle symbols. 
+The pdgdefs.tex file implements a series of useful shortcuts to typeset the reviews, such as particle symbols. 
 All definitions are terminated with  \texttt{\string\xspace} , so you can simply write  \texttt{\string\ttbar} \texttt{production} instead of  \texttt{\string\ttbar \string\ production}.\\
 Most Monte Carlo generators have a form with a suffix 'V' that allows you to include the version, e.g. \texttt{\string\PYTHIAV{8}} to produce \texttt{\PYTHIAV{8}}.
 In case you need to define other symbols, please add them to the databases-preamble.tex file.
