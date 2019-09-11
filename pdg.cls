@@ -550,13 +550,13 @@
 \let\stdthesubsubsubsection\thesubsubsubsection
 \renewcommand{\thesubsubsubsection}{%
   \ifischapter%
-  \stdthesubsection\else\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}\fi%
+  \stdthesubsubsubsection\else\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{subsubsubsection}\fi%
 }
 
 \let\stdthesubsubsection\thesubsubsection
 \renewcommand{\thesubsubsection}{%
   \ifischapter%
-  \stdthesubsection\else\arabic{section}.\arabic{subsection}.\arabic{subsubsection}\fi%
+  \stdthesubsubsection\else\arabic{section}.\arabic{subsection}.\arabic{subsubsection}\fi%
 }
 \let\stdthesubsection\thesubsection
 \renewcommand{\thesubsection}{%
