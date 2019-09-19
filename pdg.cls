@@ -201,6 +201,17 @@
   \end{figure}
 }
 
+\newcommand{\pdgdoublefigure2}[7]{
+\ifthenelse{\isempty{#5}}{%
+  \begin{figure}[!ht]}{%
+  \begin{figure}[#5]}
+    \centering
+    \includegraphics[#6]{figures/#1}
+    \includegraphics[#7]{figures/#2}
+    \caption{#3}\label{#4}
+  \end{figure}
+}
+
 
 \RequirePackage{bigstrut}
     \setlength\bigstrutjot{1pt}
@@ -218,7 +229,8 @@
 
 \newcommand{\pdgtableheader}[1]{%
 #1\\
-\tableline
+\hline
+%\tableline
 %\noalign{\smallskip}
 %\mystrut[.5]
 %\noalign{\smallskip}#1\\
