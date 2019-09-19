@@ -201,7 +201,7 @@
   \end{figure}
 }
 
-\newcommand{\pdgdoublefigure2}[7]{
+\newcommand{\pdgdoublefigurex}[7]{
 \ifthenelse{\isempty{#5}}{%
   \begin{figure}[!ht]}{%
   \begin{figure}[#5]}
