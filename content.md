@@ -348,7 +348,7 @@ These MIT course materials reflect almost all the undergraduate and graduate sub
 * **OnlineCourses.com:**
 A collection of online tests, video lectures, and related course materials from mostly prestigious universities around the world. <http://www.onlinecourses.com/physics/>
 
-## Student Investigations
+## Masterclasses
 
 * **Cosmic Ray Studies:**
     There are more than 12 projects around the world that address young people and teachers giving them an opportunity to explore cosmic particles, collecting, uploading and analyzing data and sharing results. Two annual events include International Cosmic Day - https://icd.desy.de and International Muon Week - https://quarknet.org/content/international-muon-week.
@@ -651,8 +651,6 @@ List of physicists on Twitter at TrueSciPhi: <http://truesciphi.org/phy.html>
 Some selected particle physics related blogs:
 
 * **ATLAS blog:** <https://atlas.cern/updates/blog>
-
-* **CERN Love:** <http://www.cernlove.org/blog/>
 
 * **Life and Physics:**
     Jon Butterworth's blog in the Guardian. <http://www.guardian.co.uk/science/life-and-physics>
