@@ -503,38 +503,62 @@ https://astro.desy.de/outreach
 
 * **Fermilab Office of Education and Public Outreach:**
     Provides  education resources and information about activities for 's, physicists, students and visitors to the Lab. In addition to information about 25 programs, the website provides online data-based investigations for high school students, online versions of exhibits in the Lederman Science Center, links to particle physics discovery resources, web-based instructional resources, tips for education and outreach, and links to the Lederman Science Center and the Teacher Resource Center. <http://ed.fnal.gov/>
+    
+* **Perimeter Institute Outreach:**
+    Perimeter Institute shares ideas with students, teachers, and like-minded people through programs and resources that communicate the power, joy, and mystery of science. Perimeter’s award-winning Outreach team brings science to life and raises scientific literacy through classroom resources, public lectures, teacher workshops, an educator network, and a summer school where students interact with Perimeter researchers. https://www.perimeterinstitute.ca/outreach
 
 * **Science Education at Jefferson Lab:**
-    <http://education.jlab.org/>
+    Jefferson Lab's long-term commitment to science education continues to focus on increasing the number of teachers with a substantial background in math and science, strengthening the motivation and preparation of all students, especially minorities and females, and addressing the serious under representation of minorities and females in science, math, engineering and technology careers. <http://education.jlab.org/>
+    
+* **Joint Institute for Nuclear Research Education (JINR):**
+    The JINR educational portal has resources, programs for teachers and school students and lab tours. http://www.jinr.ru/schoolstudents-teachers-en/
+    
+* **Laboratori Nazionali di Frescati Educational (INFN):**
+    INFN educational programs are addressed to students, teachers and general audiences of every age, from Italy and abroad. Insights and education about the INFN-LNF research are offered thanks to the organization of guided tours and open days, stages for students, refresher courses for teachers, seminars and divulgation events. The aim is to create a constant exchange between the research world and society, thanks to direct contact and via the internet and other social media. http://edu.lnf.infn.it/about/?lang=en
+
+* **Laboratori Nazionali del Gran Sasso Outreach Activities:**
+    The Lab offers pupils the opportunity to approach the fascinating world of Physics and Science in general through stages, summer schools and training camps. It makes young researchers’ skills and competences available to people both in public events, such as the Open Day and the European Researchers’ Night, and in guided tours to visit the underground experimental halls. https://www.lngs.infn.it/en/outreach-activities
+
+* **Lawrence Berkeley National Laboratory (LBNL) Workforce Development and Education:**
+    Working with our partners both within and outside Berkeley Lab, LBNL promotes equal access to scientific and technical careers for students from all backgrounds, supports STEM teachers, and build sscientific literacy through innovative education programs. The lab also supports educational outreach efforts from Berkeley Lab’s divisions by providing program development assistance, materials, funding, volunteers, project management, marketing, and administrative support. https://education.lbl.gov/
+
+* **Sanford Underground Research Facility Education and Outreach:**
+    Leveraging research being conducted underground at Sanford Lab, staff provide training, teaching tools and materials for teachers so they can inspire and challenge students. https://sanfordlab.org/educators
+
+* **SNOLAB Outreach:** 
+    The goal at SNOLAB is to develop new educational material that fosters an appreciation of the field of astroparticle physics. The education team endeavours to facilitate an exchange of knowledge with the public and scientists from around the world to better understand our solar system. The desired outcome of the educational work is to have a network of healthy and resilient community partners with informed and active citizens better equipped to understand the goals here at SNOLAB now and in the future. https://www.snolab.ca/outreach
+
+* **TRIUMF High School Programs:**
+    TRIUMF offers outreach programs for high-school students, teachers, and the general public with a mission of promoting science and research in the public arena. TRIUMF’s outreach activities are also designed to tell Canadian students, teachers, and the public about the excitement of curiosity-driven research and about how a laboratory like TRIUMF adds value to Canada in new technologies, medical applications, and highly qualified people. https://www.triumf.ca/for-public/high-school-programs
 
 * **LBL Workforce Development and Education:**
     This group carries out Berkeley Lab's mission to inspire and prepare the next generation of scientists, engineers, and technicians. <https://education.lbl.gov/>
 
 ## Educational Programs of Experiments
 
-* **ATLAS Discovery Quest:**
-One of several access points to ATLAS education and outreach pages. This page gives access to explanations of physical concepts, blogs, ATLAS facts, news, and information for students and teachers.
-   <https://atlas.gamepedia.com/Quests
+* **ATLAS Education:**
+    The ATLAS Experiment has a wide range of educational resources available for students and teachers. Categories include primary and secondary school students, university students, teachers, citizen science, and multimedia and resources. https://atlas.cern/resources/education
 
-* **ATLAS eTours:**
-    Gives a description of the Large Hadron Collider, explains how the ATLAS detector at the LHC works and give an overview over the experiments and their physics goals. <http://atlasexperiment.org/etours.html>
+* **CMS Education and Outreach Resources:**
+    Access to 110 resources from Activities and Artworks to Visualizations. https://cds.cern.ch/collection/CMS%20Education%20and%20Outreach%20Resources?ln=en
 
-* **CMS Education:**
-    Provides access to educational resources (Story of the
-    Universe, The Size of Things, What is a Particle), and to multimedia
-    material, such as interviews, movies and photos. <http://cms.web.cern.ch/tags/education>
+* **HiSPARC at UCU:**
+    HiSPARC is an outreach, educational and research experiment on cosmic rays detection, which was initiated in the Netherlands in 2004. It brings together secondary school students and teachers, undergraduate students and university researchers in the quest to understand the origin of the most energetic particles in our universe. HSPARC has stations in the Netherlands, the United Kingdom, Denmark and Namibia. https://www.uu.nl/en/organisation/university-college-utrecht/hisparc-at-ucu
 
-* **Education and Outreach @ IceCube:**
-    <http://icecube.wisc.edu/outreach>
+* **IceCube Education and Outreach:**
+    IceCube is committed to bringing science to a wider audience. Learning opportunities for high school students, research experiences for teachers and undergraduates, learning activities for the classroom or at home, and wecasts. https://icecube.wisc.edu/outreach
 
-* **LIGO Science Education Center:**
-    The LIGO (Laser Interferometer Gravitational-wave Observatory) Science
-    Education Center has over 40 interactive, hands-on exhibits that relate to
-    the science of LIGO. The website hosts field trips for students, teacher
-    training programs, and tours for the general public. Visitors can explore
-    scientific concepts such as light, gravity, waves, and interference; learn
-    about LIGO's search for gravitational waves; and interact with scientists
-    and engineers. <https://ligo.caltech.edu/page/educational-resources>
+* **KASCADE and KASCADE-Grande KDKC:**
+    The aim of the project KCDC (KASCADE Cosmic Ray Data Centre) is the installation and establishment of a public data centre for high-energy astroparticle physics based on the data of the KASCADE experiment. https://kcdc.ikp.kit.edu
+
+* **LIGO Education Resources:**
+    Something fun and educational for K-12 educators, parents and interested students. https://www.ligo.caltech.edu/page/educational-resources
+
+* **MINERvA Neutrinos in the Classroom:**
+    Information and educational materials provide high school physics students with an in-depth hands-on interactive experience with real high-energy particle physics. The materials should be suitable for a 1-2 weeks module on particle physics as it’s done by professional scientists. https://neutrino-classroom.org
+
+* **VIRGO Educational Resources:**
+    Useful resources (websites, texts, videos) for teachers and students related to gravitational waves and the interferometers like Virgo. http://public.virgo-gw.eu/educational-resources/
 
 * **Pierre Auger Observatory's Educational Pages:**
     The site offers information about cosmic rays and their detection, and provides material for students and teachers. <https://www.auger.org/index.php/edu-outreach>
@@ -545,13 +569,16 @@ One of several access points to ATLAS education and outreach pages. This page gi
     Bimonthly magazine about particle physics published by INFN, the Istituto Nazionale di Fisica Nucleare <http://www.asimmetrie.it/>
 
 * **CERN Courier:**
-    <https://cerncourier.com>
+    CERN Courier Website: <https://cerncourier.com>
+    CERN Courier Twitter: https://twitter.com/cerncourier?lang=en
 
 * **DESY inForm:**
-    http://www.desy.de/news/desy_inform/index_eng.html
+   DESY inForm Website: http://www.desy.de/news/desy_inform/index_eng.html
+   DESY InForm Twitter: https://twitter.com/desy
 
-* **Fermilab news:**
-    <https://news.fnal.gov>
+* **Fermilab News:**
+    Fermilab News Website: <https://news.fnal.gov>
+    FNAL News Twitter: https://twitter.com/Fermilab
 
 * **LC Newsline:**
     The newsletter of the Linear Collider community. <http://newsline.linearcollider.org/>
@@ -567,23 +594,33 @@ One of several access points to ATLAS education and outreach pages. This page gi
 * **News at Interactions.org:**
     The Interactions site provides news and press releases on particle physics. <http://www.interactions.org/news-center>
 
-    * twitter: [`@particlenews`](https://twitter.com/particlenews)
+    * Twitter: [`@particlenews`](https://twitter.com/particlenews)
+    
+* **Perimeter Institute News:**
+    Perimeter Institute News Website: https://www.perimeterinstitute.ca/news
+    Perimeter Institute Twitter: https://twitter.com/perimeter
 
-* **physics.org news:**
-    This IOP news site presents physics stories from around the world wide web. <http://www.physics.org/news.asp>
+* **Sandford News and Events:**
+    Sandford News and Events Website: https://sanfordlab.org/news-and-events
+    Sandford News and Events Twitter: https://twitter.com/SanfordLab
 
 * **SLAC Signals:**
     This email newsletter reports about cutting-edge science, major SLAC milestones and other lab information. It has replaced SLAC Today in November 2013. Its signup page can be found at <http://eepurl.com/IqPl1>
+    
+* **SNOLAB News and Headline:**
+    SNOLAB News and Headline Website: https://www.snolab.ca/news
 
 * **Symmetry:**
     This magazine about particle physics and its connections to other aspects of life and science, from interdisciplinary collaborations to policy to culture is published 6 times per year by Fermilab and SLAC. <http://www.symmetrymagazine.org/>
 
-    * twitter: [`@symmetrymag`](https://twitter.com/symmetrymag)
+    * Twitter: [`@symmetrymag`](https://twitter.com/symmetrymag)
 
+* **TRIUMF on NewsWise:**
+    TRIUMF on NewsWise Website: https://www.newswise.com/institutions/newsroom/19528/#news
 ## Art in Physics
 
-* **Arts@CERN:**
-    Arts at CERN promotes the dialogue between artists and particle physics. <http://arts.cern/>
+* **Arts@CERN - When Art Meets Science:**
+    Arts at CERN is the leading art and science programme promoting the dialog between artists and particle physicists. Programmes include Art Commissions and Exhibitions, Collide, Accelerate and Guest Artists. https://arts.cern
 
     The Collide@CERN residency programme aims to develop expert knowledge in the arts through the connection with fundamental science. Since 2011 the COLLIDE award calls to artists to win a fully funded residency for up to 3 months. <https://arts.cern/programme/collide>
 
@@ -593,7 +630,11 @@ One of several access points to ATLAS education and outreach pages. This page gi
     The Canadian Association of Physicists organizes this competition, the first was launched in 1992, with the aim of stimulating interest, especially among non-scientists, in some of the captivating imagery associated with physics. The challenge is to capture photographically a beautiful or unusual physics phenomenon and explain it in less than 200 words in terms that everyone can understand. <https://www.cap.ca/programs/art-physics/>
 
 * **Fermilab Art Gallery:**
-    Arts program dedicated to the interaction between Art and Science. <http://events.fnal.gov/art-gallery/>
+    The convergence of art and science occurs daily in the Fermilab Art Gallery open to the public. To initiate and stimulate communication and interactions among scientists, artists and the public, the laboratory hosts an artist-in-residence program. The artist-in-residence interacts with scientists to learn about their research and how it connects to society. They use this information to create
+a body of work, leading to presentations in the community and possibly an exhibition of the artwork at Fermilab. <http://events.fnal.gov/art-gallery/>
+
+* **TRIUMF Science through Art:**
+    TRIUMF's Science through Art initiatives explore the space where art and science collide. These programs bring artists and TRIUMF researchers, engineers, technicians, tradespeople, and students together to explore new ways of thinking about science, discovery, creativity, and our universe. https://www.triumf.ca/science-through-art
 
 ## Blogs and Twitter
 
