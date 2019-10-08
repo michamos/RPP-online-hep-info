@@ -35,12 +35,12 @@ Suggestions for additions and updates are very welcome.[^1]
 # Particle Physics Information Platforms
 
 * **INSPIRE:**
-    INSPIRE serves as a one-stop information platform for the particle physics community, comprising 8 interlinked databases on literature, conferences, institutions, journals, researchers, experiments, jobs and data. Run in collaboration by CERN, DESY, Fermilab, IHEP, IN2P3 and SLAC, it has been serving the scientific community for almost 50 years. Previously known as SPIRES, it was the first website outside Europe and the first database on the web. Close interaction with the user community and with arXiv, ADS, HEPData, ORCID, PDG and publishers is the backbone of INSPIRE's evolution. <http://inspirehep.net/>
+    INSPIRE serves as a one-stop information platform for the particle physics community, comprising 8 interlinked databases on literature, conferences, institutions, journals, researchers, experiments, jobs and data. Run in collaboration by CERN, DESY, Fermilab, IHEP, IN2P3, and SLAC, it has been serving the scientific community for almost 50 years. Previously known as SPIRES, it was the first website outside Europe and the first database on the web. Close interaction with the user community and with arXiv, ADS, HEPData, ORCID, PDG and publishers is the backbone of INSPIRE's evolution. <http://inspirehep.net/>
 
     In 2019, INSPIRE launched INSPIRE beta, featuring all-new literature search, author profiles and job postings. INSPIRE beta is running in parallel with the current platform and it will fully replace it in the future. The INSPIRE beta site is available at: <http://beta.inspirehep.net>
 
-    * blog: [`http://blog.inspirehep.net/`](http://blog.inspirehep.net/)
-    * twitter: [`@inspirehep`](https://twitter.com/inspirehep)
+    * Blog: [`http://blog.inspirehep.net/`](http://blog.inspirehep.net/)
+    * Twitter: [`@inspirehep`](https://twitter.com/inspirehep)
 
 # Literature Databases
 
@@ -48,10 +48,10 @@ Suggestions for additions and updates are very welcome.[^1]
     The SAO/NASA Astrophysics Data System is a Digital Library portal offering access to 13 million bibliographic records in Astronomy and Physics.  The ADS search engine also indexes the full-text for approximately four million publications in this collection and tracks citations, which now amount to over 80 million links.  The system also provides access and links to a wealth of external resources, including electronic articles hosted by publishers and arXiv, data catalogs and a variety of data products hosted by the astronomy archives worldwide.  The ADS can be accessed at: <http://ads.harvard.edu/>
 
 * **arXiv.org:**
-    A repository of full-text articles in physics, astronomy, mathematics, computer science, statistics, nonlinear sciences, quantitative finance, quantitative biology, electrical engineering and systems science, and economics. Papers are submitted by registered authors to arXiv, often as pre-prints in advance of submission to a journal for publication; includes post-prints, working papers, and other relevant material. Established in 1991, the repository is interlinked with ADS and INSPIRE, among others. Readers can browse subject categories or search by author, title, abstract, date, and other fields. Receive daily update alerts for subfields by email or RSS. <https://arXiv.org>
+    A repository of full-text articles in physics, astronomy, mathematics, computer science, statistics, nonlinear sciences, quantitative finance, quantitative biology, electrical engineering and systems science, and economics. Papers are submitted by registered authors to arXiv, often as preprints in advance of submission to a journal for publication; includes postprints, working papers, and other relevant material. Established in 1991, the repository is interlinked with ADS and INSPIRE, among others. Readers can browse subject categories or search by author, title, abstract, date, and other fields. Receive daily update alerts for subfields by email or RSS. <https://arXiv.org>
 
-    * blog: [`https://blogs.cornell.edu/arXiv`](https://blogs.cornell.edu/arXiv)
-    * twitter: [`@arxiv`](https://twitter.com/arxiv)
+    * Blog: [`https://blogs.cornell.edu/arXiv`](https://blogs.cornell.edu/arXiv)
+    * Twitter: [`@arxiv`](https://twitter.com/arxiv)
 
 * **CDS:**
     The CERN Document Server contains records of about 700,000 CERN and non-CERN articles, preprints, theses. It includes records for internal and technical notes, official CERN committee documents, and multimedia objects. CDS is planning to focus on its role as an institutional repository covering all CERN material from the early 50s and reflecting the holdings of the CERN library. Non-CERN particle and accelerator physics content is in the process of being exported to INSPIRE. <http://cds.cern.ch>
@@ -92,7 +92,7 @@ Suggestions for additions and updates are very welcome.[^1]
 # People
 
 * **INSPIRE HEPNames:**
-    Searchable worldwide database of over 125,000 active, retired and deceased people associated with particle physics and related fields. The affiliation history of these researchers, their e-mail addresses, ORCiDs, web pages, experiments they participated in, PhD advisor, information on their graduate students and links to their papers in the INSPIRE HEP, arXiv and ADS databases are provided, as well as a user interface to update this information. Note that the accuracy of this information is dependent on individual researchers keeping their author profile page updated.<http://inspirehep.net/hepnames>
+    Searchable worldwide database of over 125,000 active, retired and deceased people associated with particle physics and related fields. The affiliation history of these researchers, their e-mail addresses, ORCIDs, web pages, experiments they participated in, PhD advisor, information on their graduate students and links to their papers in the INSPIRE HEP, arXiv and ADS databases are provided, as well as a user interface to update this information. Note that the accuracy of this information is dependent on individual researchers keeping their author profile page updated.<http://inspirehep.net/hepnames>
 
 # Experiments
 
@@ -377,7 +377,7 @@ A collection of online tests, video lectures, and related course materials from 
     This program enables students to investigate the Universe while applying tools and concepts from science, math and technology. http://handsonuniverse.org/
 
 * **HYPATIA:**
-    HYPATIA (Hybrid Pupil’s Analysis Tool for Interactions in Atlas) is a tool for high school students to inspect the graphic visualization of particle collision products in the ATLAS detector at CERN. http://hypatia.phys.uoa.gr/
+    HYPATIA (Hybrid Pupil’s Analysis Tool for Interactions in ATLAS) is a tool for high school students to inspect the graphic visualization of particle collision products in the ATLAS detector at CERN. http://hypatia.phys.uoa.gr/
     
 * **International Masterclasses:**
     Each year about 13,000 high school students in 55 countries come to one of about 225 nearby universities or research centres for a day to unravel the mysteries of particle physics. Lectures from active scientists give insight in topics and methods of basic research enabling the students to perform measurements on real data from one of seven experiments. At the end of the day, like an international research collaboration, participants join a video conference for discussion and combination of results. The program is coordinated from Institut fur Kern- und Teilchenphysik at TU Dresden and the Notre Dame University QuarkNet Center within the framework of the International Particle Physics Outreach Group (IPPOG). CERN, Fermilab and TRIUMF support videoconferences. World Wide Data Day - https://quarknet.org/content/world-wide-data-day is an annual event.
@@ -472,7 +472,7 @@ https://phet.colorado.edu/en/simulations/category/physics
     Test4Theory allows volunteers to run simulations of high-energy particle physics on their home computers. The results are submitted to a database which is used as a common resource by both experimental and theoretical scientists working on the Large Hadron Collider at CERN. <http://lhcathome.web.cern.ch/projects/test4theory>
 
 * **Particle Adventure:**
-    One of the most popular websites for learning the fundamentals of matter and force. An award-winning interactive tour of quarks, neutrinos, antimatter, extra dimensions, dark matter, accelerators and particle detectors from the Particle Data Group of Lawrence Berkeley National Laboratory. Simple elegant graphics and translations into 16 languages. <http://particleadventure.org/>
+    One of the most popular websites for learning the fundamentals of matter and forces. An award-winning interactive tour of quarks, neutrinos, antimatter, extra dimensions, dark matter, accelerators and particle detectors from the Particle Data Group of Lawrence Berkeley National Laboratory. Simple elegant graphics and translations into 16 languages. <http://particleadventure.org/>
 
 * **Phantom of the Universe:**
     A planetarium show about dark matter that covers astrophysics, an underground experiment, and the LHC. The show is present in more than 510 planetariums in 66 countries worldwide and has been translated into 21 languages. It has been seen by about 4 million people. It is distributed to planetariums for free. <http://phantomoftheuniverse.com/>
