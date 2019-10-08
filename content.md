@@ -92,7 +92,7 @@ Suggestions for additions and updates are very welcome.[^1]
 # People
 
 * **INSPIRE HEPNames:**
-    Searchable worldwide database of over 125,000 active, retired and deceased people associated with particle physics and related fields. The affiliation history of these researchers, their e-mail addresses, ORCIDs, web pages, experiments they participated in, PhD advisor, information on their graduate students and links to their papers in the INSPIRE HEP, arXiv and ADS databases are provided, as well as a user interface to update this information. Note that the accuracy of this information is dependent on individual researchers keeping their author profile page updated.<http://inspirehep.net/hepnames>
+    Searchable worldwide database of over 125,000 active, retired and deceased people associated with particle physics and related fields. The affiliation history of these researchers, their e-mail addresses, ORCIDs, web pages, experiments they participated in, PhD advisor, information on their graduate students and links to their papers in the INSPIRE HEP, arXiv and ADS databases are provided, as well as a user interface to update this information. <http://inspirehep.net/hepnames>
 
 # Experiments
 
@@ -220,9 +220,6 @@ Most relevant software is hosted by general-purpose repositories like GitHub, Gi
 
 * **arXiv browser:**
     Android app for browsing and searching arXiv.org, and for reading, saving and sharing articles.<https://play.google.com/store/apps/details?id=com.gbeatty.arxiv>
-
-* **aNarXiv:**
-    arXiv viewer. <http://github.com/nephoapp/anarxiv>
 
 * **Collider:**
     This mobile app allows users to see data from the ATLAS experiment at the LHC. <http://collider.physics.ox.ac.uk/>
@@ -429,9 +426,6 @@ https://phet.colorado.edu/en/simulations/category/physics
 * **Angels and Demons:**
     With the aim of looking at the myth versus reality of antimatter and science at CERN this site offers teacher resources, slideshows and videos of talks given to teachers visiting CERN. <http://angelsanddemons.web.cern.ch/>
 
-* **Big Bang Science: Exploring the origins of matter:**
-    This website, produced by the Particle Physics and Astronomy Research Council of the UK (PPARC), explains what physicists are looking for with their giant instruments. It focuses on CERN particle detectors and on United Kingdom scientists' contribution to the search for the fundamental building blocks of matter. <http://hepwww.rl.ac.uk/pub/bigbang/part1.html>
-
 * **Cambridge Relativity and Cosmology:** <http://www.damtp.cam.ac.uk/research/gr/public/index.html>
 
 * **CAMELIA:**
@@ -582,8 +576,8 @@ https://astro.desy.de/outreach
 
 * **LC Newsline:**
     The newsletter of the Linear Collider community. <http://newsline.linearcollider.org/>
-
-    * Twitter: [`@ILCnewsline`](https://twitter.com/ILCnewsline)
+    
+    LC Newsline Twitter: https://twitter.com/LCnewsline
 
 * **IOP News:**
     <http://www.iop.org/news/>
