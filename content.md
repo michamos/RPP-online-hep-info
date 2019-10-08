@@ -331,13 +331,17 @@ A useful list of resources can also be found at <http://www.stfc.ac.uk/research/
 ## Science Educators' Networks
 
 * **IPPOG:**
-    The International Particle Physics Outreach Group is a network of particle physicists, researchers, informal science educators and science explainers aiming to raise awareness, understanding and standards of global outreach efforts in particle physics and general science by providing discussion forums and regular information exchange for science institutions, proposing and implementing strategies to share lessons learned and best practices and promoting current outreach efforts of network members. <http://ippog.org>
+    The International Particle Physics Outreach Group is a network of scientists, science educators and communication specialists working across the globe in informal science education and outreach for particle physics. The IPPOG collaboration comprises 30 members: 24 countries, 5 experiments and CERN as an international laboratory.<http://ippog.web.cern.ch>
 
 * **Interactions.org:**
     Designed to serve as a central resource for communicators of particle physics. The daily updated website provides links to current particle physics news from the world's press, high-resolution photos and graphics from the particle physics laboratories of the world; links to education and outreach programs; information about science policy and funding; a glossary; and links to many educational sites. <http://www.interactions.org>
-
-* **I2U2 (Interactions in Understanding the Universe):**
-    The I2U2 e-Labs use the Internet and distributed computing in high-school classes and provide an opportunity for students to organise and conduct authentic research; experience the environment of scientific collaborations; make real scientific contributions. It is supported by QuarkNet, NSF and DOE. <http://www.i2u2.org>
+    
+* **QuarkNet:**
+    The QuarkNet Collaboration is a national program that partners high school science teachers with particle physicists working in experiments at CERN or Fermilab. The network consists of over 50 centers at research groups in universities and labs across the United States. About 100,000 students from 500+ U.S. high schools learn fundamental physics as they participate in inquiry-oriented investigations and analyze authentic data online. QuarkNet is supported in part by the National Science Foundation and Fermilab. <https://quarknet.org/>
+    
+* **Netzwerk Teilchenwelt:**
+    Behind the project are about 200 researchers from 30 institutes and universities doing research in particle physics, astroparticle physics and hadron and nuclear physics in Germany. Exciting young scientists throughout Germany for particle physics and accompanying them from school to top-level particle physics research—that's what they have set their sights on.
+https://www.teilchenwelt.de  
 
 **Physics Courses**
 
@@ -347,11 +351,45 @@ These MIT course materials reflect almost all the undergraduate and graduate sub
 * **OnlineCourses.com:**
 A collection of online tests, video lectures, and related course materials from mostly prestigious universities around the world. <http://www.onlinecourses.com/physics/>
 
-## Master Classes
+## Student Investigations
 
+* **Cosmic Ray Studies:**
+    There are more than 12 projects around the world that address young people and teachers giving them an opportunity to explore cosmic particles, collecting, uploading and analyzing data and sharing results. Two annual events include International Cosmic Day - https://icd.desy.de and International Muon Week - https://quarknet.org/content/international-muon-week.
+    **Projects include:**
+    DESY for cosmic ray projects: https://icd.desy.de/e49245/
+    France - COSMOS à l”ECOLE - http://www.sciencesalecole.org/plan-cosmos-a-lecole-presentation/
+    France - e-PERON - https://www.labex-ocevu.univ-amu.fr/?q=fr/content/e-péron
+    Germany - Cosmic@Web - http://physik-begreifen-zeuthen.desy.de/angebote/kosmische_teilchen/cosmicweb/index_ger.html
+    Germany - Teilchenwelt - https://www.teilchenwelt.de
+    Italy - Extreme Energy Events – https://eee.centrofermi.it
+    Italy - INFN – Outreach Cosmic Ray Activities - https://web.infn.it/OCRA/
+    Poland - CREDO - https://credo.science
+    Poland - Dark Universe Welcome - https://www.zooniverse.org/projects/credo/dark-universe-welcome
+    Spain - Cazadores de Rayos Gamma - https://www.cazadoresderayosgamma.com/en/
+    Sweden - Vetenskapens Hus - https://www.vetenskapenshus.se/kosmisk-stralning?language=en
+    Taiwan - QuarkNet-TW – no website
+    The Netherlands - HiSPARC - https://www.uu.nl/en/organisation/university-college-utrecht/hisparc-at-ucu
+    UK - Birmingham QuarkNet Project - http://www.ep.ph.bham.ac.uk/twiki/bin/view/General/QuarkNet
+    UK - QuarkNet Cymru - http://blogs.cardiff.ac.uk/physicsoutreach/quarknet-cymru/
+    US - QuarkNet Cosmic Ray e-Labs - http://www.i2u2.org/elab/cosmic/home/project.jsp
+    
+* **Hands-On Universe:**
+    This program enables students to investigate the Universe while applying tools and concepts from science, math and technology. http://handsonuniverse.org/
+
+* **HYPATIA:**
+    HYPATIA (Hybrid Pupil’s Analysis Tool for Interactions in Atlas) is a tool for high school students to inspect the graphic visualization of particle collision products in the ATLAS detector at CERN. http://hypatia.phys.uoa.gr/
+    
 * **International Masterclasses:**
-    Each year about 10000 high school students in 42 countries come to one of about 200 nearby universities or research centres for one day in order to unravel the mysteries of particle physics. Lectures from active scientists give insight in topics and methods of basic research at the fundaments of matter and forces, enabling the students to perform measurements on real data from particle physics experiments themselves. At the end of each day, like in an international research collaboration, the participants join in a video conference for discussion and combination of their results. <http://physicsmasterclasses.org/>
-
+    Each year about 13,000 high school students in 55 countries come to one of about 225 nearby universities or research centres for a day to unravel the mysteries of particle physics. Lectures from active scientists give insight in topics and methods of basic research enabling the students to perform measurements on real data from one of seven experiments. At the end of the day, like an international research collaboration, participants join a video conference for discussion and combination of results. The program is coordinated from Institut fur Kern- und Teilchenphysik at TU Dresden and the Notre Dame University QuarkNet Center within the framework of the International Particle Physics Outreach Group (IPPOG). CERN, Fermilab and TRIUMF support videoconferences. World Wide Data Day - https://quarknet.org/content/world-wide-data-day is an annual event.
+    **EXPERIMENTS:**
+    ALICE - https://www.vetenskapenshus.se/kosmisk-stralning?language=en
+    ATLAS - https://physicsmasterclasses.org/index.php?cat=physics&page=atlas
+    CMS - https://physicsmasterclasses.org/index.php?cat=physics&page=cms
+    LHCb - https://physicsmasterclasses.org/index.php?cat=physics&page=lhcb
+    MINERvA - https://quarknet.org/content/minerva-masterclass-0
+    
+    (Coming in 2020 - Belle II and MicroBooNE.)
+    
 * **LHC physics masterclasses:**
     Lectures from active scientists give insight into methods of basic research, enabling the students to perform measurements on real data from LHC experiments. Like in a real research collaboration, the participants then discuss their results and compare with expectations.
 
@@ -361,10 +399,13 @@ A collection of online tests, video lectures, and related course materials from 
 
     <http://alice.physicsmasterclasses.org/MasterClassWebpage.html>
 
-* **IceCube:** <https://masterclass.icecube.wisc.edu/>
+* **IceCube Masterclass:**
+    The program is inspired by the International Masterclasses program started by IPPOG and is coordinated by the Wisconsin IceCube Particle Astrophysics Center with support from QuarkNet.
+https://masterclass.icecube.wisc.edu/
 
 * **MINERVA:**
-    MINERVA (Masterclass INvolving Event recognition visualised with Atlantis) is a masterclass tool for students looking to learn more about the ATLAS experiment at CERN, based on a simplified setup of the ATLAS event display, Atlantis. <http://atlas-minerva.web.cern.ch/atlas-minerva/>
+    MINERVA (Masterclass INvolving Event recognition visualised with Atlantis) is a masterclass tool for students looking to learn more about the ATLAS experiment at CERN, based on a simplified setup of the ATLAS event display, Atlantis.
+http://atlas-minerva.web.cern.ch/atlas-minerva
 
 ## General Sites
 
@@ -379,8 +420,9 @@ A collection of online tests, video lectures, and related course materials from 
 * **HyperPhysics:**
     An exploration environment for concepts in physics employing concept maps and other linking strategies and providing opportunities for numerical exploration. <http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html>
 
-* **Physics2000:**
-    An interactive journey through modern physics. Have fun learning visually and conceptually about 20th century science and high-tech devices. Supported by the Colorado Commission on Higher Education and the National Science Foundation. <https://physics2000.com>
+* **PhET Interactive Simulations:**
+    PFounded in 2002 by Nobel Laureate Carl Wieman, the PhET Interactive Simulations project at the University of Colorado Boulder creates free interactive math and science simulations. PhET sims are based on extensive education research and engage students through an intuitive, game-like environment where students learn through exploration and discovery.
+https://phet.colorado.edu/en/simulations/category/physics
 
 ## Particle Physics Activities
 
@@ -406,9 +448,6 @@ A collection of online tests, video lectures, and related course materials from 
 
 * **Higgs Hunters:**
     A web-based citizen science project to help search for unknown exotic particles in the LHC data. <http://HiggsHunters.org>
-
-* **HYPATIA:**
-    HYPATIA (Hybrid Pupil's Analysis Tool for Interactions in Atlas) is a tool for high school students to inspect the graphic visualization of particle collision products in the ATLAS detector at CERN. <http://hypatia.phys.uoa.gr/>
 
 * **Imagine the Universe:**
     This NASA site is intended for students age 14 and up and for anyone interested in learning about the universe. <http://imagine.gsfc.nasa.gov/home.html>
@@ -441,29 +480,29 @@ A collection of online tests, video lectures, and related course materials from 
 * **Quarked! - Adventures in the Subatomic Universe:**
     This project, targeted to kids aged 7-12 (and their families), brings subatomic physics to life through a multimedia project including an interactive website, a facilitated program for museums and schools, and an educational outreach program. <http://www.quarked.org/>
 
-* **QuarkNet:**
-    Brings the excitement of particle physics research to high school teachers and their students. Teachers join research groups at about 50 universities and labs across the country. These research groups are part of particle physics experiments at CERN or Fermilab. About 100,000 students from 500+ US high schools learn fundamental physics as they participate in inquiry-oriented investigations and analyze real data online. QuarkNet is supported in part by the National Science Foundation and the U.S. Department of Energy. <https://quarknet.org/>
-
 * **Rewarding Learning videos about CERN:**
     The three videos based on interviews with scientists and engineers at CERN introduce pupils to CERN and the type of research and work undertaken there and are accompanied by teachers' notes. <http://www.nicurriculum.org.uk/STEMWorks/resources/cern/index.asp>
 
 ## Lab Education Offices
 
-* **Argonne National Laboratory (ANL) Educational Programs:** <http://www.anl.gov/education/>
+* **Argonne National Laboratory (ANL) Educational Programs:**
+    Connecting today’s world-class research to tomorrow’s STEM problem solvers. <http://www.anl.gov/education/>
 
 * **Brookhaven National Laboratory (BNL) Educational Programs:**
     The Office of Educational Programs mission is to design, develop, implement, and facilitate workforce development and education initiatives that support the scientific mission at Brookhaven National Laboratory and the Department of Energy. <http://www.bnl.gov/education/>
 
-* **CERN:**
-    The CERN Teacher Programmes help teachers keep up to date with the latest developments in particle physics and related areas, and enables them to meet teaching colleagues from around the world. <http://teachers.cern/>
+* **CERN's education programmes:**
+    CERN’s education and outreach programmes cover all ages from high-school students to university students. Specifically, CERN offers the tailor-made High-School Students Internship Programme several times per year and the Beamline for Schools Competition, challenging high-school students from around the world to propose an experiment to carry out at a real research laboratory. The Laboratory also runs residential programmes for high-school teachers from around the world and a summer programme for undergraduate students. https://home.cern/about/what-we-do/our-educational-programmes
 
-    In the High-School Students Internship Programme CERN invites students aged 16-19 to come to CERN for two weeks, to gain practical experience in science, technology, and innovation by shadowing, observing, and working with a member of personnel. <http://hssip.web.cern.ch/>
+* **DESY Education:**
+    DESY Hamburg offers a regular series of public lectures and the DESY Science Café for young and old alike. <https://fortbildung.desy.de/index_eng.html>
+   
+* **DESY Zeuthen Outreach:**
+    Posters, photos, lectures, videos and blogs. Projects for teachers and students include School Labs, Cosmic@Web, Teilchenwelt and International Cosmic Day.
+https://astro.desy.de/outreach
 
-* **DESY:**
-    Offers courses for pupils and teachers as well as information for the general public, mostly in German. <https://fortbildung.desy.de/index_eng.html>
-
-* **Fermilab Education Office:**
-    Provides  education resources and information about activities for educators, physicists, students and visitors to the Lab. In addition to information about 25 programs, the website provides online data-based investigations for high school students, online versions of exhibits in the Lederman Science Center, links to particle physics discovery resources, web-based instructional resources, tips for education and outreach, and links to the Lederman Science Center and the Teacher Resource Center. <http://ed.fnal.gov/>
+* **Fermilab Office of Education and Public Outreach:**
+    Provides  education resources and information about activities for 's, physicists, students and visitors to the Lab. In addition to information about 25 programs, the website provides online data-based investigations for high school students, online versions of exhibits in the Lederman Science Center, links to particle physics discovery resources, web-based instructional resources, tips for education and outreach, and links to the Lederman Science Center and the Teacher Resource Center. <http://ed.fnal.gov/>
 
 * **Science Education at Jefferson Lab:**
     <http://education.jlab.org/>
