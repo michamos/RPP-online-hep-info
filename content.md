@@ -149,7 +149,7 @@ Most relevant software is hosted by general-purpose repositories like GitHub, Gi
     easy-to-use set of web-based tools, including shell account with up-to-date development
     tools, web page hosting, subversion, git and Mercurial code management systems, mailing lists, bug tracker and wiki system. <http://www.hepforge.org/>
 
-## Particle Physics software
+## Particle Physics Software
 
 * **FastJet:**
     This is a software package for jet finding in pp and e+e- collisions. It includes fast native implementations of many sequential recombination clustering algorithms, plugins for access to a range of cone jet finders and tools for advanced jet manipulation. <http://fastjet.fr/>
