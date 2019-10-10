@@ -92,7 +92,7 @@ Suggestions for additions and updates are very welcome.[^1]
 # People
 
 * **INSPIRE HEPNames:**
-    Searchable worldwide database of over 125,000 active, retired and deceased people associated with particle physics and related fields. The affiliation history of these researchers, their e-mail addresses, ORCIDs, web pages, experiments they participated in, PhD advisor, information on their graduate students and links to their papers in the INSPIRE HEP, arXiv and ADS databases are provided, as well as a user interface to update this information. <http://inspirehep.net/hepnames>
+    Searchable worldwide database of over 125,000 active, retired, and deceased people associated with particle physics and related fields - but it also includes people who have departed HEP research. The affiliation history of these researchers, their e-mail addresses, ORCIDs, web pages, experiments they participated in, PhD advisor, information on their graduate students and links to their papers in the INSPIRE HEP, arXiv and ADS databases are provided, as well as a user interface to update this information. <http://inspirehep.net/hepnames>
 
 # Experiments
 
