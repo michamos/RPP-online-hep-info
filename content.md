@@ -353,22 +353,22 @@ A collection of online tests, video lectures, and related course materials from 
 * **Cosmic Ray Studies:**
     There are more than 12 projects around the world that address young people and teachers giving them an opportunity to explore cosmic particles, collecting, uploading and analyzing data and sharing results. Two annual events include International Cosmic Day - https://icd.desy.de and International Muon Week - https://quarknet.org/content/international-muon-week.
     **Projects include:**
-    DESY for cosmic ray projects: https://icd.desy.de/e49245/
-    France - COSMOS à l”ECOLE - http://www.sciencesalecole.org/plan-cosmos-a-lecole-presentation/
-    France - e-PERON - https://www.labex-ocevu.univ-amu.fr/?q=fr/content/e-péron
-    Germany - Cosmic@Web - http://physik-begreifen-zeuthen.desy.de/angebote/kosmische_teilchen/cosmicweb/index_ger.html
-    Germany - Teilchenwelt - https://www.teilchenwelt.de
-    Italy - Extreme Energy Events – https://eee.centrofermi.it
-    Italy - INFN – Outreach Cosmic Ray Activities - https://web.infn.it/OCRA/
-    Poland - CREDO - https://credo.science
-    Poland - Dark Universe Welcome - https://www.zooniverse.org/projects/credo/dark-universe-welcome
-    Spain - Cazadores de Rayos Gamma - https://www.cazadoresderayosgamma.com/en/
-    Sweden - Vetenskapens Hus - https://www.vetenskapenshus.se/kosmisk-stralning?language=en
-    Taiwan - QuarkNet-TW – no website
-    The Netherlands - HiSPARC - https://www.uu.nl/en/organisation/university-college-utrecht/hisparc-at-ucu
-    UK - Birmingham QuarkNet Project - http://www.ep.ph.bham.ac.uk/twiki/bin/view/General/QuarkNet
-    UK - QuarkNet Cymru - http://blogs.cardiff.ac.uk/physicsoutreach/quarknet-cymru/
-    US - QuarkNet Cosmic Ray e-Labs - http://www.i2u2.org/elab/cosmic/home/project.jsp
+    * DESY for cosmic ray projects: https://icd.desy.de/e49245/
+    * France - COSMOS à l”ECOLE - http://www.sciencesalecole.org/plan-cosmos-a-lecole-presentation/
+    * France - e-PERON - https://www.labex-ocevu.univ-amu.fr/?q=fr/content/e-péron
+    * Germany - Cosmic@Web - http://physik-begreifen-zeuthen.desy.de/angebote/kosmische_teilchen/cosmicweb/index_ger.html
+    * Germany - Teilchenwelt - https://www.teilchenwelt.de
+    * Italy - Extreme Energy Events – https://eee.centrofermi.it
+    * Italy - INFN – Outreach Cosmic Ray Activities - https://web.infn.it/OCRA/
+    * Poland - CREDO - https://credo.science
+    * Poland - Dark Universe Welcome - https://www.zooniverse.org/projects/credo/dark-universe-welcome
+    * Spain - Cazadores de Rayos Gamma - https://www.cazadoresderayosgamma.com/en/
+    * Sweden - Vetenskapens Hus - https://www.vetenskapenshus.se/kosmisk-stralning?language=en
+    * Taiwan - QuarkNet-TW – no website
+    * The Netherlands - HiSPARC - https://www.uu.nl/en/organisation/university-college-utrecht/hisparc-at-ucu
+    * UK - Birmingham QuarkNet Project - http://www.ep.ph.bham.ac.uk/twiki/bin/view/General/QuarkNet
+    * UK - QuarkNet Cymru - http://blogs.cardiff.ac.uk/physicsoutreach/quarknet-cymru/
+    * US - QuarkNet Cosmic Ray e-Labs - http://www.i2u2.org/elab/cosmic/home/project.jsp
     
 * **Hands-On Universe:**
     This program enables students to investigate the Universe while applying tools and concepts from science, math and technology. http://handsonuniverse.org/
@@ -379,11 +379,11 @@ A collection of online tests, video lectures, and related course materials from 
 * **International Masterclasses:**
     Each year about 13,000 high school students in 55 countries come to one of about 225 nearby universities or research centres for a day to unravel the mysteries of particle physics. Lectures from active scientists give insight in topics and methods of basic research enabling the students to perform measurements on real data from one of seven experiments. At the end of the day, like an international research collaboration, participants join a video conference for discussion and combination of results. The program is coordinated from Institut fur Kern- und Teilchenphysik at TU Dresden and the Notre Dame University QuarkNet Center within the framework of the International Particle Physics Outreach Group (IPPOG). CERN, Fermilab and TRIUMF support videoconferences. World Wide Data Day - https://quarknet.org/content/world-wide-data-day is an annual event.
     **EXPERIMENTS:**
-    ALICE - https://www.vetenskapenshus.se/kosmisk-stralning?language=en
-    ATLAS - https://physicsmasterclasses.org/index.php?cat=physics&page=atlas
-    CMS - https://physicsmasterclasses.org/index.php?cat=physics&page=cms
-    LHCb - https://physicsmasterclasses.org/index.php?cat=physics&page=lhcb
-    MINERvA - https://quarknet.org/content/minerva-masterclass-0
+    * ALICE - https://www.vetenskapenshus.se/kosmisk-stralning?language=en
+    * ATLAS - https://physicsmasterclasses.org/index.php?cat=physics&page=atlas
+    * CMS - https://physicsmasterclasses.org/index.php?cat=physics&page=cms
+    * LHCb - https://physicsmasterclasses.org/index.php?cat=physics&page=lhcb
+    * MINERvA - https://quarknet.org/content/minerva-masterclass-0
     
     (Coming in 2020 - Belle II and MicroBooNE.)
     
