@@ -60,7 +60,7 @@ Suggestions for additions and updates are very welcome.[^1]
     The HEP collection, the flagship of the INSPIRE suite, serves more than 1.3 million bibliographic records with a growing number of full-text articles attached and metadata including author affiliations, abstracts, references, experiments, keywords as well as links to arXiv, ADS, PDG, HEPData, publisher platforms and other servers. It provides fast metadata and full-text searches, plots extracted from full text, author disambiguation, author profile pages and citation analysis and is expanding its content to, e.g., experimental notes. <http://inspirehep.net>
 
 * **JACoW:**
-    The Joint Accelerator Conference Website publishes the proceedings of APAC, EPAC, PAC, IPAC, ABDW, BIW, COOL, CYCLOTRONS, DIPAC, ECRIS, FEL, HIAT, ICALEPCS, IBIC, ICAP, LINAC, North American PAC, PCaPAC, RuPAC, SRF. A custom interface allows searching based on keywords, titles, authors, and in the full text. <http://www.jacow.org/>
+    The Joint Accelerator Conference Website publishes the proceedings of several accelerator conferences held around the world. A custom interface allows searching based on keywords, titles, authors, and in the full text. <http://www.jacow.org/>
 
 * **KEK Library Preprints and Reports Database:**
     This database contains bibliographic records of preprints and technical reports held in the KEK library, with links to the full-text images of more than 100,000 papers scanned from their worldwide preprint collection. Particularly useful for older scanned preprints. Links to it are included in INSPIRE HEP. <https://www.i-repository.net/il/meta_pub/engG0000128Lib>
