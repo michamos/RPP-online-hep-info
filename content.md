@@ -423,59 +423,46 @@ https://phet.colorado.edu/en/simulations/category/physics
 
 ## Particle Physics Activities
 
-* **Angels and Demons:**
-    With the aim of looking at the myth versus reality of antimatter and science at CERN this site offers teacher resources, slideshows and videos of talks given to teachers visiting CERN. <http://angelsanddemons.web.cern.ch/>
+**Citizen Science**
 
-* **Cambridge Relativity and Cosmology:** <http://www.damtp.cam.ac.uk/research/gr/public/index.html>
+* **Higgs Hunters:** A web-based citizen science project to help search for unknown exotic particles in the LHC data.
+http://HiggsHunters.org
+* **LHC @ home:** Volunteer computing platform to help physicists compare theory with experiment, in the search for new fundamental particles and answers to questions about the Universe. http://lhcathome.web.cern.ch
 
-* **CAMELIA:**
-    CAMELIA (Cross-platform Atlas Multimedia Educational Lab for Interactive Analysis) is a discovery tool for the general public, based on computer gaming technology. <https://www.atlasexperiment.org/camelia.html>
+**Classroom Activities Collections**
+* **Contemporary Physics Education Project - Fundamental particle and interactions:** http://www.cpepphysics.org/particles.html
+* **Fermilab Physical Science/Physics Resources:** https://ed.fnal.gov/home/educators1000-physics.shtml
+* **IceCube Activities:** https://icecube.wisc.edu/outreach/activities
+* **IPPOG Resources:** http://ippog.org/resources
+* **Jefferson Lab Teacher Resources:** https://education.jlab.org/indexpages/teachers.html
+* **LIGO Classroom Activities:** https://www.ligo.caltech.edu/page/classroom-activities
+* **MINERvA Neutrinos in the Classroom:** https://neutrino-classroom.org
+* **Perimeter Institute Educational Resources:** https://resources.perimeterinstitute.ca
+* **Quarked Lesson Plans:** http://www.quarked.org/parents/lessonplans.html
+* **QuarkNet Data Activities Portfolio:** https://quarknet.org/data-portfolio
+* **Sanford Lab curriculum materials:** https://sanfordlab.org/educators/curriculum-modules
 
-* **CERNland:**
-    With a range of games, multimedia applications and films CERNland is a virtual theme park developed to bring the excitement of CERN's research to a young audience aged between 7 and 12. CERNland is designed to show children what is being done at CERN and inspire them with some physics at the same time. <http://www.cernland.net/>
+**Interactive Sites**
+* **CAMELIA:** CAMELIA (Cross-platform Atlas Multimedia Educational Lab for Interactive Analysis) is a discovery tool for the general public, based on computer gaming technology. https://www.atlasexperiment.org/camelia.html
+* **CERNland:** With a range of games, multimedia applications and films CERNland is a virtual theme park developed to bring the excitement of CERN’s research to a young audience aged between 7 and 12. CERNland is designed to show children what is being done at CERN and inspire them with some physics. http://www.cernland.net/
+* **In particular:** Podcast and more about physics and the process of discovering physics at the ATLAS experiment. https://inparticular.web.cern.ch/
+* **Lancaster Particle Physics:** Suitable for 16+ students, this site offers a number of simulations and explanations of particle physics, including a section on the LHC. http://www.lppp.lancs.ac.uk/
+* **Quarked!** - Adventures in the Subatomic Universe: This project, targeted to kids aged 7-12 (and their families), brings subatomic physics to life through a multimedia project including an interactive website, a facilitated program for museums and schools, and an educational outreach program. http://www.quarked.org/
 
-* **CollidingParticles:**
-    A series of films following a team of physicists involved in research at the LHC. <http://www.collidingparticles.com/>
+**Planetarium Show**
+* **Phantom of the Universe:** A planetarium show about dark matter that covers astrophysics, an underground experiment, and the LHC. It is distributed to planetariums for free. http://phantomoftheuniverse.com/
 
-* **Hands-On Universe:**
-    This educational program enables students to investigate the Universe while applying tools and concepts from science, math and technology. <http://handsonuniverse.org/>
+**Video/Film**
+* **Angels and Demons:** With the aim of looking at the myth versus reality of antimatter and science at CERN this site describes the science behind the story including a set of videos. http://angelsanddemons.web.cern.ch/
+* **CollidingParticles:** A series of films following a team of physicists involved in research at the LHC. http://www.collidingparticles.com/
+* **Rewarding Learning videos about CERN:** The three videos based on interviews with scientists and engineers at CERN introduce pupils to CERN and the type of research and work undertaken there and are accompanied by teachers’ notes.
+http://www.nicurriculum.org.uk/STEMWorks/resources/cern/index.asp
+* **Videos by Don Lincoln:** Short YouTube videos on basic particle physics and cosmology. https://www.youtube.com/playlist?list=PLCfRa7MXBEsoJuAM8s6D8oKDPyBepBosS
 
-* **Higgs Hunters:**
-    A web-based citizen science project to help search for unknown exotic particles in the LHC data. <http://HiggsHunters.org>
-
-* **Imagine the Universe:**
-    This NASA site is intended for students age 14 and up and for anyone interested in learning about the universe. <http://imagine.gsfc.nasa.gov/home.html>
-
-* **In particular:**
-    Podcast about physics and the process of discovering physics at the ATLAS experiment. <https://inparticular.web.cern.ch/>
-
-* **Lancaster Particle Physics:**
-    This site, suitable for 16+ students,  offers a number of simulations and explanations of particle physics, including a section on the LHC. <http://www.lppp.lancs.ac.uk/>
-
-* **LHC @ home:**
-    Volunteer computing platform to help physicists compare theory with experiment, in the search for new fundamental particles and answers to questions about the Universe. <http://lhcathome.web.cern.ch>
-
-    ATLAS @ Home is a research project that uses volunteer computing to run simulations of the ATLAS experiment at CERN. <http://lhcathome.web.cern.ch/projects/atlas>
-
-    Beauty allows volunteers to participate in simulations of the LHCb experiment at CERN. <http://lhcathome.web.cern.ch/projects/beauty>
-
-    CMS @ Home is currently under development. <http://lhcathome.web.cern.ch/projects/cms>
-
-    The SIXTRACK project allows users with Internet-connected computers to participate in advancing Accelerator Physics. <http://lhcathome.web.cern.ch/projects/sixtrack>
-
-    Test4Theory allows volunteers to run simulations of high-energy particle physics on their home computers. The results are submitted to a database which is used as a common resource by both experimental and theoretical scientists working on the Large Hadron Collider at CERN. <http://lhcathome.web.cern.ch/projects/test4theory>
-
-* **Particle Adventure:**
-    One of the most popular websites for learning the fundamentals of matter and forces. An award-winning interactive tour of quarks, neutrinos, antimatter, extra dimensions, dark matter, accelerators and particle detectors from the Particle Data Group of Lawrence Berkeley National Laboratory. Simple elegant graphics and translations into 16 languages. <http://particleadventure.org/>
-
-* **Phantom of the Universe:**
-    A planetarium show about dark matter that covers astrophysics, an underground experiment, and the LHC. The show is present in more than 510 planetariums in 66 countries worldwide and has been translated into 21 languages. It has been seen by about 4 million people. It is distributed to planetariums for free. <http://phantomoftheuniverse.com/>
-
-* **Quarked! - Adventures in the Subatomic Universe:**
-    This project, targeted to kids aged 7-12 (and their families), brings subatomic physics to life through a multimedia project including an interactive website, a facilitated program for museums and schools, and an educational outreach program. <http://www.quarked.org/>
-
-* **Rewarding Learning videos about CERN:**
-    The three videos based on interviews with scientists and engineers at CERN introduce pupils to CERN and the type of research and work undertaken there and are accompanied by teachers' notes. <http://www.nicurriculum.org.uk/STEMWorks/resources/cern/index.asp>
+**Websites**
+* **Cambridge Relativity and Cosmology:** Materials for the greater public to learn about the Origins of the Universe, including information on black holes, string theory, M-thoery, the cosmic microwave background and the structure of the Universe. http://www.damtp.cam.ac.uk/research/gr/public/index.html
+* **Imagine the Universe:** This site is for students age 14 and up and for anyone interested in learning about the Universe. http://imagine.gsfc.nasa.gov/home.html
+* **Particle Adventure:** An interactive tour of quarks, neutrinos, antimatter, extra dimensions, dark matter, accelerators and particle detectors from the Particle Data Group of Lawrence Berkeley National Laboratory. Simple elegant graphics and translations into 16 languages. http://particleadventure.org/
 
 ## Lab Education Offices
 
