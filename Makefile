@@ -1,9 +1,12 @@
-# $Id: Makefile 26162 2019-11-05 20:31:06Z anderson $
+# $Id: Makefile 26216 2019-11-08 20:32:29Z anderson $
 # Template for general Makefile for LaTeX-based reviews
 
 BASENAME := databases
+SUBREVS := nonaccel pardet hadronic
+ALLSUBREVS := $(foreach SUBREV, $(SUBREVS), $(shell find .. -mindepth 1 -maxdepth 1 -type d -name '$(SUBREV)-*' -printf "%f "))
 ALLREVS := $(shell find .. -mindepth 1 -maxdepth 1 -type d -printf "%f ")
 ALLREVSX := $(filter-out $(BASENAME),$(ALLREVS))
+ALLREVSX := $(filter-out $(ALLSUBREVS), $(ALLREVSX))
 XREFAUX := $(foreach AUX, $(ALLREVSX), ../$(AUX)/$(AUX).aux) 
 
 
@@ -50,9 +53,8 @@ nohyperref:
 	pdflatex "\def\nohyperref{1} \input{$(BASENAME).tex}"
 
 
-prodweb:
+prod:
 	$(MAKE) clean
-	$(MAKE) crossref
 	$(MAKE) web
 
 bib:	
