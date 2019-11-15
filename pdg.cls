@@ -679,6 +679,23 @@
     \fancypagestyle{plain}{\fancyfoot[C]{\scriptsize #1}}
 }}
 
+\newcommand\rpprunningheader[1]{%
+  \ifthenelse{\isempty{#1}}{%
+}{
+    \ifrppweb
+    \fancyhead[C]{}
+    \fancyhead[C]{\bf\itshape\nouppercase{\thechapter.  #1}}
+    \fancypagestyle{plain}{\fancyhead[C]{\bf\itshape\nouppercase{\thechapter.  #1}}}
+    \fi
+    \ifrppbook
+    \fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}}
+    \fancyhead[RO]{{\bf\itshape\nouppercase{\thechapter.  #1}\xspace\xspace\xspace\thepage}}
+    \fancypagestyle{plain}{%
+    \fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}}
+    \fancyhead[RO]{{\bf\itshape\nouppercase{\thechapter.  #1}}\xspace\xspace\xspace\thepage}}
+    \fi
+}}
+
 
 \fancypagestyle{rppbook}{%
 \fancyhf{} % clear the fields
