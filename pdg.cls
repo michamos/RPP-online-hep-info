@@ -429,13 +429,20 @@
 \RequirePackage[left]{lineno}
 \ifdefined\isdraft
 \linenumbers
-\RequirePackage[inline]{showlabels}
+\RequirePackage[inline,nolabel]{showlabels}
 % The following should cause labels to be rendered in red.
 % Unfortunately, when the labels are inline, this causes all 
 % text to be red.
 \renewcommand{\showlabelfont}{\tiny}
 \showlabels{cite}
 \showlabels{bibitem}
+\RequirePackage[color,notref,notcite]{showkeys}
+\definecolor{refkey}{rgb}{1,0,0}
+\definecolor{labelkey}{rgb}{0,0,1}
+\renewcommand\showkeyslabelformat[1]{%
+\fbox{\normalfont\tiny\ttfamily#1}}
+%\renewcommand*\showkeyslabelformat[1]{%
+%  \fbox{\parbox[t]{\marginparwidth}{\raggedright\path{#1}}}}
 \fi
 
 \let\oldputbib\putbib
@@ -784,6 +791,7 @@
 \ifdefined\nohyperref
 \RequirePackage{url}
 \newcommand{\href[1]}{\tt{#1}}
+\newcommand{\texorpdfstring[1]}{#1}
 %\relax
 \else
  \RequirePackage{hyperref}

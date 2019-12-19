@@ -1,4 +1,4 @@
-# $Id: Makefile 26216 2019-11-08 20:32:29Z anderson $
+# $Id: Makefile 26321 2019-11-14 20:50:36Z anderson $
 # Template for general Makefile for LaTeX-based reviews
 
 BASENAME := databases
@@ -61,7 +61,7 @@ bib:
 	bibtex $(BASENAME).1
 
 mergedbib:
-	bibtool -o $(BASENAME).bib -d -s ../$(BASENAME)-*/*.bib
+	bibtool --preserve.key.case=on --preserve.keys=on -o $(BASENAME).bib -d -s ../$(BASENAME)-*/*.bib
 
 clean:
 	@echo rm -vf $(BASENAME)\*.aux \*.dvi \*.lof \*.log \*.toc \*.out \*.bbl \*.blg \*.idx \*.ilg \*.ind
