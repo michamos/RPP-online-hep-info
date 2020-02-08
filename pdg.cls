@@ -1,27 +1,26 @@
 % pdg.cls
 % Format reviews for PDG
-% 2018-Mar-08  Jeffrey Anderson JDAnderson (at) lbl.gov
-
-\ProvidesClass{pdg}[2019/03/01 version 1.20 PDG review format]
+% 2020-Feb-04  Jeffrey Anderson JDAnderson (at) lbl.gov
+% 2020-Feb-04  Dean Robinson drobinson (at) lbl.gov
+\ProvidesClass{pdg}[2020/02/07 version 1.30 PDG review format]
 \NeedsTeXFormat{LaTeX2e}
-% This class extends the extbook class
 
+% This PDG class extends the extbook class, for generation of the RPP
+% Includes: a base set of common packages and 
+% dedicated PDG environments for tables, figure and equations
+\newcommand{\baseclass}{extbook}
 
+%%%%%%%%%%%%%%%%
+%%%     Version logic     %%%
+%%%%%%%%%%%%%%%%
+
+% Some internal booleans to control flow between different RPP versions
 \RequirePackage{xifthen} % for conditional statements
-
-\RequirePackage{xcite}
-\RequirePackage{xr-hyper}
-
-
-% Some internal booleans to control flow
 \newif\ifrppbook
 \newif\ifrppweb
 \newif\ifrppbooklet
-
 \newif\ifischapter
 \newif\ifismergedreview
-
-\newcommand{\baseclass}{extbook}
 
 % Allow booleans to be set as options passed to the pdg class
 \@ifclasswith{pdg}{rppbook}{\rppbooktrue}{\rppbookfalse}
@@ -30,80 +29,272 @@
 \@ifclasswith{pdg}{toplevel}{\ismergedreviewtrue}{}
 
 % \isbook \isbooklet and \isweb are booleans that can be passed on the command line to set or override class options given in the review source files.
-\ifdefined\isbook
-\rppbooktrue
-\rppwebfalse
-\rppbookletfalse
-\fi
-
 \ifdefined\isweb
-\rppwebtrue
-\rppbookfalse
-\rppbookletfalse
+	\rppwebtrue
+	\rppbookfalse
+	\rppbookletfalse
 \fi
-
+\ifdefined\isbook
+	\rppwebfalse
+	\rppbooktrue
+	\rppbookletfalse
+\fi
 \ifdefined\isbooklet
-\rppbooklettrue
-\rppwebfalse
-\rppbookfalse
-\def\nohyperref
+	\rppwebfalse
+	\rppbookfalse
+	\rppbooklettrue
+	\def\nohyperref{1}
 \fi
-
 % If neither book nor web is specified, assume draft
 \ifthenelse{\isundefined\isbook \AND \isundefined\isweb \AND \isundefined\isbooklet}{\def\isdraft{1}}{}
-
 \ifdefined\isdraft
-\rppwebtrue
-\rppbookfalse
-\rppbookletfalse
+	\rppwebtrue
+	\rppbookfalse
+	\rppbookletfalse
 \fi
 
+%%%%%%%%%%%%%%%
+%%%     Base Class      %%%
+%%%%%%%%%%%%%%%
 
 % Set default options to pass to base class
 \DeclareOption{rppbook} {%
   \PassOptionsToClass{8pt,twoside,twocolumn}{\baseclass}
-
+  %Twocolumn option now enforced by ltxgrid
 }
-
 \DeclareOption{rppweb} {%
   \PassOptionsToClass{11pt,onecolumn}{\baseclass}
 }
-
 % We actually set the booklet font in the tex files.  
 % 8pt is the smallest we can pass to book as an option
 \DeclareOption{rppbooklet} {%
   \PassOptionsToClass{8pt,twoside,onecolumn}{\baseclass}
 }
-
-%\DeclareOption{draft} {}
-
 % Pass through any other options
 \DeclareOption*{%
   \PassOptionsToClass{\CurrentOption}{\baseclass}}
-
-
 \ifrppbook
-\ExecuteOptions{rppbook} % rppbook is default
+	\ExecuteOptions{rppbook} % rppbook is default
 \fi
-
 \ifrppweb
-\ExecuteOptions{rppweb} 
+	\ExecuteOptions{rppweb} 
 \fi
-
 \ifrppbooklet
-\ExecuteOptions{rppbooklet}
+	\ExecuteOptions{rppbooklet}
 \fi
-
 \ProcessOptions\relax
-
 % Load base class
 \LoadClass{\baseclass}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%    Version format/ pagestyle control    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Packages to control style of titles and page headers
+\RequirePackage{titling}
+\RequirePackage{fancyhdr}
+\RequirePackage[titles]{tocloft}
+\RequirePackage[compact]{titlesec}
+\RequirePackage[nodayofweek,level,12hr]{datetime}
+
+\newcommand\rppfooter[1]{%
+  \ifthenelse{\isempty{#1}}{%
+    \fancyfoot{}
+    \fancypagestyle{plain}{\fancyfoot{}}
+}{
+    \ifrppbook \geometry{includefoot} \fi
+    \fancyfoot{}
+    \fancyfoot[C]{\scriptsize #1}
+    \fancypagestyle{plain}{\fancyfoot[C]{\scriptsize #1}}
+}}
+
+\newcommand\rpprunningheader[1]{%
+  \ifthenelse{\isempty{#1}}{%
+}{
+    \ifrppweb
+   	 \fancyhead[C]{}
+    	\fancyhead[C]{\bf\itshape\nouppercase{\thechapter.  #1}}
+   	 \fancypagestyle{plain}{\fancyhead[C]{\bf\itshape\nouppercase{\thechapter.  #1}}}
+    \fi
+    \ifrppbook
+    	\fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}}
+   	 \fancyhead[RO]{{\bf\itshape\nouppercase{\thechapter.  #1}\xspace\xspace\xspace\thepage}}
+   	 \fancypagestyle{plain}{%
+   	 \fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}}
+   	 \fancyhead[RO]{{\bf\itshape\nouppercase{\thechapter.  #1}}\xspace\xspace\xspace\thepage}}
+    \fi
+}}
+
+\fancypagestyle{rppbook}{%
+	\fancyhf{} % clear the fields
+	\renewcommand{\@chapapp}{}
+	\fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\leftmark}}
+	\fancyhead[RO]{{\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\thepage}
+	\fancyhead[RE,LO]{}
+}
+
+\fancypagestyle{rppweb}{%
+	\fancyhf{} % clear the fields
+	\renewcommand{\@chapapp}{}
+	\setlength{\headheight}{14pt}
+	\renewcommand{\headrulewidth}{0pt}
+	\fancyhead[L]{\thepage}
+	\fancyhead[C]{\bf\itshape\nouppercase{\leftmark}}
+	\fancyfoot[C]{\scriptsize\today\hspace{5mm}\currenttime}
+}
+
+\fancypagestyle{rppdraft}{%
+	\fancyhf{} % clear the fields
+	\renewcommand{\@chapapp}{}
+	\setlength{\headheight}{14pt}
+	\renewcommand{\headrulewidth}{0pt}
+	\fancyhead[L]{\thepage}
+	\fancyhead[C]{\bf\itshape\nouppercase{\leftmark}}
+	\fancyfoot[C]{\scriptsize DRAFT \scriptsize\today\hspace{2mm}\currenttime - Not for public distribution}
+}
+
+\fancypagestyle{rppbooklet}{%
+	\fancyhf{} % clear the fields
+	\renewcommand{\@chapapp}{}
+	\renewcommand{\headrulewidth}{0pt}
+	\setlength{\headheight}{14pt}
+	\fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\leftmark}}
+	\fancyhead[RO]{{\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\thepage}
+	\fancyhead[RE,LO]{}
+}
+
+\ifrppbook
+	%Take control of skips from extbook
+	\renewcommand\normalsize{%
+  	 	\@setfontsize\normalsize\@viiipt{9.5}%
+		%   \abovedisplayskip 12\p@ \@plus4\p@ \@minus4\p@
+   		\abovedisplayskip 8\p@ \@plus2\p@ \@minus2\p@
+ 		\abovedisplayshortskip \z@ \@plus3\p@
+		\belowdisplayshortskip 5\p@ \@plus3\p@ \@minus3\p@
+		\belowdisplayskip \abovedisplayskip
+		\let\@listi\@listI}
+	\normalsize
+	\setlength{\skip\footins}{12\p@ \@plus 4\p@ \@minus 4\p@}
+
+	\RequirePackage{ltxgrid} %The ReVTeX one/two column package
+	%Set the two column mode
+	\let\@document\document
+	\let\@enddocument\enddocument
+	\renewenvironment{document}{\@document \twocolumngrid}{\onecolumngrid \@enddocument}
+	%Override ltxgrid defaults for footnotes
+	\def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark}}}			
+	\renewcommand{\footnoterule}{%
+		\kern -3pt
+		\hrule width 1.5in height 0.5pt
+		\kern 2.6pt
+	}
+	%Provide overload one/two column commands compatible with extbook.
+	\let\onecolumn\onecolumngrid
+	\let\twocolumn\twocolumngrid	
+	%Page format
+	\setlength{\columnsep}{5 mm}
+	\RequirePackage[outer=.625in,inner=1in,top=1.125in,bottom=1.0cm]{geometry}
+	%%% Make first page footers/headers the same as others
+	\fancypagestyle{plain}{}
+	\pagestyle{rppbook}	
+\fi
+
+\ifrppbooklet
+	\renewcommand\normalsize{%
+   		\@setfontsize\normalsize\@viiipt{9.5}%
+   		\abovedisplayskip 12\p@ \@plus4\p@ \@minus4\p@
+  		 \abovedisplayshortskip \z@ \@plus3\p@
+  		 \belowdisplayshortskip 5\p@ \@plus3\p@ \@minus3\p@
+  		 \belowdisplayskip \abovedisplayskip
+  		 \let\@listi\@listI}
+	\normalsize
+	\setlength{\skip\footins}{12\p@ \@plus 4\p@ \@minus 4\p@}
+	\setlength\abovecaptionskip{-4pt}
+	\RequirePackage[paperwidth=120mm,paperheight=200mm,top=3mm,outer=3mm,inner=19mm,bottom=5mm,includehead,headsep=2mm]{geometry}
+	\fancypagestyle{plain}{}
+	\pagestyle{rppbooklet}
+\fi
+
+\ifrppweb
+	\RequirePackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+	\ifdefined\isdraft
+		\fancypagestyle{plain}{}
+		\pagestyle{rppdraft}
+	\else
+		\fancypagestyle{plain}{%
+			\fancyfoot[C]{\scriptsize \rppCitation \\ \scriptsize\today\hspace{2mm}}
+		}
+		\pagestyle{rppweb}
+	\fi
+\fi
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Many external packages and definitions.  These will be replaced with canonical definitions in the final version.
+%%%%%%%%%%%%%%%%%%%%%
+%%%     Fundamental Packages      %%%
+%%%%%%%%%%%%%%%%%%%%%
 
+\RequirePackage[T1]{fontenc} % Allow hyphenated special symbols
+\RequirePackage{lmodern} % Allow hyphenated special symbols
+
+\RequirePackage{float} % to control figure placement
+\RequirePackage[utf8]{inputenc} 
+\RequirePackage{import}
+
+\RequirePackage{color}
+\RequirePackage{graphicx}  % to include figures (can also use other packages)
+\setkeys{Gin}{width=0.49\textwidth} % Set default graphics width to be one column of a two-column page.
+\RequirePackage{xspace} 
+\RequirePackage{multirow}
+\RequirePackage{rotating}
+\RequirePackage{auxhook}
+\RequirePackage{amsmath} %AMS
+\RequirePackage{amssymb} %AMS
+\RequirePackage{hhline}
+\RequirePackage{isomath}
+\RequirePackage{caption} % Greater control over table caption formatting
+\RequirePackage{xstring} % String logic
+\RequirePackage{array}
+
+\RequirePackage{varwidth}
+\RequirePackage{footmisc}
+%\RequirePackage{adjustbox}
+\RequirePackage{relsize}
+
+%%% Decrease line spacing in itemize and enumerate lists
+\RequirePackage{paralist}
+  \let\itemize\compactitem
+  \let\enditemize\endcompactitem
+  \let\enumerate\compactenum
+  \let\endenumerate\endcompactenum
+  \let\description\compactdesc
+  \let\enddescription\endcompactdesc
+  \pltopsep=\medskipamount
+  \plitemsep=1pt
+  \plparsep=1pt
+
+% Fix problem with "LaTeX Error: Too many unprocessed floats." on older LaTeX installations
+% See https://tex.stackexchange.com/questions/46512/too-many-unprocessed-floats
+\RequirePackage{morefloats}
+\RequirePackage[section]{placeins}
+
+\RequirePackage{xcite}
+\RequirePackage{xr-hyper}
+
+%%%%%%%%%%%%%%%%
+%%%   Footnote control   %%%
+%%%%%%%%%%%%%%%%
+
+\newcommand{\setfootnotestyle}[1]{
+\ifrppbook
+	\renewcommand*{\thempfn}{#1{footnote}}
+\else
+	\renewcommand*{\thefootnote}{#1{footnote}}
+\fi	
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Counter manipulators (temporary)   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand\bumpupfigurenumber{\stepcounter{figure}}
 \newcommand\bumpuptablenumber{\stepcounter{table}}
@@ -125,354 +316,10 @@
   \fi
 }
 
-\RequirePackage[T1]{fontenc}
-\RequirePackage{lmodern}
-\RequirePackage[nodayofweek,level,12hr]{datetime}
-\RequirePackage{color}
-\RequirePackage{float} % to control figure placement
-\RequirePackage[utf8]{inputenc} 
-\RequirePackage{xspace} 
-\RequirePackage{array}
-\RequirePackage{multirow}
-\RequirePackage{rotating}
+%%%%%%%%%%%%%%%%%%%%%
+%%%  Title and Header Formats   %%%%
+%%%%%%%%%%%%%%%%%%%%%
 
-%%% Decrease line spacing in itemize and enumerate lists
-\RequirePackage{paralist}
-  \let\itemize\compactitem
-  \let\enditemize\endcompactitem
-  \let\enumerate\compactenum
-  \let\endenumerate\endcompactenum
-  \let\description\compactdesc
-  \let\enddescription\endcompactdesc
-  \pltopsep=\medskipamount
-  \plitemsep=1pt
-  \plparsep=1pt
-
-
-\RequirePackage{amsmath}
-\RequirePackage{amssymb}
-\RequirePackage{hhline}
-\RequirePackage{isomath}
-
-\RequirePackage{graphicx}  % to include figures (can also use other packages)
-% Set default graphics width to be one column of a two-column page.
-\setkeys{Gin}{width=0.49\textwidth}
-%\RequirePackage{tabularx}
-
-% Greater control over table caption formatting
-\RequirePackage{caption}
-
-
-%%%%%   Define a number of custom commands and environments %%%%%
-\newcommand{\pdgfigure}[5]{
-\ifthenelse{\isempty{#4}}{%
-  \begin{figure}[!ht]}{%
-  \begin{figure}[#4]}
-    \centering
-%% Still experimenting with figure scaling
-\ifthenelse{\isempty{#5}}{%
-    \includegraphics[width=.85\linewidth]{figures/#1}}{%
-  \includegraphics[#5]{figures/#1}}
-%    \includegraphics[#5]{figures/#1}
-    \caption{#2}\label{#3}
-  \end{figure}
-}
-
-\newcommand{\pdgwidefigure}[5]{
-\ifthenelse{\isempty{#4}}{%
-  \begin{figure*}[!ht]}{%
-  \begin{figure*}[#4]}
-    \centering
-\ifthenelse{\isempty{#5}}{%
-    \includegraphics[width=\textwidth]{figures/#1}}{%
-  \includegraphics[#5]{figures/#1}}
-    \caption{#2}\label{#3}
-  \end{figure*}
-}
-
-\newcommand{\pdgdoublefigure}[6]{
-\ifthenelse{\isempty{#5}}{%
-  \begin{figure}[!ht]}{%
-  \begin{figure}[#5]}
-    \centering
-    \includegraphics[#6]{figures/#1}
-    \includegraphics[#6]{figures/#2}
-    \caption{#3}\label{#4}
-  \end{figure}
-}
-
-\newcommand{\pdgdoublefigurex}[7]{
-\ifthenelse{\isempty{#5}}{%
-  \begin{figure}[!ht]}{%
-  \begin{figure}[#5]}
-    \centering
-    \includegraphics[#6]{figures/#1}
-    \includegraphics[#7]{figures/#2}
-    \caption{#3}\label{#4}
-  \end{figure}
-}
-
-
-\RequirePackage{bigstrut}
-    \setlength\bigstrutjot{1pt}
-\newlength\mylena
-\newlength\mylenb
-\newcommand\mystrut[1][2]{%
-    \setlength\mylena{#1\ht\@arstrutbox}%
-    \setlength\mylenb{#1\dp\@arstrutbox}%
-    \rule[\mylenb]{0pt}{\mylena}}
-
-%\newcommand\tableline{\noalign{\smallskip}\hline\noalign{\smallskip}\bigstrut[t]\bigstrut[b]}
-\newcommand\tableline{\noalign{\smallskip}\hline\noalign{\smallskip}}
-\newcommand\Tablerule{\noalign{\smallskip}\hline\noalign{\smallskip}}
-\newcommand\tabledoubleline{\noalign{\smallskip}\hline\hline\noalign{\smallskip}}
-
-\newcommand{\pdgtableheader}[1]{%
-#1\\
-\hline
-%\tableline
-%\noalign{\smallskip}
-%\mystrut[.5]
-%\noalign{\smallskip}#1\\
-%\noalign{\smallskip}\hline\noalign{\smallskip}
-}
-
-\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
-\RequirePackage{varwidth}
-
-\RequirePackage{footmisc}
-%\RequirePackage{adjustbox}
-\RequirePackage{relsize}
-
-\newenvironment{pdgtable}[4]{% #1
-\captionsetup{width=.75\linewidth,labelfont=bf}
-\ifthenelse{\isempty{#4}}{%
-  \begin{table}[!ht]}{%
-  \begin{table}[#4]}
-\centering
-\setlength{\parindent}{0pt}
-\begin{minipage}{\columnwidth}% so footnote will appear
-\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
-\renewcommand*\footnoterule{}
-    \caption{#2}
-    \label{#3}
-    \centering
-    \begin{tabular}{@{}#1@{}}
-        \hline\hline
-}{%
-  \hline\hline
-    \end{tabular}
-    \end{minipage}
-    \end{table}
-}
-
-\newenvironment{pdgwidetable}[4]{%
-\captionsetup{width=1\textwidth,labelfont=bf}
-\ifthenelse{\isempty{#4}}{%
-  \begin{table*}[!ht]}{%
-  \begin{table*}[#4]}
-\begin{minipage}{\textwidth} % so footnote will appear
-\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
-\renewcommand*\footnoterule{}
-    \caption{#2}
-    \label{#3}
-    \centering
-    \begin{tabular}{@{}#1@{}}
-        \hline\hline
-}{%
-  \hline\hline
-    \end{tabular}
-    \end{minipage}
-    \end{table*}
-}
-
-\newenvironment{pdgverywidetable}[4]{% #1
-\captionsetup{width=1\linewidth,labelfont=bf}
-\ifthenelse{\isempty{#4}}{%
-  \begin{table*}[!ht]}{%
-  \begin{table*}[#4]}
-\relscale{.95}
-\centering
-\setlength{\parindent}{0pt}
-\begin{minipage}{\linewidth}% so footnote will appear
-\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
-\renewcommand*\footnoterule{}
-    \caption{#2}
-    \label{#3}
-%    \begin{adjustbox}{width=\linewidth}
-    \centering
-    \begin{tabular}{@{}#1@{}}
-        \hline\hline
-}{%
-  \hline\hline
-    \end{tabular}
-%    \end{adjustbox}
-    \end{minipage}
-    \end{table*}
-}
-
-
-\newenvironment{pdgscaletable}[5]{% #1
-\captionsetup{width=.75\linewidth,labelfont=bf}
-\ifthenelse{\isempty{#4}}{%
-  \begin{table}[!ht]}{%
-  \begin{table}[#4]}
-\ifthenelse{\isempty{#5}}{\relscale{.95}}{\relscale{#5}}
-\centering
-\setlength{\parindent}{0pt}
-\begin{minipage}{\linewidth}% so footnote will appear
-\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
-\renewcommand*\footnoterule{}
-    \caption{#2}
-    \label{#3}
-%    \begin{adjustbox}{width=\linewidth}
-    \centering
-    \begin{tabular}{@{}#1@{}}
-        \hline\hline
-}{%
-  \hline\hline
-    \end{tabular}
-%    \end{adjustbox}
-    \end{minipage}
-    \end{table}
-}
-
-\newenvironment{pdgscaletable*}[5]{% #1
-\captionsetup{width=.75\linewidth,labelfont=bf}
-\ifthenelse{\isempty{#4}}{%
-  \begin{table*}[!ht]}{%
-  \begin{table*}[#4]}
-\ifthenelse{\isempty{#5}}{\relscale{.95}}{\relscale{#5}}
-\centering
-\setlength{\parindent}{0pt}
-\begin{minipage}{\linewidth}% so footnote will appear
-\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
-\renewcommand*\footnoterule{}
-    \caption{#2}
-    \label{#3}
-%    \begin{adjustbox}{width=\linewidth}
-    \centering
-    \begin{tabular}{@{}#1@{}}
-        \hline\hline
-}{%
-  \hline\hline
-    \end{tabular}
-%    \end{adjustbox}
-    \end{minipage}
-    \end{table*}
-}
-
-\newenvironment{pdgsidewaystable}[4]{% #1
-\captionsetup{width=.75\linewidth,labelfont=bf}
-\ifthenelse{\isempty{#4}}{%
-  \begin{sidewaystable*}[!ht]}{%
-  \begin{sidewaystable*}[#4]}
-\relscale{.95}
-\centering
-\setlength{\parindent}{0pt}
-\begin{minipage}{\linewidth}% so footnote will appear
-\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
-\renewcommand*\footnoterule{}
-    \caption{#2}
-    \label{#3}
-%    \begin{adjustbox}{width=\linewidth}
-    \centering
-    \begin{tabular}{@{}#1@{}}
-        \hline\hline
-}{%
-  \hline\hline
-    \end{tabular}
-%    \end{adjustbox}
-    \end{minipage}
-    \end{sidewaystable*}
-}
-
-
-%
-\RequirePackage{import}
-
-%%% Bibliography
-%\RequirePackage{setspace}
-\RequirePackage[globalcitecopy,labelstoglobalaux]{bibunits}
-\RequirePackage{cite,mciteplus}
-\defaultbibliographystyle{pdg}
-
-% Print ``References'' instead of ``Bibliography
-% Make review bibliographies start immediately after text, 
-% not on a new page
-
-
-\newlength{\bibitemsep}\setlength{\bibitemsep}{0pt plus 0.3ex}
-\newlength{\bibparskip}\setlength{\bibparskip}{0pt}
-\let\stdthebibliography\thebibliography
-\renewcommand{\thebibliography}{%
-  \renewcommand{\bibname}{References}
-  \setlength{\parskip}{\bibparskip}%
-  \setlength{\itemsep}{-.3ex}%
-  \let\chapter\subsection
-  \stdthebibliography%
-}
-
-\let\oldthebibliography=\thebibliography
-\let\endoldthebibliography=\endthebibliography
-\renewenvironment{thebibliography}[1]{%
-   \begin{oldthebibliography}{#1}%
-     \setlength{\itemsep}{-.3ex}%
-}%
-{%
-   \end{oldthebibliography}%
-}
-
-\renewcommand{\@bibunitname}{\jobname.\the\@bibunitauxcnt}
-
-%%% Configure line numbers and margin tags for draft mode
-\RequirePackage[left]{lineno}
-\ifdefined\isdraft
-\linenumbers
-\RequirePackage[inline,nolabel]{showlabels}
-% The following should cause labels to be rendered in red.
-% Unfortunately, when the labels are inline, this causes all 
-% text to be red.
-\renewcommand{\showlabelfont}{\tiny}
-\showlabels{cite}
-\showlabels{bibitem}
-\RequirePackage[color,notref,notcite]{showkeys}
-\definecolor{refkey}{rgb}{1,0,0}
-\definecolor{labelkey}{rgb}{0,0,1}
-\renewcommand\showkeyslabelformat[1]{%
-\fbox{\normalfont\tiny\ttfamily#1}}
-%\renewcommand*\showkeyslabelformat[1]{%
-%  \fbox{\parbox[t]{\marginparwidth}{\raggedright\path{#1}}}}
-\fi
-
-\let\oldputbib\putbib
-\renewcommand{\putbib}[1][]{
-\renewcommand{\markboth}[2]{}
-\oldputbib[#1]
-}
-
-%%% Don't change the running header inside the bibliography
-\newcommand\inputbib[1]{
-\renewcommand{\markboth}[2]{}
-\input{#1}
-}
-
-%%% Special bibliography handling for toplevel reviews
-\def\putmergedbib{\@ifnextchar[{\@putmergedbib}{\@putmergedbib[\bu@bibdata]}}
-\def\@putmergedbib[#1]{%
-  \@startbibunitorrelax
-  \if@filesw
-    \immediate\write\@bibunitaux{\string\bibdata{#1}}%
-  \fi
-  \@input@{\@bibunitname.bbl}%
-}
-\ifismergedreview \def\@putbib[#1]{\relax} \fi
-
-
-% Packages to control style of titles and page headers
-\RequirePackage{titling}
-\RequirePackage{fancyhdr}
-\RequirePackage[titles]{tocloft}
 %\RequirePackage{minitoc}
 %\nomtcrule
 %\renewcommand{\mtctitle}{}
@@ -489,13 +336,8 @@
 \addtolength{\cftchapnumwidth}{10pt}
 \renewcommand{\@cftmaketoctitle}{}
 
-
-%%% Customize title formats
-\RequirePackage[compact]{titlesec}
-
 %%%% Define subsubsubsection between subsubsection and paragraph
 \titleclass{\subsubsubsection}{straight}[\subsection]
-
 \newcounter{subsubsubsection}[subsubsection]
 %\renewcommand\thesubsubsubsection{\thesubsubsection.\roman{subsubsubsection}}
 \renewcommand\thesubsubsubsection{\roman{subsubsubsection}.}
@@ -505,7 +347,6 @@
   {\normalsize\mdseries}{\thesubsubsubsection}{.5em}{\itshape}
 \titlespacing*{\subsubsubsection}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-
 
 \renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
   {3.25ex \@plus1ex \@minus.2ex}%
@@ -525,26 +366,35 @@
 \setcounter{secnumdepth}{4}
 %%%%
 
-
 %% Format Chapter titles
 \ifrppbooklet
-\titlespacing{\chapter}{0pt}{-15pt}{5pt}
-\titleformat{\chapter}[block]
-{\centering\bfseries\Large}
-{\thechapter.}
-  {1ex}
-%  {\vspace{1ex}\filcenter}
-  {\vspace{0ex}}
-  [\vspace{0ex}]
+	\titlespacing{\chapter}{0pt}{-15pt}{5pt}
+	\titleformat{\chapter}[block]
+	{\centering\bfseries\Large}
+	{\thechapter.}
+ 	 {1ex}
+	%  {\vspace{1ex}\filcenter}
+ 	 {\vspace{0ex}}
+ 	 [\vspace{0ex}]
+\fi
+\ifrppbook
+	\titlespacing{\chapter}{0pt}{-15pt}{5pt}
+	\titleformat{\chapter}[block]
+	{\onecolumn\vskip-24\p@\centering\bfseries\Large}
+	{\thechapter.}
+ 	 {1ex}
+	%  {\vspace{1ex}\filcenter}
+ 	 {\vspace{0ex}}
+ 	 [\vspace{1ex}\twocolumn]
 \else
-\titlespacing{\chapter}{0pt}{-15pt}{5pt}
-\titleformat{\chapter}[block]
-{\centering\bfseries\Large}
-{\thechapter.}
-  {1ex}
-%  {\vspace{1ex}\filcenter}
-  {\vspace{1ex}}
-  [\vspace{1ex}]
+	\titlespacing{\chapter}{0pt}{-15pt}{5pt}
+	\titleformat{\chapter}[block]
+	{\centering\bfseries\Large}
+	{\thechapter.}
+ 	 {1ex}
+	%  {\vspace{1ex}\filcenter}
+ 	 {\vspace{1ex}}
+ 	 [\vspace{1ex}]
 \fi
 %%
 
@@ -671,139 +521,444 @@
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Custom pagestyles
+%%%%%%%%%%%%%%%%%%%
+%%%  PDG Strip Environment   %%%
+%%%%%%%%%%%%%%%%%%%
 
-
-\newcommand\rppfooter[1]{%
-  \ifthenelse{\isempty{#1}}{%
-    \fancyfoot{}
-    \fancypagestyle{plain}{\fancyfoot{}}
-}{
-    \ifrppbook \geometry{includefoot} \fi
-    \fancyfoot{}
-    \fancyfoot[C]{\scriptsize #1}
-    \fancypagestyle{plain}{\fancyfoot[C]{\scriptsize #1}}
-}}
-
-\newcommand\rpprunningheader[1]{%
-  \ifthenelse{\isempty{#1}}{%
-}{
-    \ifrppweb
-    \fancyhead[C]{}
-    \fancyhead[C]{\bf\itshape\nouppercase{\thechapter.  #1}}
-    \fancypagestyle{plain}{\fancyhead[C]{\bf\itshape\nouppercase{\thechapter.  #1}}}
-    \fi
-    \ifrppbook
-    \fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}}
-    \fancyhead[RO]{{\bf\itshape\nouppercase{\thechapter.  #1}\xspace\xspace\xspace\thepage}}
-    \fancypagestyle{plain}{%
-    \fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}}
-    \fancyhead[RO]{{\bf\itshape\nouppercase{\thechapter.  #1}}\xspace\xspace\xspace\thepage}}
-    \fi
-}}
-
-
-\fancypagestyle{rppbook}{%
-\fancyhf{} % clear the fields
-\renewcommand{\@chapapp}{}
-\fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\leftmark}}
-\fancyhead[RO]{{\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\thepage}
-\fancyhead[RE,LO]{}
+\newenvironment{pdgstrip}[1][\unskip]{
+	}{%
+	\ignorespacesafterend
+	\noindent
 }
 
-\fancypagestyle{rppweb}{%
-\fancyhf{}
-\renewcommand{\@chapapp}{}
-\setlength{\headheight}{14pt}
-\renewcommand{\headrulewidth}{0pt}
-\fancyhead[L]{\thepage}
-\fancyhead[C]{\bf\itshape\nouppercase{\leftmark}}
-\fancyfoot[C]{\scriptsize\today\hspace{5mm}\currenttime}
-}
-
-\fancypagestyle{rppdraft}{%
-\fancyhf{}
-\renewcommand{\@chapapp}{}
-\setlength{\headheight}{14pt}
-\renewcommand{\headrulewidth}{0pt}
-\fancyhead[L]{\thepage}
-\fancyhead[C]{\bf\itshape\nouppercase{\leftmark}}
-\fancyfoot[C]{\scriptsize DRAFT \scriptsize\today\hspace{2mm}\currenttime - Not for public distribution}
-}
-
-\fancypagestyle{rppbooklet}{%
-\fancyhf{} % clear the fields
-\renewcommand{\@chapapp}{}
-\renewcommand{\headrulewidth}{0pt}
-\setlength{\headheight}{14pt}
-\fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\leftmark}}
-\fancyhead[RO]{{\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\thepage}
-\fancyhead[RE,LO]{}
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Book specific formatting
+\newif\ifplainbool
 \ifrppbook
-\setlength{\columnsep}{5 mm}
-\RequirePackage[outer=.625in,inner=1in,top=1.125in,bottom=1.0cm]{geometry}
-%%% Make first page footers/headers the same as others
-\fancypagestyle{plain}{}
-\pagestyle{rppbook}
-\fi
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Web specific formatting
-\ifrppweb
-\RequirePackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
-\ifdefined\isdraft
-\fancypagestyle{plain}{}
-\pagestyle{rppdraft}
-\else
-\fancypagestyle{plain}{%
-\fancyfoot[C]{\scriptsize \rppCitation \\ \scriptsize\today\hspace{2mm}\currenttime}
+%
+\let\pdg@caption\caption
+\newcommand{\captionfigure}{\def\@captype{figure}\pdg@caption}
+\newcommand{\captiontable}{\def\@captype{table}\pdg@caption}
+\let\pdg@figure\figure
+\let\pdg@endfigure\endfigure
+\let\pdg@table\table
+\let\pdg@endtable\endtable
+%
+\RequirePackage{listofitems}
+\renewenvironment{pdgstrip}[1][\unskip]{
+	\readlist*\optlist{#1,} %generalized list reader, allows multiple option list in future in any order [plain, tight etc]
+		\plainboolfalse
+		\foreachitem\x\in\optlist[]{\IfStrEq{\x}{plain}{\plainbooltrue}{}}
+	\renewenvironment{figure}[1][\unskip]{\let\caption\captionfigure}{\let\caption\pdg@caption}
+	\renewenvironment{table}[1][\unskip]{\let\caption\captiontable}{\let\caption\pdg@caption}
+	\ifplainbool
+		\onecolumngrid
+		\vskip12\p@
+	\else
+		\onecolumngrid
+		\vskip6\p@
+		\noindent
+		\rule{0.4\p@}{6\p@}\noindent
+		\rule{\dimexpr(0.5\textwidth-0.5\columnsep-1.4\p@)}{0.4\p@}\hfill
+	\fi	
+	}{%
+	\ifplainbool
+		\vskip8\p@%
+		\twocolumngrid
+	\else	
+		\hfill\rule{\dimexpr(0.5\textwidth-0.5\columnsep-1\p@)}{0.4\p@}\noindent
+		\rule[-6\p@]{0.4\p@}{6.4\p@}
+		\vskip2\p@%
+		\twocolumngrid
+	\fi
+	\let\figure\pdg@figure
+	\let\endfigure\pdg@endfigure
+	\let\table\pdg@table
+	\let\endtable\pdg@endtable
+	\ignorespacesafterend
+	\noindent
 }
-\pagestyle{rppweb}
-\fi
 \fi
 
-\ifrppbooklet
-%\RequirePackage[total={76mm,147mm}]{geometry}
-%\setlength{\textfloatsep}{0.1cm}
-%\setlength{\intextsep}{0.1mm}
-\setlength\abovecaptionskip{-4pt}
-\RequirePackage[paperwidth=120mm,paperheight=200mm,top=3mm,outer=3mm,inner=19mm,bottom=5mm,includehead,headsep=2mm]{geometry}
-\fancypagestyle{plain}{}
-\pagestyle{rppbooklet}
+%%%%%%%%%%%%%
+%%%   PDG Align   %%%
+%%%%%%%%%%%%%
+
+%Version dependent align/cr (previously an environment)
+\let\webalign\relax
+\newcommand{\webcr}[2]{}
+\let\bookalign\relax
+\newcommand{\bookcr}[2]{}
+%\newenvironment{pdgalign}{%	
+	\ifrppbook
+		\def\bookalign{&}
+		\renewcommand{\bookcr}[2]{#1 \\#2}	
+	\else
+		\def\webalign{&}
+		\renewcommand{\webcr}[2]{#1 \\#2}	
+	\fi		
+%	}{%
+%	\let\webalign\relax
+%	\let\bookalign\relax
+%	\ignorespacesafterend
+%	\noindent
+%}
+
+
+%%%%%%%%%%%%%%%%% 
+%%%  PDG Figures/Tables  %%%
+%%%%%%%%%%%%%%%%% 
+
+\RequirePackage{bigstrut}
+\setlength\bigstrutjot{1pt}
+\newlength\mylena
+\newlength\mylenb
+\newcommand\mystrut[1][2]{%
+\setlength\mylena{#1\ht\@arstrutbox}%
+\setlength\mylenb{#1\dp\@arstrutbox}%
+\rule[\mylenb]{0pt}{\mylena}}
+
+\newcommand{\pdgfigure}[5]{
+\ifthenelse{\isempty{#4}}{%
+  \begin{figure}[!ht]}{%
+  \begin{figure}[#4]}
+    \centering
+%% Still experimenting with figure scaling
+\ifthenelse{\isempty{#5}}{%
+    \includegraphics[width=.85\linewidth]{figures/#1}}{%
+  \includegraphics[#5]{figures/#1}}
+%    \includegraphics[#5]{figures/#1}
+    \caption{#2}\label{#3}
+  \end{figure}
+}
+
+\newcommand{\pdgwidefigure}[5]{
+\ifthenelse{\isempty{#4}}{%
+  \begin{figure*}[!ht]}{%
+  \begin{figure*}[#4]}
+    \centering
+\ifthenelse{\isempty{#5}}{%
+    \includegraphics[width=\textwidth]{figures/#1}}{%
+  \includegraphics[#5]{figures/#1}}
+    \caption{#2}\label{#3}
+  \end{figure*}
+}
+
+\newcommand{\pdgdoublefigure}[6]{
+\ifthenelse{\isempty{#5}}{%
+  \begin{figure}[!ht]}{%
+  \begin{figure}[#5]}
+    \centering
+    \includegraphics[#6]{figures/#1}
+    \includegraphics[#6]{figures/#2}
+    \caption{#3}\label{#4}
+  \end{figure}
+}
+
+\newcommand{\pdgwidedoublefigure}[6]{
+\ifthenelse{\isempty{#5}}{%
+  \begin{figure*}[!ht]}{%
+  \begin{figure*}[#5]}
+    \centering
+\ifthenelse{\isempty{#6}}{%
+    \includegraphics[width=.45\textwidth]{figures/#1}
+    \includegraphics[width=.45\textwidth]{figures/#2}}{%
+    \includegraphics[#6]{figures/#1}
+    \includegraphics[#6]{figures/#2}}
+    \caption{#3}\label{#4}
+  \end{figure*}
+}
+
+\newcommand{\pdgdoublefigurex}[7]{
+\ifthenelse{\isempty{#5}}{%
+  \begin{figure}[!ht]}{%
+  \begin{figure}[#5]}
+    \centering
+    \includegraphics[#6]{figures/#1}
+    \includegraphics[#7]{figures/#2}
+    \caption{#3}\label{#4}
+  \end{figure}
+}
+
+%\newcommand\tableline{\noalign{\smallskip}\hline\noalign{\smallskip}\bigstrut[t]\bigstrut[b]}
+\newcommand\tableline{\noalign{\smallskip}\hline\noalign{\smallskip}}
+\newcommand\Tablerule{\noalign{\smallskip}\hline\noalign{\smallskip}}
+\newcommand\tabledoubleline{\noalign{\smallskip}\hline\hline\noalign{\smallskip}}
+
+\newcommand{\pdgtableheader}[1]{%
+#1\\
+\hline
+%\tableline
+%\noalign{\smallskip}
+%\mystrut[.5]
+%\noalign{\smallskip}#1\\
+%\noalign{\smallskip}\hline\noalign{\smallskip}
+}
+
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\newenvironment{pdgtable}[4]{% #1
+\captionsetup{width=.75\linewidth,labelfont=bf}
+\ifthenelse{\isempty{#4}}{%
+  \begin{table}[!ht]}{%
+  \begin{table}[#4]}
+\centering
+\setlength{\parindent}{0pt}
+\begin{minipage}{\columnwidth}% so footnote will appear
+\ifrppbook
+	\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
+\else
+	\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
+\fi
+\renewcommand*\footnoterule{}
+    \caption{#2}
+    \label{#3}
+    \centering
+    \begin{tabular}{@{}#1@{}}
+        \hline\hline
+}{%
+  \hline\hline
+    \end{tabular}
+    \end{minipage}
+    \end{table}
+}
+
+\newenvironment{pdgwidetable}[4]{%
+\captionsetup{width=1\textwidth,labelfont=bf}
+\ifthenelse{\isempty{#4}}{%
+  \begin{table*}[!ht]}{%
+  \begin{table*}[#4]}
+\begin{minipage}{\textwidth} % so footnote will appear
+\ifrppbook
+	\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
+\else
+	\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
+\fi
+\renewcommand*\footnoterule{}
+    \caption{#2}
+    \label{#3}
+    \centering
+    \begin{tabular}{@{}#1@{}}
+        \hline\hline
+}{%
+  \hline\hline
+    \end{tabular}
+    \end{minipage}
+    \end{table*}
+}
+
+\newenvironment{pdgverywidetable}[4]{% #1
+\captionsetup{width=1\linewidth,labelfont=bf}
+\ifthenelse{\isempty{#4}}{%
+  \begin{table*}[!ht]}{%
+  \begin{table*}[#4]}
+\relscale{.95}
+\centering
+\setlength{\parindent}{0pt}
+\begin{minipage}{\linewidth}% so footnote will appear
+\ifrppbook
+	\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
+\else
+	\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
+\fi
+\renewcommand*\footnoterule{}
+    \caption{#2}
+    \label{#3}
+%    \begin{adjustbox}{width=\linewidth}
+    \centering
+    \begin{tabular}{@{}#1@{}}
+        \hline\hline
+}{%
+  \hline\hline
+    \end{tabular}
+%    \end{adjustbox}
+    \end{minipage}
+    \end{table*}
+}
+
+\newenvironment{pdgscaletable}[5]{% #1
+\captionsetup{width=.75\linewidth,labelfont=bf}
+\ifthenelse{\isempty{#4}}{%
+  \begin{table}[!ht]}{%
+  \begin{table}[#4]}
+\ifthenelse{\isempty{#5}}{\relscale{.95}}{\relscale{#5}}
+\centering
+\setlength{\parindent}{0pt}
+\begin{minipage}{\linewidth}% so footnote will appear
+\ifrppbook
+	\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
+\else
+	\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
+\fi
+\renewcommand*\footnoterule{}
+    \caption{#2}
+    \label{#3}
+%    \begin{adjustbox}{width=\linewidth}
+    \centering
+    \begin{tabular}{@{}#1@{}}
+        \hline\hline
+}{%
+  \hline\hline
+    \end{tabular}
+%    \end{adjustbox}
+    \end{minipage}
+    \end{table}
+}
+
+\newenvironment{pdgscaletable*}[5]{% #1
+\captionsetup{width=.75\linewidth,labelfont=bf}
+\ifthenelse{\isempty{#4}}{%
+  \begin{table*}[!ht]}{%
+  \begin{table*}[#4]}
+\ifthenelse{\isempty{#5}}{\relscale{.95}}{\relscale{#5}}
+\centering
+\setlength{\parindent}{0pt}
+\begin{minipage}{\linewidth}% so footnote will appear
+\ifrppbook
+	\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
+\else
+	\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
+\fi
+\renewcommand*\footnoterule{}
+    \caption{#2}
+    \label{#3}
+%    \begin{adjustbox}{width=\linewidth}
+    \centering
+    \begin{tabular}{@{}#1@{}}
+        \hline\hline
+}{%
+  \hline\hline
+    \end{tabular}
+%    \end{adjustbox}
+    \end{minipage}
+    \end{table*}
+}
+
+\newenvironment{pdgsidewaystable}[4]{% #1
+\captionsetup{width=.75\linewidth,labelfont=bf}
+\ifthenelse{\isempty{#4}}{%
+  \begin{sidewaystable*}[!ht]}{%
+  \begin{sidewaystable*}[#4]}
+\relscale{.95}
+\centering
+\setlength{\parindent}{0pt}
+\begin{minipage}{\linewidth}% so footnote will appear
+\ifrppbook
+	\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
+\else
+	\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
+\fi
+\renewcommand*\footnoterule{}
+    \caption{#2}
+    \label{#3}
+%    \begin{adjustbox}{width=\linewidth}
+    \centering
+    \begin{tabular}{@{}#1@{}}
+        \hline\hline
+}{%
+  \hline\hline
+    \end{tabular}
+%    \end{adjustbox}
+    \end{minipage}
+    \end{sidewaystable*}
+}
+
+%%%%%%%%%%%%%%
+%%%   Bibliography  %%%
+%%%%%%%%%%%%%%
+
+%\RequirePackage{setspace}
+\RequirePackage[globalcitecopy,labelstoglobalaux]{bibunits}
+\RequirePackage{cite,mciteplus}
+\defaultbibliographystyle{pdg}
+
+% Print ``References'' instead of ``Bibliography
+% Make review bibliographies start immediately after text, 
+% not on a new page
+
+\newlength{\bibitemsep}\setlength{\bibitemsep}{0pt plus 0.3ex}
+\newlength{\bibparskip}\setlength{\bibparskip}{0pt}
+\let\stdthebibliography\thebibliography
+\renewcommand{\thebibliography}{%
+  \renewcommand{\bibname}{References}
+  \setlength{\parskip}{\bibparskip}%
+  \setlength{\itemsep}{-.3ex}%
+  \let\chapter\subsection
+  \stdthebibliography%
+}
+
+\let\oldthebibliography=\thebibliography
+\let\endoldthebibliography=\endthebibliography
+\renewenvironment{thebibliography}[1]{%
+   \begin{oldthebibliography}{#1}%
+     \setlength{\itemsep}{-.3ex}%
+}%
+{%
+   \end{oldthebibliography}%
+}
+
+\renewcommand{\@bibunitname}{\jobname.\the\@bibunitauxcnt}
+
+%%% Configure line numbers and margin tags for draft mode
+\RequirePackage[left]{lineno}
+\ifdefined\isdraft
+\linenumbers
+\RequirePackage[inline,nolabel]{showlabels}
+% The following should cause labels to be rendered in red.
+% Unfortunately, when the labels are inline, this causes all 
+% text to be red.
+\renewcommand{\showlabelfont}{\tiny}
+\showlabels{cite}
+\showlabels{bibitem}
+\RequirePackage[color,notref,notcite]{showkeys}
+\definecolor{refkey}{rgb}{1,0,0}
+\definecolor{labelkey}{rgb}{0,0,1}
+\renewcommand\showkeyslabelformat[1]{%
+\fbox{\normalfont\tiny\ttfamily#1}}
+%\renewcommand*\showkeyslabelformat[1]{%
+%  \fbox{\parbox[t]{\marginparwidth}{\raggedright\path{#1}}}}
 \fi
 
-%\RequirePackage[]{thumbs}
+\let\oldputbib\putbib
+\renewcommand{\putbib}[1][]{
+\renewcommand{\markboth}[2]{}
+\oldputbib[#1]
+}
 
-% Fix problem with "LaTeX Error: Too many unprocessed floats." on older LaTeX installations
-% See https://tex.stackexchange.com/questions/46512/too-many-unprocessed-floats
-\RequirePackage{morefloats}
-\RequirePackage[section]{placeins}
+%%% Don't change the running header inside the bibliography
+\newcommand\inputbib[1]{
+\renewcommand{\markboth}[2]{}
+\input{#1}
+}
+
+%%% Special bibliography handling for toplevel reviews
+\def\putmergedbib{\@ifnextchar[{\@putmergedbib}{\@putmergedbib[\bu@bibdata]}}
+\def\@putmergedbib[#1]{%
+  \@startbibunitorrelax
+  \if@filesw
+    \immediate\write\@bibunitaux{\string\bibdata{#1}}%
+  \fi
+  \@input@{\@bibunitname.bbl}%
+}
+\ifismergedreview \def\@putbib[#1]{\relax} \fi
 
 % Use hyperref, but hide the ugly green boxes.  Also try to suppress warnings
 % related to math symbols in PDF bookmarks
 % Disable hyperref in booklet mode due to conflicts with xcite
 \ifdefined\nohyperref
-\RequirePackage{url}
-\newcommand{\href[1]}{\tt{#1}}
-\newcommand{\texorpdfstring[1]}{#1}
+	\RequirePackage{url}
+	\newcommand{\href[1]}{\tt{#1}}
+	\newcommand{\texorpdfstring[1]}{#1}
 %\relax
 \else
- \RequirePackage{hyperref}
- \hypersetup{
-     colorlinks=false,
-     pdfborder={0 0 0},
- }
- \PassOptionsToPackage{pdfencoding=auto,psdextra, unicode, naturalnames}{hyperref}
- \pdfstringdefDisableCommands{%
-   \def\pi{pi}%
-   \def\eta{eta}%
- }
+ 	\RequirePackage{hyperref}
+ 	\hypersetup{
+     		colorlinks=false,
+     		pdfborder={0 0 0},
+	 }
+	 \PassOptionsToPackage{pdfencoding=auto,psdextra, unicode, naturalnames}{hyperref}
+ 		\pdfstringdefDisableCommands{%
+  		 \def\pi{pi}%
+ 		 \def\eta{eta}%
+	 }
 \fi
 
 %%% Define some useful macros for authors to use

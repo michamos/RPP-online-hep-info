@@ -1,4 +1,4 @@
-# $Id: Makefile 26790 2020-01-02 21:32:49Z anderson $
+# $Id: Makefile 26901 2020-02-07 21:49:35Z anderson $
 # Template for general Makefile for LaTeX-based reviews
 
 BASENAME := databases
@@ -38,11 +38,24 @@ web:
 	pdflatex "\def\isweb{1} \input{$(BASENAME).tex}"
 
 
+
 booklet:	$(BASENAME)-full.aux
 	pdflatex  -jobname=$(BASENAME)-booklet '\def\isbooklet{1} \input{$(BASENAME).tex}'
 #	if [ -s $(BASENAME).bib ]; then bibtex $(BASENAME).1 ; fi
 	pdflatex  -jobname=$(BASENAME)-booklet '\def\isbooklet{1} \input{$(BASENAME).tex}'
 	pdflatex  -jobname=$(BASENAME)-booklet '\def\isbooklet{1} \input{$(BASENAME).tex}'
+
+once:
+	pdflatex '\def\isdraft{1} \input{$(BASENAME).tex}'
+	if [ -s $(BASENAME).bib ]; then bibtex $(BASENAME).1 ; fi
+
+webonce:
+	pdflatex '\def\isweb{1} \input{$(BASENAME).tex}'
+	if [ -s $(BASENAME).bib ]; then bibtex $(BASENAME).1 ; fi
+
+bookonce:
+	pdflatex '\def\isbook{1} \input{$(BASENAME).tex}'
+	if [ -s $(BASENAME).bib ]; then bibtex $(BASENAME).1 ; fi
 
 nohyperref:
 	pdflatex "\def\nohyperref{1} \input{$(BASENAME).tex}"
