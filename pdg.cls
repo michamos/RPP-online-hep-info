@@ -222,7 +222,7 @@
 		\pagestyle{rppdraft}
 	\else
 		\fancypagestyle{plain}{%
-			\fancyfoot[C]{\scriptsize \rppCitation \\ \scriptsize\today\hspace{2mm}}
+			\fancyfoot[C]{\scriptsize \rppCitation \\ \scriptsize\today\hspace{2mm}\currenttime}
 		}
 		\pagestyle{rppweb}
 	\fi
