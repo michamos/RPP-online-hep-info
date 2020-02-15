@@ -228,6 +228,26 @@
 	\fi
 \fi
 
+%%% Configure thumbs
+\newcounter{bleedersection}
+\newcommand{\Repeat}[1]{%
+    \expandafter\@Repeat\expandafter{\the\numexpr #1\relax}%
+}
+
+\def\@Repeat#1{%
+    \ifnum#1>0
+        \expandafter\@@Repeat\expandafter{\the\numexpr #1-1\expandafter\relax\expandafter}%
+    \else
+        \expandafter\@gobble
+    \fi
+}
+\def\@@Repeat#1#2{%
+    \@Repeat{#1}{#2}#2%
+}
+\RequirePackage{thumbs}
+\pagenumbering{arabic}
+\newcommand\rppthumb{\Repeat{\numexpr\value{bleedersection}}{\addthumb{}{}{white}{white}}\addthumb{}{}{black}{black}}
+
 
 %%%%%%%%%%%%%%%%%%%%%
 %%%     Fundamental Packages      %%%
