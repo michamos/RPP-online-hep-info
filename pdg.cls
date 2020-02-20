@@ -698,6 +698,20 @@
   \end{figure}
 }
 
+\newcommand{\pdgwidedoublefigurex}[7]{
+\ifthenelse{\isempty{#5}}{%
+  \begin{figure*}[!ht]}{%
+  \begin{figure*}[#5]}
+    \centering
+\ifthenelse{\isempty{#6}}{%
+    \includegraphics[width=.45\textwidth]{figures/#1}
+    \includegraphics[width=.45\textwidth]{figures/#2}}{%
+    \includegraphics[width=.45\textwidth,#6]{figures/#1}
+    \includegraphics[width=.45\textwidth,#7]{figures/#2}}
+    \caption{#3}\label{#4}
+  \end{figure*}
+}
+
 %\newcommand\tableline{\noalign{\smallskip}\hline\noalign{\smallskip}\bigstrut[t]\bigstrut[b]}
 \newcommand\tableline{\noalign{\smallskip}\hline\noalign{\smallskip}}
 \newcommand\Tablerule{\noalign{\smallskip}\hline\noalign{\smallskip}}
