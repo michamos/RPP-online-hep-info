@@ -1,4 +1,4 @@
-# $Id: Makefile 26901 2020-02-07 21:49:35Z anderson $
+# $Id: Makefile 27034 2020-02-20 18:31:04Z anderson $
 # Template for general Makefile for LaTeX-based reviews
 
 BASENAME := databases
@@ -77,8 +77,8 @@ mergedbib:
 	bibtool --preserve.key.case=on --preserve.keys=on -o $(BASENAME).bib -d -s ../$(BASENAME)-*/*.bib
 
 clean:
-	@echo rm -vf $(BASENAME)\*.aux \*.dvi \*.lof \*.log \*.toc \*.out \*.bbl \*.blg \*.idx \*.ilg \*.ind
-	@rm -vf $(BASENAME)*.aux $(BASENAME)*.dvi $(BASENAME)*.lof $(BASENAME)*.log $(BASENAME)*.toc $(BASENAME)*.out $(BASENAME)*.bbl $(BASENAME)*.blg $(BASENAME)*.idx $(BASENAME)*.ilg $(BASENAME)*.ind 
+	@echo rm -vf $(BASENAME)\*.aux \*.dvi \*.lof \*.log \*.toc \*.out \*.bbl \*.blg \*.idx \*.ilg \*.ind \*.tmb
+	@rm -vf $(BASENAME)*.aux $(BASENAME)*.dvi $(BASENAME)*.lof $(BASENAME)*.log $(BASENAME)*.toc $(BASENAME)*.out $(BASENAME)*.bbl $(BASENAME)*.blg $(BASENAME)*.idx $(BASENAME)*.ilg $(BASENAME)*.ind $(BASENAME)*.tmb
 
 $(BASENAME)-full.aux:
 	$(MAKE) nohyperref
