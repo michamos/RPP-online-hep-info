@@ -540,6 +540,27 @@
   \@afterheading%
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%  PDG Book/Web includegraphics  %%%
+%%%%%%%%%%%%%%%%% %%%%%%
+
+\ifrppbook
+     \define@key{Gin}{bookwidth}{
+         \setkeys{Gin}{width = #1}
+     }
+     \define@key{Gin}{webwidth}{}
+\else\ifrppweb
+         \define@key{Gin}{bookwidth}{}
+         \define@key{Gin}{webwidth}{
+             \setkeys{Gin}{width = #1}
+         }
+     \else
+         \define@key{Gin}{bookwidth}{}
+         \define@key{Gin}{webwidth}{}
+     \fi
+\fi
+
+
 
 %%%%%%%%%%%%%%%%%%%
 %%%  PDG Strip Environment   %%%
