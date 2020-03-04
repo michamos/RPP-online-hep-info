@@ -86,9 +86,9 @@
 % Load base class
 \LoadClass{\baseclass}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%    Version format/ pagestyle control    %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%    Header/Footers/Titling   %%%
+%%%%%%%%%%%%%%%%%%%
 
 % Packages to control style of titles and page headers
 \RequirePackage{titling}
@@ -163,6 +163,37 @@
 	\fancyhead[RE,LO]{}
 }
 
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% Packages loaded before ltxgrid %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{amsmath} %AMS must be loaded before lineno for draft mode
+\RequirePackage{longtable}
+%%% Configure line numbers and margin tags for draft mode
+\ifdefined\isdraft
+	\RequirePackage[left]{lineno} 
+	\linenumbers
+\fi
+%Attic for some commands deprecated by ltxgrid
+	\let\stored@kludgeins\@kludgeins
+	\let\stored@makecol\@makecol
+	\let\stored@doclearpage\@doclearpage
+	\let\stored@makefcolumn\@makefcolumn
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%% Ltxgrid and page geometry/format %%%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{ltxgrid} %The ReVTeX one/two column package
+
+%Override ltxgrid defaults for footnotes
+\def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark}}}			
+%Provide overload one/two column commands compatible with extbook.
+\let\onecolumn\onecolumngrid
+\let\twocolumn\twocolumngrid	
+	
+	
 \ifrppbook
 	%Take control of skips from extbook
 	\renewcommand\normalsize{%
@@ -175,22 +206,16 @@
 		\let\@listi\@listI}
 	\normalsize
 	\setlength{\skip\footins}{12\p@ \@plus 4\p@ \@minus 4\p@}
-
-	\RequirePackage{ltxgrid} %The ReVTeX one/two column package
 	%Set the two column mode
 	\let\@document\document
 	\let\@enddocument\enddocument
 	\renewenvironment{document}{\@document \twocolumngrid}{\onecolumngrid \@enddocument}
 	%Override ltxgrid defaults for footnotes
-	\def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark}}}			
 	\renewcommand{\footnoterule}{%
-		\kern -3pt
-		\hrule width 1.5in height 0.5pt
-		\kern 2.6pt
+		\kern -3\p@
+		\hrule width 1.5in height 0.5\p@
+		\kern 2.6\p@
 	}
-	%Provide overload one/two column commands compatible with extbook.
-	\let\onecolumn\onecolumngrid
-	\let\twocolumn\twocolumngrid	
 	%Page format
 	\setlength{\columnsep}{5 mm}
 	\RequirePackage[outer=.625in,inner=1in,top=1.125in,bottom=1.0cm]{geometry}
@@ -210,12 +235,32 @@
 	\normalsize
 	\setlength{\skip\footins}{12\p@ \@plus 4\p@ \@minus 4\p@}
 	\setlength\abovecaptionskip{-4pt}
+	%Set single column mode
+	\let\@document\document
+	\let\@enddocument\enddocument
+	\renewenvironment{document}{\@document \onecolumngrid}{\onecolumngrid \@enddocument}
+	%Override ltxgrid defaults for footnotes
+	\renewcommand{\footnoterule}{%
+		\kern-3\p@
+  		\hrule\@width.4\columnwidth height 0.5\p@
+  		\kern2.6\p@
+	}
 	\RequirePackage[paperwidth=120mm,paperheight=200mm,top=3mm,outer=3mm,inner=19mm,bottom=5mm,includehead,headsep=2mm]{geometry}
 	\fancypagestyle{plain}{}
 	\pagestyle{rppbooklet}
 \fi
 
 \ifrppweb
+	%Set single column mode
+	\let\@document\document
+	\let\@enddocument\enddocument
+	\renewenvironment{document}{\@document \onecolumngrid}{\onecolumngrid \@enddocument}
+	%Override ltxgrid defaults for footnotes
+	\renewcommand{\footnoterule}{%
+		\kern-3\p@
+  		\hrule\@width.4\columnwidth height 0.5\p@
+  		\kern2.6\p@
+	}
 	\RequirePackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
 	\ifdefined\isdraft
 		\fancypagestyle{plain}{}
@@ -228,7 +273,10 @@
 	\fi
 \fi
 
-%%% Configure thumbs
+%%%%%%%%%%%%%
+%%%    Thumbs    %%%
+%%%%%%%%%%%%%
+
 \newcounter{bleedersection}
 \newcommand{\Repeat}[1]{%
     \expandafter\@Repeat\expandafter{\the\numexpr #1\relax}%
@@ -260,7 +308,7 @@
 \RequirePackage[utf8]{inputenc} 
 \RequirePackage{import}
 
-\RequirePackage{color}
+\RequirePackage{xcolor}
 \RequirePackage{graphicx}  % to include figures (can also use other packages)
 \setkeys{Gin}{width=0.49\textwidth} % Set default graphics width to be one column of a two-column page.
 \RequirePackage{xspace} 
@@ -273,7 +321,7 @@
 \RequirePackage{isomath}
 \RequirePackage{caption} % Greater control over table caption formatting
 \RequirePackage{xstring} % String logic
-\RequirePackage{array}
+\RequirePackage{array} %Must be after ltxgrid
 
 \RequirePackage{varwidth}
 \RequirePackage{footmisc}
@@ -305,11 +353,11 @@
 %%%%%%%%%%%%%%%%
 
 \newcommand{\setfootnotestyle}[1]{
-\ifrppbook
-	\renewcommand*{\thempfn}{#1{footnote}}
-\else
-	\renewcommand*{\thefootnote}{#1{footnote}}
-\fi	
+\renewcommand*{\thempfn}{#1{footnote}}
+%	old version
+%	\renewcommand*{\thefootnote}{#1{footnote}}
+%	for minipage
+%	\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -540,27 +588,6 @@
   \@afterheading%
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%  PDG Book/Web includegraphics  %%%
-%%%%%%%%%%%%%%%%% %%%%%%
-
-\ifrppbook
-     \define@key{Gin}{bookwidth}{
-         \setkeys{Gin}{width = #1}
-     }
-     \define@key{Gin}{webwidth}{}
-\else\ifrppweb
-         \define@key{Gin}{bookwidth}{}
-         \define@key{Gin}{webwidth}{
-             \setkeys{Gin}{width = #1}
-         }
-     \else
-         \define@key{Gin}{bookwidth}{}
-         \define@key{Gin}{webwidth}{}
-     \fi
-\fi
-
-
 
 %%%%%%%%%%%%%%%%%%%
 %%%  PDG Strip Environment   %%%
@@ -643,6 +670,25 @@
 %	\noindent
 %}
 
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%  PDG Book/Web includegraphics  %%%
+%%%%%%%%%%%%%%%%% %%%%%%
+
+\ifrppbook
+    \define@key{Gin}{bookwidth}{
+        \setkeys{Gin}{width = #1}
+    }
+    \define@key{Gin}{webwidth}{}
+\else\ifrppweb
+        \define@key{Gin}{bookwidth}{}
+        \define@key{Gin}{webwidth}{
+            \setkeys{Gin}{width = #1}
+        }
+    \else
+        \define@key{Gin}{bookwidth}{}
+        \define@key{Gin}{webwidth}{}
+    \fi
+\fi 
 
 %%%%%%%%%%%%%%%%% 
 %%%  PDG Figures/Tables  %%%
@@ -758,11 +804,7 @@
 \centering
 \setlength{\parindent}{0pt}
 \begin{minipage}{\columnwidth}% so footnote will appear
-\ifrppbook
-	\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
-\else
-	\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
-\fi
+\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
 \renewcommand*\footnoterule{}
     \caption{#2}
     \label{#3}
@@ -782,11 +824,7 @@
   \begin{table*}[!ht]}{%
   \begin{table*}[#4]}
 \begin{minipage}{\textwidth} % so footnote will appear
-\ifrppbook
-	\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
-\else
-	\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
-\fi
+\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
 \renewcommand*\footnoterule{}
     \caption{#2}
     \label{#3}
@@ -809,11 +847,7 @@
 \centering
 \setlength{\parindent}{0pt}
 \begin{minipage}{\linewidth}% so footnote will appear
-\ifrppbook
 	\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
-\else
-	\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
-\fi
 \renewcommand*\footnoterule{}
     \caption{#2}
     \label{#3}
@@ -838,11 +872,7 @@
 \centering
 \setlength{\parindent}{0pt}
 \begin{minipage}{\linewidth}% so footnote will appear
-\ifrppbook
-	\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
-\else
-	\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
-\fi
+\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
 \renewcommand*\footnoterule{}
     \caption{#2}
     \label{#3}
@@ -867,11 +897,7 @@
 \centering
 \setlength{\parindent}{0pt}
 \begin{minipage}{\linewidth}% so footnote will appear
-\ifrppbook
-	\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
-\else
-	\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
-\fi
+\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
 \renewcommand*\footnoterule{}
     \caption{#2}
     \label{#3}
@@ -896,11 +922,7 @@
 \centering
 \setlength{\parindent}{0pt}
 \begin{minipage}{\linewidth}% so footnote will appear
-\ifrppbook
-	\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
-\else
-	\renewcommand*{\thempfootnote}{\fnsymbol{mpfootnote}}
-\fi
+\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
 \renewcommand*\footnoterule{}
     \caption{#2}
     \label{#3}
@@ -915,6 +937,27 @@
     \end{minipage}
     \end{sidewaystable*}
 }
+
+%%%%%%%%%%
+%%%   Tags  %%%
+%%%%%%%%%%
+
+\ifdefined\isdraft
+	\RequirePackage[inline,nolabel]{showlabels}
+	% The following should cause labels to be rendered in red.
+	% Unfortunately, when the labels are inline, this causes all 
+	% text to be red.
+	\renewcommand{\showlabelfont}{\tiny}
+	\showlabels{cite}
+	\showlabels{bibitem}
+	\RequirePackage[color,notref,notcite]{showkeys}
+	\definecolor{refkey}{rgb}{1,0,0}
+	\definecolor{labelkey}{rgb}{0,0,1}
+	\renewcommand\showkeyslabelformat[1]{%
+	\fbox{\normalfont\tiny\ttfamily#1}}
+%\renewcommand*\showkeyslabelformat[1]{%
+%  \fbox{\parbox[t]{\marginparwidth}{\raggedright\path{#1}}}}
+\fi
 
 %%%%%%%%%%%%%%
 %%%   Bibliography  %%%
@@ -951,26 +994,6 @@
 }
 
 \renewcommand{\@bibunitname}{\jobname.\the\@bibunitauxcnt}
-
-%%% Configure line numbers and margin tags for draft mode
-\RequirePackage[left]{lineno}
-\ifdefined\isdraft
-\linenumbers
-\RequirePackage[inline,nolabel]{showlabels}
-% The following should cause labels to be rendered in red.
-% Unfortunately, when the labels are inline, this causes all 
-% text to be red.
-\renewcommand{\showlabelfont}{\tiny}
-\showlabels{cite}
-\showlabels{bibitem}
-\RequirePackage[color,notref,notcite]{showkeys}
-\definecolor{refkey}{rgb}{1,0,0}
-\definecolor{labelkey}{rgb}{0,0,1}
-\renewcommand\showkeyslabelformat[1]{%
-\fbox{\normalfont\tiny\ttfamily#1}}
-%\renewcommand*\showkeyslabelformat[1]{%
-%  \fbox{\parbox[t]{\marginparwidth}{\raggedright\path{#1}}}}
-\fi
 
 \let\oldputbib\putbib
 \renewcommand{\putbib}[1][]{
