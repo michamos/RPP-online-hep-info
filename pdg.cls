@@ -913,6 +913,37 @@
     \end{table*}
 }
 
+\newenvironment{pdgscalewidetable}[5]{% #1
+\ifrppbook
+  \captionsetup{width=1\textwidth,labelfont=bf}
+\else
+  \captionsetup{width=.75\linewidth,labelfont=bf}
+\fi
+\ifthenelse{\isempty{#4}}{%
+  \begin{table*}[!ht]}{%
+  \begin{table*}[#4]}
+\ifrppbook
+  \begin{minipage}{\textwidth} % so footnote will appear
+\else
+  \ifthenelse{\isempty{#5}}{\relscale{.95}}{\relscale{#5}}
+  \centering
+  \setlength{\parindent}{0pt}
+  \begin{minipage}{\linewidth}
+\fi
+\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
+\renewcommand*\footnoterule{}
+  \caption{#2}
+  \label{#3}
+  \centering
+  \begin{tabular}{@{}#1@{}}
+  \hline\hline
+}{%
+  \hline\hline
+  \end{tabular}
+  \end{minipage}
+  \end{table*}
+}
+
 \newenvironment{pdgsidewaystable}[4]{% #1
 \captionsetup{width=.75\linewidth,labelfont=bf}
 \ifthenelse{\isempty{#4}}{%
