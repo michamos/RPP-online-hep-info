@@ -1054,7 +1054,7 @@
 % Disable hyperref in booklet mode due to conflicts with xcite
 \ifdefined\nohyperref
 	\RequirePackage{url}
-	\newcommand{\href[1]}{\tt{#1}}
+%	\newcommand{\href[1]}{\tt{#1}}
 	\newcommand{\texorpdfstring[1]}{#1}
 %\relax
 \else
