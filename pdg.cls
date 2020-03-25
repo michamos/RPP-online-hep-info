@@ -59,7 +59,7 @@
 
 % Set default options to pass to base class
 \DeclareOption{rppbook} {%
-  \PassOptionsToClass{8pt,twoside,twocolumn}{\baseclass}
+  \PassOptionsToClass{8pt,twoside,twocolumn,openany}{\baseclass}
   %Twocolumn option now enforced by ltxgrid
 }
 \DeclareOption{rppweb} {%
@@ -309,6 +309,7 @@
 \RequirePackage{import}
 
 \RequirePackage{xcolor}
+%\PassOptionsToPackage{usenames,dvipsnames}{xcolor}
 \RequirePackage{graphicx}  % to include figures (can also use other packages)
 \setkeys{Gin}{width=0.49\textwidth} % Set default graphics width to be one column of a two-column page.
 \RequirePackage{xspace} 
@@ -1052,6 +1053,7 @@
 % Use hyperref, but hide the ugly green boxes.  Also try to suppress warnings
 % related to math symbols in PDF bookmarks
 % Disable hyperref in booklet mode due to conflicts with xcite
+\definecolor{navyblue}{rgb}{0.0, 0.0, 0.5}
 \ifdefined\nohyperref
 	\RequirePackage{url}
 %	\newcommand{\href[1]}{\tt{#1}}
@@ -1059,10 +1061,38 @@
 %\relax
 \else
  	\RequirePackage{hyperref}
+
+\ifrppweb
+ 	\hypersetup{
+     		colorlinks=true,
+                linkcolor=black,
+                citecolor=navyblue,
+                filecolor=black,
+                menucolor=black,
+                runcolor=black,
+                urlcolor=navyblue,
+     		pdfborder={0 0 0},
+	 }
+\fi
+\ifdefined\isdraft
+\hypersetup{
+  colorlinks=true,
+                linkcolor=red,
+                citecolor=blue,
+                filecolor=blue,
+                menucolor=run,
+                runcolor=red,
+                urlcolor=magenta,
+  pdfborder={0 0 0},
+  }
+\fi
+
+\ifrppbook
  	\hypersetup{
      		colorlinks=false,
      		pdfborder={0 0 0},
 	 }
+\fi
 	 \PassOptionsToPackage{pdfencoding=auto,psdextra, unicode, naturalnames}{hyperref}
  		\pdfstringdefDisableCommands{%
   		 \def\pi{pi}%

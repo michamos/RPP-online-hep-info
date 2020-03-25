@@ -424,14 +424,17 @@ FUNCTION {format.eprint}
 { eprint empty$
     { "" }
     { eprint #1 #3 substring$ "hep" =
-        { "[" eprint * "]" * }
+%        { "[" eprint * "]" * }
+        { "\href{http://arxiv.org/abs/"  eprint * "}" * "{[" * eprint * "]}" * }
 	{ archivePrefix empty$
 	    { archive empty$
 	        { "" }
 		{ "\eprint" "[" * archive * "]" * }
 	      if$
 	    }
-	    { "[" archivePrefix * ":" * eprint * "]" * }
+%	    { "[" archivePrefix * ":" * eprint * "]" * }
+%	    { "\url{http://arxiv.org/abs/"  eprint * "}" * }
+	    { "\href{http://arxiv.org/abs/"  eprint * "}" * "{[" * archivePrefix * ":" * eprint * "]}" *}
 	  if$
 	}
       if$
