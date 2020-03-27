@@ -117,11 +117,12 @@
    	 \fancypagestyle{plain}{\fancyhead[C]{\bf\itshape\nouppercase{\thechapter.  #1}}}
     \fi
     \ifrppbook
-    	\fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}}
-   	 \fancyhead[RO]{{\bf\itshape\nouppercase{\thechapter.  #1}\xspace\xspace\xspace\thepage}}
+      \fancytabsTop{\numexpr\value{bleedersection}*2cm+2cm}
+    	\fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}\fancytab[LEFT]{}{}}
+   	 \fancyhead[RO]{{\bf\itshape\nouppercase{\thechapter.  #1}\xspace\xspace\xspace\thepage\fancytab[RIGHT]{}{}}}
    	 \fancypagestyle{plain}{%
-   	 \fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}}
-   	 \fancyhead[RO]{{\bf\itshape\nouppercase{\thechapter.  #1}}\xspace\xspace\xspace\thepage}}
+   	 \fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}\fancytab[LEFT]{}{}}
+   	 \fancyhead[RO]{{\bf\itshape\nouppercase{\thechapter.  #1}}\xspace\xspace\xspace\thepage\fancytab[RIGHT]{}{}}}
     \fi
 }}
 
@@ -276,6 +277,10 @@
 %%%%%%%%%%%%%
 %%%    Thumbs    %%%
 %%%%%%%%%%%%%
+\RequirePackage{fancytabs}
+\fancytabsLeftColor{black}
+\fancytabsRightColor{black}
+\fancytabsHeight{2cm}
 
 \newcounter{bleedersection}
 \newcommand{\Repeat}[1]{%
@@ -292,9 +297,18 @@
 \def\@@Repeat#1#2{%
     \@Repeat{#1}{#2}#2%
 }
-\RequirePackage{thumbs}
-\pagenumbering{arabic}
-\newcommand\rppthumb{\Repeat{\numexpr\value{bleedersection}}{\addthumb{}{}{white}{white}}\addthumb{}{}{black}{black}}
+%\RequirePackage{thumbs}
+%\pagenumbering{arabic}
+%\newcommand\rppthumb{\Repeat{\numexpr\value{bleedersection}}{\addthumb{}{}{white}{white}}\addthumb{}{}{black}{black}}
+
+\newcommand\rppthumb{%
+      \ifrppbook
+      \fancytabsTop{\numexpr\value{bleedersection}*2cm+2cm}
+	\fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\leftmark}\fancytab[LEFT]{}{}}
+	\fancyhead[RO]{{\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\thepage\fancytab[RIGHT]{}{}}
+	\fancyhead[RE,LO]{}
+    \fi
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%
