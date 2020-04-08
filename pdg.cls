@@ -68,7 +68,7 @@
 % We actually set the booklet font in the tex files.  
 % 8pt is the smallest we can pass to book as an option
 \DeclareOption{rppbooklet} {%
-  \PassOptionsToClass{8pt,twoside,onecolumn}{\baseclass}
+  \PassOptionsToClass{8pt,twoside,onecolumn,openany}{\baseclass}
 }
 % Pass through any other options
 \DeclareOption*{%
