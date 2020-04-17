@@ -340,7 +340,7 @@
 
 \RequirePackage{varwidth}
 \RequirePackage{footmisc}
-%\RequirePackage{adjustbox}
+\RequirePackage{adjustbox}
 \RequirePackage{relsize}
 
 %%% Decrease line spacing in itemize and enumerate lists
@@ -688,20 +688,32 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%  PDG Book/Web includegraphics  %%%
 %%%%%%%%%%%%%%%%% %%%%%%
-
+\def\pdgtab@scale{1}
 \ifrppbook
     \define@key{Gin}{bookwidth}{
         \setkeys{Gin}{width = #1}
     }
+     \define@key{Gin}{bookscale}{
+        \setkeys{Gin}{scale = #1}
+        \def\pdgtab@scale{#1}
+    }
     \define@key{Gin}{webwidth}{}
+    \define@key{Gin}{webscale}{}
 \else\ifrppweb
         \define@key{Gin}{bookwidth}{}
+        \define@key{Gin}{bookscale}{}
         \define@key{Gin}{webwidth}{
             \setkeys{Gin}{width = #1}
         }
+        \define@key{Gin}{webscale}{
+            \setkeys{Gin}{scale = #1}
+            \def\pdgtab@scale{#1}
+        }
     \else
         \define@key{Gin}{bookwidth}{}
+        \define@key{Gin}{bookscale}{}
         \define@key{Gin}{webwidth}{}
+        \define@key{Gin}{webscale}{}
     \fi
 \fi 
 
@@ -983,6 +995,82 @@
     \end{minipage}
     \end{sidewaystable*}
 }
+
+%%%%%%%%%%%%%
+%%%   pdgxtable  %%%
+%%%%%%%%%%%%%
+
+%Keys for placement and wide setting
+\define@key{Gin}{place}[!ht]{
+	\def\fps@table{#1}
+}
+\define@boolkey{Gin}{wide}[false]{}	
+
+\newenvironment{pdgxtabular}[1]{
+	\begin{tabular}{@{} #1 @{}}
+      		\hline\hline
+		\centering
+	}{
+		\hline\hline
+ 	\end{tabular}	
+}
+		
+\newenvironment{pdgxtable}[1][]{
+	\setkeys{Gin}{#1}
+	%(Minipage) width and caption logic
+	\newlength{\@minipagewidth}
+	\newlength{\@capwidth}
+	\pgfmathsetmacro{\inv@scaling}{1/\pdgtab@scale}
+	\pgfmathsetmacro{\cap@scaling}{0.75*\pdgtab@scale}
+	\ifKV@Gin@wide
+		\begin{table*}
+		\setlength{\@minipagewidth}{\inv@scaling\textwidth}
+		\setlength{\@capwidth}{\cap@scaling\@minipagewidth}
+	\else	
+		\begin{table}
+		\ifrppbook
+			\setlength{\@minipagewidth}{\textwidth-\columnsep}
+			\setlength{\@capwidth}{0.45\@minipagewidth}
+		\else
+			\setlength{\@minipagewidth}{\inv@scaling\linewidth}
+			\setlength{\@capwidth}{\cap@scaling\@minipagewidth}
+		\fi	
+	\fi
+	%Adjust tabular scaling
+	\renewenvironment{pdgxtabular}[1]{
+		\setkeys{Gin}{width = \@minipagewidth, #1}
+		\begin{center}
+		\begin{adjustbox}{max width = \@minipagewidth, scale = \pdgtab@scale, minipage=\@minipagewidth}
+			\def\KV@Gin@ewidth{\KV@Gin@width}
+			\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
+    			\renewcommand*\footnoterule{}	
+			\begin{center}
+			\begin{tabular}{@{} ##1 @{}}
+      				\hline\hline
+				\centering
+	}{
+				\hline\hline
+ 			\end{tabular}
+			\end{center}	
+		\end{adjustbox}	
+		\end{center}
+	}
+	\captionsetup{width=\@capwidth,labelfont=bf}
+	\begin{center}
+}{  		
+	\end{center}
+	\ifKV@Gin@wide	
+		\end{table*}
+	\else	
+		\end{table}
+	\fi
+	%cleanup
+	\def\pdgtab@scale{1}
+	\ignorespacesafterend
+	\noindent
+}
+
+
 
 %%%%%%%%%%
 %%%   Tags  %%%
