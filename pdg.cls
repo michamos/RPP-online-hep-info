@@ -1005,7 +1005,9 @@
 	\def\fps@table{#1}
 }
 \define@boolkey{Gin}{wide}[false]{}	
-
+\newlength{\@minipagewidth}
+\newlength{\@capwidth}
+	
 \newenvironment{pdgxtabular}[1]{
 	\begin{tabular}{@{} #1 @{}}
       		\hline\hline
@@ -1018,8 +1020,6 @@
 \newenvironment{pdgxtable}[1][]{
 	\setkeys{Gin}{#1}
 	%(Minipage) width and caption logic
-	\newlength{\@minipagewidth}
-	\newlength{\@capwidth}
 	\pgfmathsetmacro{\inv@scaling}{1/\pdgtab@scale}
 	\pgfmathsetmacro{\cap@scaling}{0.75*\pdgtab@scale}
 	\ifKV@Gin@wide
