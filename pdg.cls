@@ -235,7 +235,7 @@
   		 \let\@listi\@listI}
 	\normalsize
 	\setlength{\skip\footins}{12\p@ \@plus 4\p@ \@minus 4\p@}
-	\setlength\abovecaptionskip{-4pt}
+	\setlength\abovecaptionskip{0\p@}
 	%Set single column mode
 	\let\@document\document
 	\let\@enddocument\enddocument
@@ -669,37 +669,57 @@
 \let\webalign\relax
 \newcommand{\webcr}[2]{}
 \let\bookalign\relax
-\newcommand{\bookcr}[2]{}
-%\newenvironment{pdgalign}{%	
-	\ifrppbook
-		\def\bookalign{&}
-		\renewcommand{\bookcr}[2]{#1 \\#2}	
-	\else
-		\def\webalign{&}
-		\renewcommand{\webcr}[2]{#1 \\#2}	
-	\fi		
-%	}{%
-%	\let\webalign\relax
-%	\let\bookalign\relax
-%	\ignorespacesafterend
-%	\noindent
-%}
-
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%  PDG Book/Web includegraphics  %%%
-%%%%%%%%%%%%%%%%% %%%%%%
-\def\pdgtab@scale{1}
+\newcommand{\bookcr}[2]{}	
+\let\bookletalign\relax
+\newcommand{\bookletcr}[2]{}
 \ifrppbook
+	\def\bookalign{&}
+	\renewcommand{\bookcr}[2]{#1 \\#2}	
+\fi	
+\ifrppweb
+	\def\webalign{&}
+	\renewcommand{\webcr}[2]{#1 \\#2}	
+\fi		
+\ifrppbooklet
+	\def\bookletalign{&}
+	\renewcommand{\bookletcr}[2]{#1 \\#2}	
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  PDG Book/Web includegraphics `Gin' keys  %%%
+%%%%%%%%%%%%%%%%% %%%%%%%%%%%
+
+\def\pdgtab@scale{1}
+\def\pdgtab@widecapscale{0.75}
+\define@key{Gin}{widecaptionscale}[0.75]{
+        \def\pdgtab@widecapscale{#1}	
+}
+\def\pdgtab@narrowcapscale{0.45}
+\define@key{Gin}{narrowcaptionscale}[0.9]{
+	\pgfmathsetmacro{\pdgtab@narrowcapscale}{#1*0.5}
+        %\def\pdgtab@narrowcapscale{#1}	
+}
+\def\pdgtab@tabularstretch{1}	
+\define@key{Gin}{tabularstretch}[1]{
+	\def\pdgtab@tabularstretch{#1}	
+}
+\ifrppbook
+    %	
     \define@key{Gin}{bookwidth}{
         \setkeys{Gin}{width = #1}
     }
-     \define@key{Gin}{bookscale}{
+    \define@key{Gin}{bookscale}{
         \setkeys{Gin}{scale = #1}
         \def\pdgtab@scale{#1}
     }
+
     \define@key{Gin}{webwidth}{}
     \define@key{Gin}{webscale}{}
+    \define@key{Gin}{bookletwidth}{}
+    \define@key{Gin}{bookletscale}{}
+    %
 \else\ifrppweb
+	%
         \define@key{Gin}{bookwidth}{}
         \define@key{Gin}{bookscale}{}
         \define@key{Gin}{webwidth}{
@@ -709,11 +729,31 @@
             \setkeys{Gin}{scale = #1}
             \def\pdgtab@scale{#1}
         }
-    \else
-        \define@key{Gin}{bookwidth}{}
-        \define@key{Gin}{bookscale}{}
-        \define@key{Gin}{webwidth}{}
-        \define@key{Gin}{webscale}{}
+        \define@key{Gin}{bookletwidth}{}
+        \define@key{Gin}{bookletscale}{}
+        %
+    \else\ifrppbooklet
+    		%
+    		\define@key{Gin}{bookwidth}{}
+       		\define@key{Gin}{bookscale}{}
+		\define@key{Gin}{webwidth}{}
+  		\define@key{Gin}{webscale}{}
+		\define@key{Gin}{bookletwidth}{
+           		 \setkeys{Gin}{width = #1}
+        		}
+        		\define@key{Gin}{bookletscale}{
+            		\setkeys{Gin}{scale = #1}
+            		\def\pdgtab@scale{#1}
+       		 }
+		 %
+    	\else
+ 		\define@key{Gin}{bookwidth}{}
+        		\define@key{Gin}{bookscale}{}
+       		\define@key{Gin}{webwidth}{}
+        		\define@key{Gin}{webscale}{}
+		\define@key{Gin}{bookletwidth}{}
+        		\define@key{Gin}{bookletscale}{}
+	\fi
     \fi
 \fi 
 
@@ -1000,11 +1040,22 @@
 %%%   pdgxtable  %%%
 %%%%%%%%%%%%%
 
-%Keys for placement and wide setting
+%Keys for placement, wide setting, orientation
 \define@key{Gin}{place}[!ht]{
 	\def\fps@table{#1}
 }
 \define@boolkey{Gin}{wide}[false]{}	
+\def\pdgtab@rotate{0}
+\define@choicekey{Gin}{rotated}[\val\nr]{left,right}{%,auto}{
+	\ifcase\nr\relax
+		\def\pdgtab@rotate{90}
+	\or
+		\def\pdgtab@rotate{-90}
+%	\or
+%		\ifnumodd{\value{page}}{\def\pdgtab@rotate{-90}}{\def\pdgtab@rotate{90}}
+	\fi
+}
+%\define@boolkey{Gin}{rotated}[false]{}	
 \newlength{\@minipagewidth}
 \newlength{\@capwidth}
 	
@@ -1021,7 +1072,7 @@
 	\setkeys{Gin}{#1}
 	%(Minipage) width and caption logic
 	\pgfmathsetmacro{\inv@scaling}{1/\pdgtab@scale}
-	\pgfmathsetmacro{\cap@scaling}{0.75*\pdgtab@scale}
+	\pgfmathsetmacro{\cap@scaling}{\pdgtab@widecapscale*\pdgtab@scale} %default 0.75\pdgtab@scale
 	\ifKV@Gin@wide
 		\begin{table*}
 		\setlength{\@minipagewidth}{\inv@scaling\textwidth}
@@ -1030,17 +1081,18 @@
 		\begin{table}
 		\ifrppbook
 			\setlength{\@minipagewidth}{\textwidth-\columnsep}
-			\setlength{\@capwidth}{0.45\@minipagewidth}
+			\setlength{\@capwidth}{\pdgtab@narrowcapscale\@minipagewidth} %default 0.45\@minipagewidth
 		\else
 			\setlength{\@minipagewidth}{\inv@scaling\linewidth}
 			\setlength{\@capwidth}{\cap@scaling\@minipagewidth}
 		\fi	
 	\fi
-	%Adjust tabular scaling
+	%Adjust tabular scaling, stretching, orientation
+	\renewcommand{\arraystretch}{\pdgtab@tabularstretch}
 	\renewenvironment{pdgxtabular}[1]{
 		\setkeys{Gin}{width = \@minipagewidth, #1}
 		\begin{center}
-		\begin{adjustbox}{max width = \@minipagewidth, scale = \pdgtab@scale, minipage=\@minipagewidth}
+		\begin{adjustbox}{max width = \@minipagewidth, scale = \pdgtab@scale, rotate = \pdgtab@rotate, minipage=\@minipagewidth}
 			\def\KV@Gin@ewidth{\KV@Gin@width}
 			\renewcommand*{\thempfn}{\fnsymbol{mpfootnote}}
     			\renewcommand*\footnoterule{}	
@@ -1065,7 +1117,9 @@
 		\end{table}
 	\fi
 	%cleanup
+	\def\pdgtab@rotate{0}
 	\def\pdgtab@scale{1}
+	\def\pdgtab@tabularstretch{1}
 	\ignorespacesafterend
 	\noindent
 }
