@@ -235,7 +235,7 @@
   		 \let\@listi\@listI}
 	\normalsize
 	\setlength{\skip\footins}{12\p@ \@plus 4\p@ \@minus 4\p@}
-	\setlength\abovecaptionskip{0\p@}
+	\setlength\abovecaptionskip{-4pt}
 	%Set single column mode
 	\let\@document\document
 	\let\@enddocument\enddocument
@@ -1045,6 +1045,7 @@
 	\def\fps@table{#1}
 }
 \define@boolkey{Gin}{wide}[false]{}	
+\define@boolkey{Gin}{sideways}[false]{}	
 \def\pdgtab@rotate{0}
 \define@choicekey{Gin}{rotated}[\val\nr]{left,right}{%,auto}{
 	\ifcase\nr\relax
@@ -1055,7 +1056,6 @@
 %		\ifnumodd{\value{page}}{\def\pdgtab@rotate{-90}}{\def\pdgtab@rotate{90}}
 	\fi
 }
-%\define@boolkey{Gin}{rotated}[false]{}	
 \newlength{\@minipagewidth}
 \newlength{\@capwidth}
 	
@@ -1074,8 +1074,13 @@
 	\pgfmathsetmacro{\inv@scaling}{1/\pdgtab@scale}
 	\pgfmathsetmacro{\cap@scaling}{\pdgtab@widecapscale*\pdgtab@scale} %default 0.75\pdgtab@scale
 	\ifKV@Gin@wide
-		\begin{table*}
-		\setlength{\@minipagewidth}{\inv@scaling\textwidth}
+		\ifKV@Gin@sideways
+			\begin{sidewaystable*}
+			\setlength{\@minipagewidth}{\inv@scaling\textheight}
+		\else
+			\begin{table*}	
+			\setlength{\@minipagewidth}{\inv@scaling\textwidth}
+		\fi
 		\setlength{\@capwidth}{\cap@scaling\@minipagewidth}
 	\else	
 		\begin{table}
@@ -1112,7 +1117,11 @@
 }{  		
 	\end{center}
 	\ifKV@Gin@wide	
-		\end{table*}
+		\ifKV@Gin@sideways
+			\end{sidewaystable*}
+		\else
+			\end{table*}
+		\fi
 	\else	
 		\end{table}
 	\fi
