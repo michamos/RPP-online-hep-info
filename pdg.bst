@@ -1332,9 +1332,9 @@ FUNCTION {proceedings}
 FUNCTION {techreport}
 { output.bibitem
   format.authors "author" output.check
-  format.title
-  "title" output.check
-  end.quote.title
+%  format.title
+%  "title" output.check
+%  end.quote.title
   format.tr.number output.nonnull
   institution "institution" bibinfo.warn output
   address "address" bibinfo.check output
