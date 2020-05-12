@@ -1,4 +1,4 @@
-# $Id: Makefile 27034 2020-02-20 18:31:04Z anderson $
+# $Id: Makefile 27424 2020-05-11 21:19:04Z beringer $
 # Template for general Makefile for LaTeX-based reviews
 
 BASENAME := databases
@@ -89,5 +89,5 @@ crossref:
 	$(shell awk  'BEGIN{FS=OFS="}{"} {print $$1"}{"$$2"}{"$$3"}{REMOVED}{REMOVED}}"}' crossref.aux >crossref.tmp && mv crossref.tmp crossref.aux)
 
 
-
-
+# Auxiliary review-specific Makefile
+-include Makefile.$(BASENAME)
