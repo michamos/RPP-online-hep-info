@@ -21,6 +21,7 @@
 \newif\ifrppbooklet
 \newif\ifischapter
 \newif\ifismergedreview
+\newif\ifraggedlastpage
 
 % Allow booleans to be set as options passed to the pdg class
 \@ifclasswith{pdg}{rppbook}{\rppbooktrue}{\rppbookfalse}
