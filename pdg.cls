@@ -21,7 +21,6 @@
 \newif\ifrppbooklet
 \newif\ifischapter
 \newif\ifismergedreview
-\newif\ifraggedlastpage
 
 % Allow booleans to be set as options passed to the pdg class
 \@ifclasswith{pdg}{rppbook}{\rppbooktrue}{\rppbookfalse}
@@ -195,7 +194,8 @@
 \let\onecolumn\onecolumngrid
 \let\twocolumn\twocolumngrid	
 	
-	
+\newif\ifbalancedlastpage	
+\def\raggedlastpage{\gdef\ifbalancedlastpage{\iffalse}}
 \ifrppbook
 	%Take control of skips from extbook
 	\renewcommand\normalsize{%
@@ -209,9 +209,14 @@
 	\normalsize
 	\setlength{\skip\footins}{12\p@ \@plus 4\p@ \@minus 4\p@}
 	%Set the two column mode
+	\balancedlastpagetrue %default balancing
 	\let\@document\document
 	\let\@enddocument\enddocument
-	\renewenvironment{document}{\@document \twocolumngrid}{\onecolumngrid \@enddocument}
+	\renewenvironment{document}{\@document \twocolumngrid}{
+		\ifbalancedlastpage 
+			\onecolumngrid 
+		\fi	
+		\@enddocument}
 	%Override ltxgrid defaults for footnotes
 	\renewcommand{\footnoterule}{%
 		\kern -3\p@
@@ -238,9 +243,14 @@
 	\setlength{\skip\footins}{12\p@ \@plus 4\p@ \@minus 4\p@}
 	\setlength\abovecaptionskip{-4pt}
 	%Set single column mode
+	\balancedlastpagetrue %default balancing
 	\let\@document\document
 	\let\@enddocument\enddocument
-	\renewenvironment{document}{\@document \onecolumngrid}{\onecolumngrid \@enddocument}
+	\renewenvironment{document}{\@document \onecolumngrid}{
+		\ifbalancedlastpage
+			\onecolumngrid 
+		\fi	
+		\@enddocument}
 	%Override ltxgrid defaults for footnotes
 	\renewcommand{\footnoterule}{%
 		\kern-3\p@
@@ -254,9 +264,14 @@
 
 \ifrppweb
 	%Set single column mode
+	\balancedlastpagetrue %default balancing
 	\let\@document\document
 	\let\@enddocument\enddocument
-	\renewenvironment{document}{\@document \onecolumngrid}{\onecolumngrid \@enddocument}
+	\renewenvironment{document}{\@document \onecolumngrid}{
+		\ifbalancedlastpage 
+			\onecolumngrid 
+		\fi	 
+		\@enddocument}
 	%Override ltxgrid defaults for footnotes
 	\renewcommand{\footnoterule}{%
 		\kern-3\p@
