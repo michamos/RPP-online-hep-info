@@ -257,7 +257,7 @@
   		\hrule\@width.4\columnwidth height 0.5\p@
   		\kern2.6\p@
 	}
-	\RequirePackage[paperwidth=120mm,paperheight=200mm,top=3mm,outer=3mm,inner=19mm,bottom=5mm,includehead,headsep=2mm]{geometry}
+	\RequirePackage[paperwidth=125mm,paperheight=200mm,top=3mm,outer=3mm,inner=24mm,bottom=5mm,includehead,headsep=2mm]{geometry}
 	\fancypagestyle{plain}{}
 	\pagestyle{rppbooklet}
 \fi
