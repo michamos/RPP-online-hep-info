@@ -96,6 +96,7 @@
 \RequirePackage[titles]{tocloft}
 \RequirePackage[compact]{titlesec}
 \RequirePackage[nodayofweek,level,12hr]{datetime}
+\newcommand\booktitlestrut{\rule[-2ex]{0pt}{2ex}}
 
 \newcommand\rppfooter[1]{%
   \ifthenelse{\isempty{#1}}{%
@@ -117,20 +118,20 @@
    	 \fancypagestyle{plain}{\fancyhead[C]{\bf\itshape\nouppercase{\thechapter.  #1}}}
     \fi
     \ifrppbook
-      \fancytabsTop{\numexpr\value{bleedersection}*2cm+2cm}
-    	\fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}\fancytab[LEFT]{}{}}
-   	 \fancyhead[RO]{{\bf\itshape\nouppercase{\thechapter.  #1}\xspace\xspace\xspace\thepage\fancytab[RIGHT]{}{}}}
+      \fancytabsTop{\numexpr\value{bleedersection}*73pt+4cm}
+    	\fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}\fancytab[LEFT]{}{}}
+   	 \fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\thechapter.  #1}\xspace\xspace\xspace\bf\thepage\kern-1em\kern-4pt\fancytab[RIGHT]{}{}}}
    	 \fancypagestyle{plain}{%
-   	 \fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}\fancytab[LEFT]{}{}}
-   	 \fancyhead[RO]{{\bf\itshape\nouppercase{\thechapter.  #1}}\xspace\xspace\xspace\thepage\fancytab[RIGHT]{}{}}}
+   	 \fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}\fancytab[LEFT]{}{}}
+   	 \fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\thechapter.  #1}}\xspace\xspace\xspace\bf\thepage\kern-1em\kern-4pt\fancytab[RIGHT]{}{}}}
     \fi
 }}
 
 \fancypagestyle{rppbook}{%
 	\fancyhf{} % clear the fields
 	\renewcommand{\@chapapp}{}
-	\fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\leftmark}}
-	\fancyhead[RO]{{\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\thepage}
+	\fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\leftmark}}
+	\fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\bf\thepage}
 	\fancyhead[RE,LO]{}
 }
 
@@ -225,7 +226,7 @@
 	}
 	%Page format
 	\setlength{\columnsep}{5 mm}
-	\RequirePackage[outer=.625in,inner=1in,top=1.125in,bottom=1.0cm]{geometry}
+	\RequirePackage[outer=.625in,inner=1in,top=2.35cm,bottom=1.0cm]{geometry}
 	%%% Make first page footers/headers the same as others
 	\fancypagestyle{plain}{}
 	\pagestyle{rppbook}	
@@ -296,7 +297,8 @@
 \RequirePackage{fancytabs}
 \fancytabsLeftColor{black}
 \fancytabsRightColor{black}
-\fancytabsHeight{2cm}
+\fancytabsHeight{72pt}
+\fancytabsWidth{1cm}
 
 \newcounter{bleedersection}
 \newcommand{\Repeat}[1]{%
@@ -319,9 +321,9 @@
 
 \newcommand\rppthumb{%
       \ifrppbook
-      \fancytabsTop{\numexpr\value{bleedersection}*2cm+2cm}
-	\fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\leftmark}\fancytab[LEFT]{}{}}
-	\fancyhead[RO]{{\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\thepage\fancytab[RIGHT]{}{}}
+      \fancytabsTop{\numexpr\value{bleedersection}*73pt+4cm}
+	\fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\leftmark}\fancytab[LEFT]{}{}}
+	\fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\bf\thepage\kern-1em\kern-4pt\fancytab[RIGHT]{}{}}
 	\fancyhead[RE,LO]{}
     \fi
 }
@@ -706,6 +708,7 @@
 %%%%%%%%%%%%%%%%% %%%%%%%%%%%
 
 \def\pdgtab@scale{1}
+\def\pdgtab@bbscale{1}
 \def\pdgtab@widecapscale{0.75}
 \define@key{Gin}{widecaptionscale}[0.75]{
         \def\pdgtab@widecapscale{#1}	
@@ -728,16 +731,21 @@
         \setkeys{Gin}{scale = #1}
         \def\pdgtab@scale{#1}
     }
-
+    \define@key{Gin}{bookbbscale}{
+        \def\pdgtab@bbscale{#1}
+    }
     \define@key{Gin}{webwidth}{}
     \define@key{Gin}{webscale}{}
+    \define@key{Gin}{webbbscale}{}
     \define@key{Gin}{bookletwidth}{}
     \define@key{Gin}{bookletscale}{}
+    \define@key{Gin}{bookletbbscale}{}
     %
 \else\ifrppweb
 	%
         \define@key{Gin}{bookwidth}{}
         \define@key{Gin}{bookscale}{}
+        \define@key{Gin}{bookbbscale}{}
         \define@key{Gin}{webwidth}{
             \setkeys{Gin}{width = #1}
         }
@@ -745,15 +753,21 @@
             \setkeys{Gin}{scale = #1}
             \def\pdgtab@scale{#1}
         }
+        \define@key{Gin}{webbbscale}{
+        	    \def\pdgtab@bbscale{#1}
+        }
         \define@key{Gin}{bookletwidth}{}
         \define@key{Gin}{bookletscale}{}
+        \define@key{Gin}{bookletbbscale}{}
         %
     \else\ifrppbooklet
     		%
     		\define@key{Gin}{bookwidth}{}
        		\define@key{Gin}{bookscale}{}
+		\define@key{Gin}{bookbbscale}{}
 		\define@key{Gin}{webwidth}{}
   		\define@key{Gin}{webscale}{}
+		\define@key{Gin}{webbbscale}{}
 		\define@key{Gin}{bookletwidth}{
            		 \setkeys{Gin}{width = #1}
         		}
@@ -761,14 +775,20 @@
             		\setkeys{Gin}{scale = #1}
             		\def\pdgtab@scale{#1}
        		 }
+		 \define@key{Gin}{bookletbbscale}{
+        	   		 \def\pdgtab@bbscale{#1}
+       		 }
 		 %
     	\else
  		\define@key{Gin}{bookwidth}{}
         		\define@key{Gin}{bookscale}{}
+		\define@key{Gin}{bookbbscale}{}
        		\define@key{Gin}{webwidth}{}
         		\define@key{Gin}{webscale}{}
+		\define@key{Gin}{webbbscale}{}
 		\define@key{Gin}{bookletwidth}{}
         		\define@key{Gin}{bookletscale}{}
+		\define@key{Gin}{bookletbbscale}{}
 	\fi
     \fi
 \fi 
@@ -1087,6 +1107,7 @@
 \newenvironment{pdgxtable}[1][]{
 	\setkeys{Gin}{#1}
 	%(Minipage) width and caption logic
+	\pgfmathsetmacro{\pdgtab@scale}{\pdgtab@bbscale*\pdgtab@scale} %bbscale adjusts size of total bounding box versus scale in adjustbox
 	\pgfmathsetmacro{\inv@scaling}{1/\pdgtab@scale}
 	\pgfmathsetmacro{\cap@scaling}{\pdgtab@widecapscale*\pdgtab@scale} %default 0.75\pdgtab@scale
 	\ifKV@Gin@wide
@@ -1101,8 +1122,9 @@
 	\else	
 		\begin{table}
 		\ifrppbook
-			\setlength{\@minipagewidth}{\textwidth-\columnsep}
-			\setlength{\@capwidth}{\pdgtab@narrowcapscale\@minipagewidth} %default 0.45\@minipagewidth
+			\setlength{\@minipagewidth}{\inv@scaling\textwidth - \inv@scaling\columnsep}
+			\pgfmathsetmacro{\cap@scaling}{\pdgtab@narrowcapscale*\pdgtab@scale} 
+			\setlength{\@capwidth}{\cap@scaling\@minipagewidth} %default 0.45\@minipagewidth
 		\else
 			\setlength{\@minipagewidth}{\inv@scaling\linewidth}
 			\setlength{\@capwidth}{\cap@scaling\@minipagewidth}
@@ -1144,6 +1166,7 @@
 	%cleanup
 	\def\pdgtab@rotate{0}
 	\def\pdgtab@scale{1}
+	\def\pdgtab@bbscale{1}
 	\def\pdgtab@tabularstretch{1}
 	\ignorespacesafterend
 	\noindent
