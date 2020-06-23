@@ -195,8 +195,11 @@
 \let\onecolumn\onecolumngrid
 \let\twocolumn\twocolumngrid	
 	
-\newif\ifbalancedlastpage	
+\newif\ifbalancedlastpage
+\newif\ifblankendpage	
 \def\raggedlastpage{\gdef\ifbalancedlastpage{\iffalse}}
+\def\addblankendpage{\gdef\ifblankendpage{\iftrue}}
+\let\forceclearpage\clearpage
 \ifrppbook
 	%Take control of skips from extbook
 	\renewcommand\normalsize{%
@@ -216,7 +219,11 @@
 	\renewenvironment{document}{\@document \twocolumngrid}{
 		\ifbalancedlastpage 
 			\onecolumngrid 
-		\fi	
+		\fi
+		\ifblankendpage
+			\cleardoublepage
+			\pagestyle{empty}
+		\fi		
 		\@enddocument}
 	%Override ltxgrid defaults for footnotes
 	\renewcommand{\footnoterule}{%
@@ -250,7 +257,7 @@
 	\renewenvironment{document}{\@document \onecolumngrid}{
 		\ifbalancedlastpage
 			\onecolumngrid 
-		\fi	
+		\fi		
 		\@enddocument}
 	%Override ltxgrid defaults for footnotes
 	\renewcommand{\footnoterule}{%
@@ -258,7 +265,7 @@
   		\hrule\@width.4\columnwidth height 0.5\p@
   		\kern2.6\p@
 	}
-	\RequirePackage[paperwidth=125mm,paperheight=200mm,top=3mm,outer=3mm,inner=24mm,bottom=5mm,includehead,headsep=2mm]{geometry}
+	\RequirePackage[paperwidth=115mm,paperheight=207mm,top=3mm,outer=3mm,inner=24mm,bottom=5mm,includehead,headsep=2mm]{geometry}
 	\fancypagestyle{plain}{}
 	\pagestyle{rppbooklet}
 \fi
@@ -271,7 +278,7 @@
 	\renewenvironment{document}{\@document \onecolumngrid}{
 		\ifbalancedlastpage 
 			\onecolumngrid 
-		\fi	 
+		\fi		 
 		\@enddocument}
 	%Override ltxgrid defaults for footnotes
 	\renewcommand{\footnoterule}{%
