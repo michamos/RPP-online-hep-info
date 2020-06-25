@@ -221,8 +221,12 @@
 			\onecolumngrid 
 		\fi
 		\ifblankendpage
-			\cleardoublepage
-			\pagestyle{empty}
+			\ifthenelse{\isodd{\thepage}}%
+    			           {\fancyhf{}
+                                     \renewcommand{\headrulewidth}{0pt}
+                                     \clearpage\cleardoublepage}%
+   			{\cleardoublepage}%
+			%\pagestyle{empty}
 		\fi		
 		\@enddocument}
 	%Override ltxgrid defaults for footnotes
