@@ -120,10 +120,10 @@
     \ifrppbook
       \fancytabsTop{\numexpr\value{bleedersection}*73pt+4cm}
     	\fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}\fancytab[LEFT]{}{}}
-   	 \fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\thechapter.  #1}\xspace\xspace\xspace\bf\thepage\kern-1em\kern-4pt\fancytab[RIGHT]{}{}}}
+   	 \fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\thechapter.  #1}\xspace\xspace\xspace\fancytab[RIGHT]{}{}\bf\thepage}}
    	 \fancypagestyle{plain}{%
    	 \fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}\fancytab[LEFT]{}{}}
-   	 \fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\thechapter.  #1}}\xspace\xspace\xspace\bf\thepage\kern-1em\kern-4pt\fancytab[RIGHT]{}{}}}
+   	 \fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\thechapter.  #1}}\xspace\xspace\xspace\fancytab[RIGHT]{}{}\bf\thepage}}
     \fi
 }}
 
@@ -224,7 +224,8 @@
 			\ifthenelse{\isodd{\thepage}}%
     			           {\fancyhead[LE]{\booktitlestrut\bf\thepage\fancytab[LEFT]{}{}}
                                      \clearpage\cleardoublepage}%
-   			{\cleardoublepage}%
+   			           {\fancyhead[RO]{\booktitlestrut\fancytab[RIGHT]{}{}\bf\thepage}
+                                     \cleardoublepage}%
 			%\pagestyle{empty}
 		\fi		
 		\@enddocument}
@@ -333,7 +334,7 @@
       \ifrppbook
       \fancytabsTop{\numexpr\value{bleedersection}*73pt+4cm}
 	\fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\leftmark}\fancytab[LEFT]{}{}}
-	\fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\bf\thepage\kern-1em\kern-4pt\fancytab[RIGHT]{}{}}
+	\fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\fancytab[RIGHT]{}{}\bf\thepage}
 	\fancyhead[RE,LO]{}
     \fi
 }
