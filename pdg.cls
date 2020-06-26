@@ -222,8 +222,7 @@
 		\fi
 		\ifblankendpage
 			\ifthenelse{\isodd{\thepage}}%
-    			           {\fancyhf{}
-                                     \renewcommand{\headrulewidth}{0pt}
+    			           {\fancyhead[LE]{\booktitlestrut\bf\thepage\fancytab[LEFT]{}{}}
                                      \clearpage\cleardoublepage}%
    			{\cleardoublepage}%
 			%\pagestyle{empty}
