@@ -160,8 +160,8 @@
 	\renewcommand{\@chapapp}{}
 	\renewcommand{\headrulewidth}{0pt}
 	\setlength{\headheight}{14pt}
-	\fancyhead[LE]{\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\leftmark}}
-	\fancyhead[RO]{{\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\thepage}
+	\fancyhead[LE]{\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\leftmark}}
+	\fancyhead[RO]{{\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\bf\thepage}
 	\fancyhead[RE,LO]{}
 }
 
@@ -253,7 +253,7 @@
   		 \let\@listi\@listI}
 	\normalsize
 	\setlength{\skip\footins}{12\p@ \@plus 4\p@ \@minus 4\p@}
-	\setlength\abovecaptionskip{-4pt}
+	\setlength\abovecaptionskip{0pt}
 	%Set single column mode
 	\balancedlastpagetrue %default balancing
 	\let\@document\document
@@ -269,7 +269,7 @@
   		\hrule\@width.4\columnwidth height 0.5\p@
   		\kern2.6\p@
 	}
-	\RequirePackage[paperwidth=115mm,paperheight=207mm,top=3mm,outer=3mm,inner=24mm,bottom=5mm,includehead,headsep=2mm]{geometry}
+	\RequirePackage[paperwidth=115mm,paperheight=207mm,top=3mm,outer=3mm,inner=18mm,bottom=11mm,includehead,headsep=2mm]{geometry}
 	\fancypagestyle{plain}{}
 	\pagestyle{rppbooklet}
 \fi
