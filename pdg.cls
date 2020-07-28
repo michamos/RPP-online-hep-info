@@ -160,8 +160,8 @@
 	\renewcommand{\@chapapp}{}
 	\renewcommand{\headrulewidth}{0pt}
 	\setlength{\headheight}{14pt}
-	\fancyhead[LE]{\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\leftmark}}
-	\fancyhead[RO]{{\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\bf\thepage}
+	\fancyhead[LE]{{\bf\thepage}\xspace\xspace\xspace\itshape\nouppercase{\leftmark}}
+	\fancyhead[RO]{{\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\bf\thepage}
 	\fancyhead[RE,LO]{}
 }
 
