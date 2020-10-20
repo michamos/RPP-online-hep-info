@@ -1,4 +1,4 @@
-# $Id: Makefile 27424 2020-05-11 21:19:04Z beringer $
+# $Id: Makefile 28199 2020-10-19 18:03:00Z anderson $
 # Template for general Makefile for LaTeX-based reviews
 
 BASENAME := databases
@@ -81,12 +81,12 @@ clean:
 	@rm -vf $(BASENAME)*.aux $(BASENAME)*.dvi $(BASENAME)*.lof $(BASENAME)*.log $(BASENAME)*.toc $(BASENAME)*.out $(BASENAME)*.bbl $(BASENAME)*.blg $(BASENAME)*.idx $(BASENAME)*.ilg $(BASENAME)*.ind $(BASENAME)*.tmb
 
 $(BASENAME)-full.aux:
-	$(MAKE) nohyperref
+	$(MAKE)
 	@mv $(BASENAME).aux $(BASENAME)-full.aux
 
 crossref:
 	$(shell grep -h '^\\newlabel' $(XREFAUX)  >crossref.aux)
-	$(shell awk  'BEGIN{FS=OFS="}{"} {print $$1"}{"$$2"}{"$$3"}{REMOVED}{REMOVED}}"}' crossref.aux >crossref.tmp && mv crossref.tmp crossref.aux)
+
 
 
 # Auxiliary review-specific Makefile

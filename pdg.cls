@@ -43,7 +43,7 @@
 	\rppwebfalse
 	\rppbookfalse
 	\rppbooklettrue
-	\def\nohyperref{1}
+%	\def\nohyperref{1}
 \fi
 % If neither book nor web is specified, assume draft
 \ifthenelse{\isundefined\isbook \AND \isundefined\isweb \AND \isundefined\isbooklet}{\def\isdraft{1}}{}
@@ -56,6 +56,13 @@
 %%%%%%%%%%%%%%%
 %%%     Base Class      %%%
 %%%%%%%%%%%%%%%
+
+%Squash moot warnings
+%\RequirePackage{silence} 
+%\WarningFilter{ltxutil}{Repair the float package} % Artifact of ltxgrid
+%\WarningFilter{auxhook}{Cannot patch} % Cannot patch \document, using \AtBeginDocument instead.
+%\WarningFilter{hyperref}{Token not allowed in a PDF string} % Fixable with \texorpdfstring
+
 
 % Set default options to pass to base class
 \DeclareOption{rppbook} {%
@@ -389,8 +396,8 @@
 \RequirePackage{morefloats}
 \RequirePackage[section]{placeins}
 
-\RequirePackage{xcite}
-\RequirePackage{xr-hyper}
+%\RequirePackage{xcite}
+\RequirePackage{pdg-xr-hyper}
 
 %%%%%%%%%%%%%%%%
 %%%   Footnote control   %%%
@@ -1308,6 +1315,13 @@
      		pdfborder={0 0 0},
 	 }
 \fi
+\ifrppbooklet
+ 	\hypersetup{
+     		colorlinks=false,
+     		pdfborder={0 0 0},
+	 }
+\fi
+
 	 \PassOptionsToPackage{pdfencoding=auto,psdextra, unicode, naturalnames}{hyperref}
  		\pdfstringdefDisableCommands{%
   		 \def\pi{pi}%
