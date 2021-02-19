@@ -99,7 +99,7 @@
 
 % Packages to control style of titles and page headers
 \RequirePackage{titling}
-\RequirePackage{fancyhdr}
+\RequirePackage{fancyhdr, extramarks}
 \RequirePackage[titles]{tocloft}
 \RequirePackage[compact]{titlesec}
 \RequirePackage[nodayofweek,level,12hr]{datetime}
@@ -116,29 +116,32 @@
     \fancypagestyle{plain}{\fancyfoot[C]{\scriptsize #1}}
 }}
 
+\def\@runningreviewtitle{}
 \newcommand\rpprunningheader[1]{%
   \ifthenelse{\isempty{#1}}{%
 }{
-    \ifrppweb
-   	 \fancyhead[C]{}
-    	\fancyhead[C]{\bf\itshape\nouppercase{\thechapter.  #1}}
-   	 \fancypagestyle{plain}{\fancyhead[C]{\bf\itshape\nouppercase{\thechapter.  #1}}}
-    \fi
-    \ifrppbook
-      \fancytabsTop{\numexpr\value{bleedersection}*73pt+4cm}
-    	\fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}\fancytab[LEFT]{}{}}
-   	 \fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\thechapter.  #1}\xspace\xspace\xspace\fancytab[RIGHT]{}{}\bf\thepage}}
-   	 \fancypagestyle{plain}{%
-   	 \fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}\fancytab[LEFT]{}{}}
-   	 \fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\thechapter.  #1}}\xspace\xspace\xspace\fancytab[RIGHT]{}{}\bf\thepage}}
-    \fi
+   \def\@runningreviewtitle{#1}	
+%    \ifrppweb
+%   	 \fancyhead[C]{}
+%    	\fancyhead[C]{\bf\itshape\nouppercase{\thechapter.  #1}}
+%   	 \fancypagestyle{plain}{\fancyhead[C]{\bf\itshape\nouppercase{\thechapter.  #1}}}
+%    \fi
+%    \ifrppbook
+%      \fancytabsTop{\numexpr\value{bleedersection}*73pt+4cm}
+%    	\fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}\fancytab[LEFT]{}{}}
+%   	 \fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\thechapter.  #1}\xspace\xspace\xspace\fancytab[RIGHT]{}{}\bf\thepage}}
+%   	 \fancypagestyle{plain}{%
+%   	 \fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\thechapter.  #1}\fancytab[LEFT]{}{}}
+%   	 \fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\thechapter.  #1}}\xspace\xspace\xspace\fancytab[RIGHT]{}{}\bf\thepage}}
+%    \fi
 }}
 
 \fancypagestyle{rppbook}{%
 	\fancyhf{} % clear the fields
 	\renewcommand{\@chapapp}{}
-	\fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\leftmark}}
-	\fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\bf\thepage}
+	%Overridden by \rppthumb
+	\fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\firstleftmark}}
+	\fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\firstleftmark}}\xspace\xspace\xspace\bf\thepage}
 	\fancyhead[RE,LO]{}
 }
 
@@ -148,7 +151,7 @@
 	\setlength{\headheight}{14pt}
 	\renewcommand{\headrulewidth}{0pt}
 	\fancyhead[L]{\thepage}
-	\fancyhead[C]{\bf\itshape\nouppercase{\leftmark}}
+	\fancyhead[C]{\bf\itshape\nouppercase{\firstleftmark}}
 	\fancyfoot[C]{\scriptsize\today\hspace{5mm}\currenttime}
 }
 
@@ -158,7 +161,7 @@
 	\setlength{\headheight}{14pt}
 	\renewcommand{\headrulewidth}{0pt}
 	\fancyhead[L]{\thepage}
-	\fancyhead[C]{\bf\itshape\nouppercase{\leftmark}}
+	\fancyhead[C]{\bf\itshape\nouppercase{\firstleftmark}}
 	\fancyfoot[C]{\scriptsize DRAFT \scriptsize\today\hspace{2mm}\currenttime - Not for public distribution}
 }
 
@@ -167,8 +170,8 @@
 	\renewcommand{\@chapapp}{}
 	\renewcommand{\headrulewidth}{0pt}
 	\setlength{\headheight}{14pt}
-	\fancyhead[LE]{{\bf\thepage}\xspace\xspace\xspace\itshape\nouppercase{\leftmark}}
-	\fancyhead[RO]{{\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\bf\thepage}
+	\fancyhead[LE]{{\bf\thepage}\xspace\xspace\xspace\itshape\nouppercase{\firstleftmark}}
+	\fancyhead[RO]{{\itshape\nouppercase{\firstleftmark}}\xspace\xspace\xspace\bf\thepage}
 	\fancyhead[RE,LO]{}
 }
 
@@ -338,10 +341,10 @@
 %\newcommand\rppthumb{\Repeat{\numexpr\value{bleedersection}}{\addthumb{}{}{white}{white}}\addthumb{}{}{black}{black}}
 
 \newcommand\rppthumb{%
-      \ifrppbook
+   \ifrppbook
       \fancytabsTop{\numexpr\value{bleedersection}*73pt+4cm}
-	\fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\leftmark}\fancytab[LEFT]{}{}}
-	\fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\leftmark}}\xspace\xspace\xspace\fancytab[RIGHT]{}{}\bf\thepage}
+	\fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\firstleftmark}\fancytab[LEFT]{}{}}
+	\fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\firstleftmark}}\xspace\xspace\xspace\fancytab[RIGHT]{}{}\bf\thepage}
 	\fancyhead[RE,LO]{}
     \fi
 }
@@ -575,7 +578,6 @@
 \newcommand\@sectionlabel{}
 
 
-
 \newcommand\pdgtitle[1][]{%
 \ifthenelse{\equal{\@subsectiontitle}{}}
 {
@@ -583,9 +585,19 @@
       {
 	\ifthenelse{\equal{#1}{}}
 	{ %\bibliographyunit[\chapter]
-	  \ifischapter \chapter{\@reviewtitle}% 
-	  \else{\chapter*{\@reviewtitle}\markboth{\@reviewtitle}{\@reviewtitle}}
+	  \ifischapter{
+	  	\chapter{\@reviewtitle}}
+	  \else{
+	  \chapter*{\@reviewtitle}}
 	  \fi%
+	  \ifthenelse{\equal{\@runningreviewtitle}{}}{
+	 	%\gdef\@internalmark{\thechapter.  \@reviewtitle}
+	  	\markboth{\thechapter.  \@reviewtitle}{\thechapter.  \@reviewtitle}
+		
+	  	}{%
+		%\gdef\@internalmark{\thechapter.  \@runningreviewtitle}
+		\markboth{\thechapter.  \@runningreviewtitle}{\thechapter.  \@runningreviewtitle}
+	}
 	}
 	{ %\bibliographyunit[\chapter]
 	  \ifischapter \chapter{#1}%
@@ -1160,7 +1172,6 @@
 			\begin{center}
 			\begin{tabular}{@{} ##1 @{}}
       				\hline\hline
-				\centering
 	}{
 				\hline\hline
  			\end{tabular}
@@ -1189,29 +1200,6 @@
 	\ignorespacesafterend
 	\noindent
 }
-
-
-
-%%%%%%%%%%
-%%%   Tags  %%%
-%%%%%%%%%%
-
-\ifdefined\isdraft
-	\RequirePackage[inline,nolabel]{showlabels}
-	% The following should cause labels to be rendered in red.
-	% Unfortunately, when the labels are inline, this causes all 
-	% text to be red.
-	\renewcommand{\showlabelfont}{\tiny}
-	\showlabels{cite}
-	\showlabels{bibitem}
-	\RequirePackage[color,notref,notcite]{showkeys}
-	\definecolor{refkey}{rgb}{1,0,0}
-	\definecolor{labelkey}{rgb}{0,0,1}
-	\renewcommand\showkeyslabelformat[1]{%
-	\fbox{\normalfont\tiny\ttfamily#1}}
-%\renewcommand*\showkeyslabelformat[1]{%
-%  \fbox{\parbox[t]{\marginparwidth}{\raggedright\path{#1}}}}
-\fi
 
 %%%%%%%%%%%%%%
 %%%   Bibliography  %%%
@@ -1328,6 +1316,74 @@
  		 \def\eta{eta}%
 	 }
 \fi
+
+
+%%%%%%%%%%
+%%%   Tags  %%%
+%%%%%%%%%%
+
+\ifdefined\isdraft
+	\newcommand\lbbox[1]{
+		\vrule%
+		\makebox[0pt][l]{\rule[-.25em]{\widthof{#1}+.2em}{.4pt}}%
+		\makebox[\widthof{#1}+.2em][l]{#1}
+	}
+	%\RequirePackage[inline,nolabel]{showlabels}
+	% The following should cause labels to be rendered in red.
+	% Unfortunately, when the labels are inline, this causes all 
+	% text to be red.
+	%\renewcommand{\showlabelfont}{\tiny}
+	%\showlabels{cite}
+	%\showlabels{bibitem}
+	\RequirePackage[color,notref,notcite]{showkeys}
+	\def\SK@bib@relax{\global\let\SK@bib\relax}\SK@bib@relax
+	\def\SK@@bib#1>#2\SK@{%
+		\gdef\SK@bib{\smash{\SK@labelcolor\showkeysbibformat{#2}}}%
+		\global\setbox\@labels\hbox{%
+		\raisebox{-1.2ex}{\rlap{\SK@bib\SK@bib@relax}}
+%		\llap{\SK@bib\SK@bib@relax
+%		\kern\@totalleftmargin\kern\marginparsep}%
+		\box\@labels}%
+	}
+	\def\@bibitem#1{%
+		\SK@bibitem{#1} \SK@\SK@@bib{#1}\ignorespaces}
+	\definecolor{refkey}{rgb}{1,0,0}
+	\definecolor{labelkey}{rgb}{0,0,1}
+	\providecommand\showkeysbibformat[1]{%
+	\makebox[2cm][l]{\normalfont\scriptsize\ttfamily~#1}
+	}
+	\renewcommand\showkeyslabelformat[1]{%
+	%\fbox{\normalfont\tiny\ttfamily#1}
+	\makebox[2cm][l]{\lbbox{\normalfont\tiny\ttfamily~#1}}
+	}
+%\renewcommand*\showkeyslabelformat[1]{%
+%  \fbox{\parbox[t]{\marginparwidth}{\raggedright\path{#1}}}}
+\fi
+
+
+%%% Adjust how missing bibrefs are displayed in cite.sty
+\def\@make@cite@list{%
+ \expandafter\ifx\csname b@\@citeb\@extra@b@citeb 
+      \endcsname\relax % undefined: output ? and warning
+    \@citea {\bfseries `\@citeb'~?}\let\@citea\citepunct \G@refundefinedtrue
+    \@warning {Citation `\@citeb' on page \thepage\space undefined}%
+ %% always verbose \oc@verbo \global\@namedef{b@\@citeb\@extra@b@citeb}{?}%
+ \else %  defined        
+    \@cite@nonhyper@sanitize
+    \@addto@cite@list
+ \fi}
+ 
+%%% Adjust how missing refs are displayed 
+\def\@setref#1#2#3{%
+\ifx#1\relax
+   \protect\G@refundefinedtrue
+   \nfss@text{\reset@font\bfseries `#3'~??}%
+   \@latex@warning{Reference `#3' on page \thepage \space
+             undefined}%
+  \else
+   \expandafter#2#1\null
+\fi}
+
 
 %%% Define some useful macros for authors to use
 
