@@ -1,8 +1,8 @@
 % pdg.cls
 % Format reviews for PDG
-% 2020-Feb-04  Jeffrey Anderson JDAnderson (at) lbl.gov
-% 2020-Feb-04  Dean Robinson drobinson (at) lbl.gov
-\ProvidesClass{pdg}[2020/02/07 version 1.30 PDG review format]
+% Jeffrey Anderson JDAnderson (at) lbl.gov
+% Dean Robinson drobinson (at) lbl.gov
+\ProvidesClass{pdg}[2021/03/01 version 2.0 PDG review format]
 \NeedsTeXFormat{LaTeX2e}
 
 % This PDG class extends the extbook class, for generation of the RPP
@@ -21,6 +21,12 @@
 \newif\ifrppbooklet
 \newif\ifischapter
 \newif\ifismergedreview
+\newif\ifrppwebbook %boolean for book-only version for web
+
+\rppwebfalse
+\rppbookfalse
+\rppbookletfalse
+\rppwebbookfalse
 
 % Allow booleans to be set as options passed to the pdg class
 \@ifclasswith{pdg}{rppbook}{\rppbooktrue}{\rppbookfalse}
@@ -31,17 +37,16 @@
 % \isbook \isbooklet and \isweb are booleans that can be passed on the command line to set or override class options given in the review source files.
 \ifdefined\isweb
 	\rppwebtrue
-	\rppbookfalse
-	\rppbookletfalse
+	\ifdefined\iswebbook %overrides web
+		\rppwebfalse
+		\rppbooktrue
+		\rppwebbooktrue
+	\fi
 \fi
 \ifdefined\isbook
-	\rppwebfalse
 	\rppbooktrue
-	\rppbookletfalse
 \fi
 \ifdefined\isbooklet
-	\rppwebfalse
-	\rppbookfalse
 	\rppbooklettrue
 %	\def\nohyperref{1}
 \fi
@@ -62,7 +67,6 @@
 %\WarningFilter{ltxutil}{Repair the float package} % Artifact of ltxgrid
 %\WarningFilter{auxhook}{Cannot patch} % Cannot patch \document, using \AtBeginDocument instead.
 %\WarningFilter{hyperref}{Token not allowed in a PDF string} % Fixable with \texorpdfstring
-
 
 % Set default options to pass to base class
 \DeclareOption{rppbook} {%
@@ -139,10 +143,18 @@
 \fancypagestyle{rppbook}{%
 	\fancyhf{} % clear the fields
 	\renewcommand{\@chapapp}{}
-	%Overridden by \rppthumb
-	\fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\firstleftmark}}
-	\fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\firstleftmark}}\xspace\xspace\xspace\bf\thepage}
-	\fancyhead[RE,LO]{}
+	\ifrppwebbook %only true for make web with book-only version
+		\setlength{\headheight}{14pt}
+		\renewcommand{\headrulewidth}{0pt}
+		\fancyhead[L]{\thepage}
+		\fancyhead[C]{\bf\itshape\nouppercase{\firstleftmark}}
+		\fancyfoot[C]{\scriptsize\today\hspace{5mm}}
+	\else
+		%Overridden by \rppthumb
+		\fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\firstleftmark}}
+		\fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\firstleftmark}}\xspace\xspace\xspace\bf\thepage}
+		\fancyhead[RE,LO]{}
+	\fi
 }
 
 \fancypagestyle{rppweb}{%
@@ -152,7 +164,7 @@
 	\renewcommand{\headrulewidth}{0pt}
 	\fancyhead[L]{\thepage}
 	\fancyhead[C]{\bf\itshape\nouppercase{\firstleftmark}}
-	\fancyfoot[C]{\scriptsize\today\hspace{5mm}\currenttime}
+	\fancyfoot[C]{\scriptsize\today\hspace{5mm}}
 }
 
 \fancypagestyle{rppdraft}{%
@@ -170,8 +182,8 @@
 	\renewcommand{\@chapapp}{}
 	\renewcommand{\headrulewidth}{0pt}
 	\setlength{\headheight}{14pt}
-	\fancyhead[LE]{{\bf\thepage}\xspace\xspace\xspace\itshape\nouppercase{\firstleftmark}}
-	\fancyhead[RO]{{\itshape\nouppercase{\firstleftmark}}\xspace\xspace\xspace\bf\thepage}
+	\fancyhead[LE]{{\bf\fontfamily{lmss}\selectfont\thepage}\xspace\xspace\xspace\itshape\nouppercase{\firstleftmark}}
+	\fancyhead[RO]{{\itshape\nouppercase{\firstleftmark}}\xspace\xspace\xspace\bf\fontfamily{lmss}\selectfont\thepage}
 	\fancyhead[RE,LO]{}
 }
 
@@ -341,12 +353,12 @@
 %\newcommand\rppthumb{\Repeat{\numexpr\value{bleedersection}}{\addthumb{}{}{white}{white}}\addthumb{}{}{black}{black}}
 
 \newcommand\rppthumb{%
-   \ifrppbook
-      \fancytabsTop{\numexpr\value{bleedersection}*73pt+4cm}
+    \ifrppbook
+    	\fancytabsTop{\numexpr\value{bleedersection}*73pt+4cm}
 	\fancyhead[LE]{\booktitlestrut\bf\thepage\xspace\xspace\xspace\bf\itshape\nouppercase{\firstleftmark}\fancytab[LEFT]{}{}}
 	\fancyhead[RO]{{\booktitlestrut\bf\itshape\nouppercase{\firstleftmark}}\xspace\xspace\xspace\fancytab[RIGHT]{}{}\bf\thepage}
 	\fancyhead[RE,LO]{}
-    \fi
+    \fi 
 }
 
 
@@ -508,7 +520,8 @@
 	%  {\vspace{1ex}\filcenter}
  	 {\vspace{0ex}}
  	 [\vspace{1ex}\twocolumn]
-\else
+\fi
+\ifrppweb
 	\titlespacing{\chapter}{0pt}{-15pt}{5pt}
 	\titleformat{\chapter}[block]
 	{\centering\bfseries\Large}
@@ -1329,9 +1342,6 @@
 		\makebox[\widthof{#1}+.2em][l]{#1}
 	}
 	%\RequirePackage[inline,nolabel]{showlabels}
-	% The following should cause labels to be rendered in red.
-	% Unfortunately, when the labels are inline, this causes all 
-	% text to be red.
 	%\renewcommand{\showlabelfont}{\tiny}
 	%\showlabels{cite}
 	%\showlabels{bibitem}
@@ -1360,12 +1370,17 @@
 %  \fbox{\parbox[t]{\marginparwidth}{\raggedright\path{#1}}}}
 \fi
 
-
+\newcommand{\allowudx}{\begingroup
+  \catcode`_=12 \doallowudx}
+\newcommand{\doallowudx}[1]{%
+	\texttt{\scantokens\expandafter{#1\noexpand}}%
+  \endgroup
+}
 %%% Adjust how missing bibrefs are displayed in cite.sty
 \def\@make@cite@list{%
  \expandafter\ifx\csname b@\@citeb\@extra@b@citeb 
       \endcsname\relax % undefined: output ? and warning
-    \@citea {\bfseries `\@citeb'~?}\let\@citea\citepunct \G@refundefinedtrue
+    \@citea {\bfseries `\allowudx{\@citeb}'\,?}\let\@citea\citepunct \G@refundefinedtrue
     \@warning {Citation `\@citeb' on page \thepage\space undefined}%
  %% always verbose \oc@verbo \global\@namedef{b@\@citeb\@extra@b@citeb}{?}%
  \else %  defined        
@@ -1374,16 +1389,27 @@
  \fi}
  
 %%% Adjust how missing refs are displayed 
+\newif\ifaltref
+\altreffalse
 \def\@setref#1#2#3{%
 \ifx#1\relax
    \protect\G@refundefinedtrue
-   \nfss@text{\reset@font\bfseries `#3'~??}%
+   \ifaltref
+   	\nfss@text{\reset@font\bfseries\color{red}{??}}%
+   \else
+  	 \nfss@text{\reset@font\bfseries `\allowudx{#3}'\,??}%
+  \fi	 
    \@latex@warning{Reference `#3' on page \thepage \space
              undefined}%
   \else
    \expandafter#2#1\null
 \fi}
 
+%%%%%%%%%%%%
+%%% Crossrefs %%%
+%%%%%%%%%%%%
+
+\newcommand\crossref[1]{\altreftrue\ref{#1}\altreffalse}
 
 %%% Define some useful macros for authors to use
 
