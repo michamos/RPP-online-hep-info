@@ -1,10 +1,10 @@
-# $Id: Makefile 28513 2021-02-22 23:22:52Z anderson $
+# $Id: Makefile 28621 2021-03-05 15:32:46Z anderson $
 # Template for general Makefile for LaTeX-based reviews
 
 BASENAME := databases
 SUBREVS := nonaccel pardet hadronic
-ALLSUBREVS := $(foreach SUBREV, $(SUBREVS), $(shell find .. -mindepth 1 -maxdepth 1 -type d -name '$(SUBREV)-*' -printf "%f "))
-ALLREVS := $(shell find .. -mindepth 1 -maxdepth 1 -type d -printf "%f ")
+ALLSUBREVS := $(foreach SUBREV, $(SUBREVS), $(shell find .. -mindepth 1 -maxdepth 1 -type d -name '$(SUBREV)-*' -exec echo {} \; | sed "s|\.\.\/||" ))
+ALLREVS := $(shell find .. -mindepth 1 -maxdepth 1 -type d -exec echo {} \; | sed "s|\.\.\/||")
 ALLREVSX := $(filter-out $(BASENAME),$(ALLREVS))
 ALLREVSX := $(filter-out $(ALLSUBREVS), $(ALLREVSX))
 XREFAUX := $(foreach AUX, $(ALLREVSX), ../$(AUX)/$(AUX).aux) 
