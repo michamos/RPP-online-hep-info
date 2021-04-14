@@ -596,25 +596,30 @@
 {
   \ifthenelse{\equal{\@sectiontitle}{}}
       {
+      	\def\markchapter{}
 	\ifthenelse{\equal{#1}{}}
 	{ %\bibliographyunit[\chapter]
-	  \ifischapter{
-	  	\chapter{\@reviewtitle}}
-	  \else{
-	  \chapter*{\@reviewtitle}}
+	  \ifischapter
+	  	\chapter{\@reviewtitle}
+		\def\markchapter{\thechapter.~}	
+	  \else
+	  	\chapter*{\@reviewtitle}
 	  \fi%
 	  \ifthenelse{\equal{\@runningreviewtitle}{}}{
 	 	%\gdef\@internalmark{\thechapter.  \@reviewtitle}
-	  	\markboth{\thechapter.  \@reviewtitle}{\thechapter.  \@reviewtitle}
-		
+	  	\markboth{\markchapter\@reviewtitle}{\markchapter\@reviewtitle}
 	  	}{%
 		%\gdef\@internalmark{\thechapter.  \@runningreviewtitle}
-		\markboth{\thechapter.  \@runningreviewtitle}{\thechapter.  \@runningreviewtitle}
-	}
+		\markboth{\markchapter\@runningreviewtitle}{\markchapter\@runningreviewtitle}
+		}
 	}
 	{ %\bibliographyunit[\chapter]
-	  \ifischapter \chapter{#1}%
-	  \else{\chapter*{#1}\markboth{#1}{#1}}
+	  \ifischapter
+	  	\chapter{#1}%
+		\markboth{\thechapter.~#1}{\thechapter.~#1}
+	 \else
+	 	\chapter*{#1}
+		\markboth{#1}{#1}
 	  \fi%
 	}
       }
