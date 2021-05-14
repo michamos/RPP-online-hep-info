@@ -394,6 +394,8 @@
 \RequirePackage{adjustbox}
 \RequirePackage{relsize}
 
+\RequirePackage{listings}
+
 %%% Decrease line spacing in itemize and enumerate lists
 \RequirePackage{paralist}
   \let\itemize\compactitem
@@ -858,6 +860,7 @@
 \ifthenelse{\isempty{#4}}{%
   \begin{figure}[!ht]}{%
   \begin{figure}[#4]}
+  \captionsetup{labelfont=bf}
     \centering
 %% Still experimenting with figure scaling
 \ifthenelse{\isempty{#5}}{%
@@ -872,6 +875,7 @@
 \ifthenelse{\isempty{#4}}{%
   \begin{figure*}[!ht]}{%
   \begin{figure*}[#4]}
+  \captionsetup{labelfont=bf}
     \centering
 \ifthenelse{\isempty{#5}}{%
     \includegraphics[width=\textwidth]{figures/#1}}{%
@@ -884,6 +888,7 @@
 \ifthenelse{\isempty{#5}}{%
   \begin{figure}[!ht]}{%
   \begin{figure}[#5]}
+  \captionsetup{labelfont=bf}
     \centering
     \includegraphics[#6]{figures/#1}
     \includegraphics[#6]{figures/#2}
@@ -895,6 +900,7 @@
 \ifthenelse{\isempty{#5}}{%
   \begin{figure*}[!ht]}{%
   \begin{figure*}[#5]}
+  \captionsetup{labelfont=bf}
     \centering
 \ifthenelse{\isempty{#6}}{%
     \includegraphics[width=.45\textwidth]{figures/#1}
@@ -909,6 +915,7 @@
 \ifthenelse{\isempty{#5}}{%
   \begin{figure}[!ht]}{%
   \begin{figure}[#5]}
+  \captionsetup{labelfont=bf}
     \centering
     \includegraphics[#6]{figures/#1}
     \includegraphics[#7]{figures/#2}
@@ -920,6 +927,7 @@
 \ifthenelse{\isempty{#5}}{%
   \begin{figure*}[!ht]}{%
   \begin{figure*}[#5]}
+  \captionsetup{labelfont=bf}
     \centering
 \ifthenelse{\isempty{#6}}{%
     \includegraphics[width=.45\textwidth]{figures/#1}
@@ -1127,6 +1135,7 @@
 %Keys for placement, wide setting, orientation
 \define@key{Gin}{place}[!ht]{
 	\def\fps@table{#1}
+	\def\fps@figure{#1}
 }
 \define@boolkey{Gin}{wide}[false]{}	
 \define@boolkey{Gin}{sideways}[false]{}	
@@ -1215,6 +1224,40 @@
 	\def\pdgtab@scale{1}
 	\def\pdgtab@bbscale{1}
 	\def\pdgtab@tabularstretch{1}
+	\ignorespacesafterend
+	\noindent
+}
+
+%%%%%%%%%%%%%
+%%%   pdgxfigure %%%
+%%%%%%%%%%%%%
+
+%Key for figure default width
+%\define@boolkey{Gin}{nodefaultwidth}[false]{} 
+
+\newenvironment{pdgxfigure}[1][]{
+	\graphicspath{{figures/}}
+	\setkeys{Gin}{width=0.75\linewidth,#1}
+	\ifKV@Gin@wide
+		\begin{figure*}	
+		\captionsetup{width=\textwidth,labelfont=bf}
+	\else	
+		\begin{figure}
+		\captionsetup{width=\linewidth,labelfont=bf}
+	\fi
+%	\let\@includegraphics\includegraphics
+%	\renewcommand{\includegraphics}[2][]{%
+%   		 \@includegraphics[width=!,##1]{##2}%
+%	}
+	\begin{center}
+}{
+	\end{center}
+	\ifKV@Gin@wide	
+		\end{figure*}
+	\else	
+		\end{figure}
+	\fi
+	%cleanup
 	\ignorespacesafterend
 	\noindent
 }
