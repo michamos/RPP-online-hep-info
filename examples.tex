@@ -634,6 +634,27 @@ To achieve the same result for figures and tables, one may place in the booklet 
 \end{verbtex}
 before each table or figure environment, respectively. 
 
+
+\Isection{Index entries}
+\label{sec:index}
+
+Review authors should think about any keywords that should be included into the index of the Review of Particle Physics. PDG uses the standard \LaTeX\  \invt{makeidx} package. Thus an entry ``sample text'' can be added to the index by placing
+\begin{verbtex}
+\index{sample text}
+\end{verbtex}
+at the appropriate place in the source file. Formatting of entries with Greek letters or math symbols as well as subentries are also supported. For example
+\begin{verbtex}
+\index{sigma@$\$$\sigma$\$$} 
+\end{verbtex}
+creates an index entry $\sigma$ in the proper alphabetical order, while
+\begin{verbtex}
+\index{Searches!Axion searches} 
+\end{verbtex}
+produces a subentry ``Axion searches'' under the ``Searches'' index entry.
+
+All index entries defined in a given review will be shown on the last page when the draft version is made. PDG staff will standardize all index entries during the final processing of all reviews. Therefore what matters is not the final formatting of index entries but that all relevant entries are added in the correct place.
+
+
 \Isection{Bibliography}
 \label{sec:cites}
 
