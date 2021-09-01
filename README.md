@@ -354,7 +354,7 @@ The data from HEPData can also be accessed through INSPIRE. A new enhanced servi
 * [HepSim](http://atlaswww.hep.anl.gov/hepsim/):
     A repository with Monte Carlo simulations for particle-collision experiments. It contains predictions from parton shower models and includes Monte Carlo events after fast and full detector simulations and event reconstruction.
 
-* [ILDG](http://www.usqcd.org/ildg/):
+* [ILDG](http://plone.jldg.org):
     The International Lattice Data Grid is an international organization which provides standards, services, methods and tools that facilitate the sharing and interchange of lattice QCD gauge configurations among scientific collaborations by uniting their regional data grids. It offers semantic access with local tools to worldwide distributed data.
 
 * [MCDB - Monte Carlo Database](http://mcdb.cern.ch/):
