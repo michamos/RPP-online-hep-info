@@ -68,6 +68,7 @@ ENTRY
     url
     volume
     year
+    doi
   }
   {}
   { label }
@@ -112,6 +113,10 @@ FUNCTION {output.check}
     'output.nonnull
   if$
 }
+
+INTEGERS { tempctra tempctrb }
+
+
 %%FUNCTION {fin.entry}
 %%{ add.period$
 %%  write$
@@ -420,12 +425,103 @@ FUNCTION {bibinfo.warn}
     }
   if$
 }
+
+FUNCTION {csv.split.inner} {
+  's :=
+  "" 't :=
+  #1 'tempctra  :=
+  { s empty$ not
+    tempctra and }
+    { s #1 #2 substring$ ", " =
+        { #0 'tempctra := 
+          s #2 global.max$ substring$ 's := }
+        { t s #1 #1 substring$ * 't := }
+      if$
+      s #2 global.max$ substring$ 's :=
+    }
+  while$
+  s
+  t
+}
+
+FUNCTION {csv.split.first} {
+  's :=
+  "" 't :=
+  #1 'tempctra  :=
+  { s empty$ not
+    tempctra and }
+    { s #1 #2 substring$ ", " =
+        { #0 'tempctra := 
+          s #2 global.max$ substring$ 's := }
+        { t s #1 #1 substring$ * 't := }
+      if$
+      s #2 global.max$ substring$ 's :=
+    }
+  while$
+  t
+}
+
+FUNCTION {doi.split.outer} {
+  's :=
+  ""
+  #0 'tempctrb  :=
+  { s empty$ not }
+    { s csv.split.inner
+      't :=
+      's :=
+      tempctrb #0 =
+        {}
+        { ", " * }
+      if$
+      tempctrb #1 + 'tempctrb  :=
+      "\pdgdoi{" t * "}" * *
+    }
+  while$
+}
+
+FUNCTION {doilink}
+{ duplicate$ empty$
+{ pop$ "" }
+{ doi empty$
+    { skip$ }
+    { "\href{http://doi.org/" doi * "}{" * swap$ * "}" * }
+  if$
+}
+if$
+}
+
+FUNCTION {doilink.first}
+{ duplicate$ empty$
+{ pop$ "" }
+{ doi empty$
+    { skip$ }
+    { doi csv.split.inner 't := 's :=
+      "\href{http://doi.org/" t * "}{" * swap$ * "}" * }
+  if$
+}
+if$
+}
+
+FUNCTION {doilink.last}
+{ duplicate$ empty$
+{ pop$ "" }
+{ doi empty$
+    { skip$ }
+    { doi csv.split.inner 't := 's :=
+      "\href{http://doi.org/" s * "}{" * swap$ * "}" * }
+  if$
+}
+if$
+}
+
+
+
 FUNCTION {format.eprint}
 { eprint empty$
     { "" }
     { eprint #1 #3 substring$ "hep" =
 %        { "[" eprint * "]" * }
-        { "\href{http://arxiv.org/abs/"  eprint * "}" * "{[" * eprint * "]}" * }
+        { "\href{https://arxiv.org/abs/"  eprint * "}" * "{[" * eprint * "]}" * }
 	{ archivePrefix empty$
 	    { archive empty$
 	        { "" }
@@ -434,7 +530,7 @@ FUNCTION {format.eprint}
 	    }
 %	    { "[" archivePrefix * ":" * eprint * "]" * }
 %	    { "\url{http://arxiv.org/abs/"  eprint * "}" * }
-	    { "\href{http://arxiv.org/abs/"  eprint * "}" * "{[" * archivePrefix * ":" * eprint * "]}" *}
+	    { "\href{https://arxiv.org/abs/"  eprint * "}" * "{[" * archivePrefix * ":" * eprint * "]}" *}
 	  if$
 	}
       if$
@@ -461,6 +557,15 @@ FUNCTION {format.url}
   duplicate$ empty$
     { pop$ "" }
     { "\urlprefix\url{" swap$ * "}" * }
+  if$
+}
+
+FUNCTION {format.doi}
+{ doi empty$
+    { "" }
+%    { "\pdgdoi{" doi * "}" * }
+%    {new.block
+{     doi doi.split.outer }
   if$
 }
 
@@ -1042,25 +1147,35 @@ FUNCTION {format.organization.address}
 { organization "organization" bibinfo.check format.org.or.pub
 }
 
+FUNCTION {format.article.journal}
+{ journal
+      "journal" bibinfo.check
+      "journal" output.check
+      add.blank
+      format.vol.num.pages
+      }
+
 FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
   crossref missing$
     {
-      journal
-      "journal" bibinfo.check
+      journal 
+      "journal" bibinfo.check doilink.first
       "journal" output.check
       add.blank
-      format.vol.num.pages output
+      format.vol.num.pages doilink.first output
       format.date "year" output.check
     }
-    { format.article.crossref output.nonnull
+  {
+ format.article.crossref output.nonnull
       format.pages output
     }
   if$
   format.issn output
   format.note output
   format.eprint output
+%  format.doi output
   format.url output
   fin.entry
 }
@@ -1091,6 +1206,7 @@ FUNCTION {book}
   format.isbn output
   format.note output
   format.eprint output
+%  format.doi output
   format.url output
   fin.entry
 }
@@ -1105,6 +1221,7 @@ FUNCTION {booklet}
   format.isbn output
   format.note output
   format.eprint output
+%  format.doi output
   format.url output
   fin.entry
 }
@@ -1142,6 +1259,7 @@ FUNCTION {inbook}
   if$
   format.note output
   format.eprint output
+%  format.doi output
   format.url output
   fin.entry
 }
@@ -1166,6 +1284,7 @@ FUNCTION {incollection}
   if$
   format.note output
   format.eprint output
+%  format.doi output
   format.url output
   fin.entry
 }
@@ -1228,6 +1347,7 @@ FUNCTION {manual}
   format.date output
   format.note output
   format.eprint output
+%  format.doi output
   format.url output
   fin.entry
 }
@@ -1243,6 +1363,7 @@ FUNCTION {mastersthesis}
   format.date "year" output.check
   format.note output
   format.eprint output
+%  format.doi output
   format.url output
   fin.entry
 }
@@ -1256,6 +1377,7 @@ FUNCTION {misc}
   format.date output
   format.note output
   format.eprint output
+%  format.doi output
   format.url output
   fin.entry
   empty.misc.check
@@ -1271,6 +1393,7 @@ FUNCTION {phdthesis}
   format.date "year" output.check
   format.note output
   format.eprint output
+%  format.doi output
   format.url output
   fin.entry
 }
@@ -1325,6 +1448,7 @@ FUNCTION {proceedings}
   format.issn output
   format.note output
   format.eprint output
+%  format.doi output
   format.url output
   fin.entry
 }
@@ -1341,6 +1465,7 @@ FUNCTION {techreport}
   format.date "year" output.check
   format.note output
   format.eprint output
+%  format.doi output
   format.url output
   fin.entry
 }
@@ -1353,6 +1478,7 @@ FUNCTION {unpublished}
   format.date output
   format.note "note" output.check
   format.eprint output
+%  format.doi output
   format.url output
   fin.entry
 }

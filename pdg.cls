@@ -1236,7 +1236,7 @@
 %\define@boolkey{Gin}{nodefaultwidth}[false]{} 
 
 \newenvironment{pdgxfigure}[1][]{
-	\graphicspath{{figures/}}
+        \graphicspath{{figures/}{\import@path}{\import@path/figures/}}
 	\setkeys{Gin}{width=0.75\linewidth,#1}
 	\ifKV@Gin@wide
 		\begin{figure*}	
@@ -1359,10 +1359,23 @@
 \fi
 
 \ifrppbook
- 	\hypersetup{
-     		colorlinks=false,
-     		pdfborder={0 0 0},
-	 }
+	\ifrppwebbook
+		\hypersetup{
+     			colorlinks=true,
+               		linkcolor=black,
+                		citecolor=navyblue,
+                		filecolor=black,
+                		menucolor=black,
+                		runcolor=black,
+                		urlcolor=navyblue,
+     			pdfborder={0 0 0},
+	 	}
+	\else
+ 		\hypersetup{
+     			colorlinks=false,
+     			pdfborder={0 0 0},
+		 }
+	 \fi
 \fi
 \ifrppbooklet
  	\hypersetup{
